@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOC User Story #1 Form</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div>
+      <form action="">
+        <h1>LOC User Story #1 Form</h1>
+        <!-- Personal Info -->
+        <fieldset id="info">
+          <legend>Personal Information</legend>
+          <label for="name">Name:<input type="text" /></label>
+          <br />
+          <label for="email">Email:<input type="text" /></label>
+        </fieldset>
+
+        <!-- Choose your flavor -->
+        <fieldset id="order-detail">
+          <legend>Order Details</legend>
+          <label for="select">Choose your flavor:</label>
+          <select id="flavor" name="flavor">
+            <option value="none">Select a Flavor</option>
+            <option value="vanilla">Vanilla</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="mint">Mint</option>
+          </select>
+          <!-- </fieldset> -->
+
+          <!-- Choose your Cone -->
+          <!-- <fieldset> -->
+          <br />
+          <label class="select">Choose your Cone</label>
+          <br />
+
+          <label for="waffle">
+            <input type="radio" id="waffle" name="method" value="waffle" />
+            Waffle Cone
+          </label>
+
+          <label for="Sugar">
+            <input type="radio" id="Sugar" name="method" value="Sugar " />
+            Sugar Cone
+          </label>
+
+          <label for="Cup">
+            <input type="radio" id="Cup" name="method" value="Cup " />
+            Cup
+          </label>
+          <br />
+          <!-- </fieldset> -->
+
+          <!-- Toppings -->
+          <!-- <fieldset> -->
+          <label>Toppings</label>
+          <br />
+          <label for="Sprinkles">
+            <input
+              type="checkbox"
+              id="Sprinkles"
+              name="toppings[]"
+              value="Sprinkles"
+            />
+            Sprinkles
+          </label>
+
+          <label for="Nuts">
+            <input type="checkbox" id="Nuts" name="toppings[]" value="Nuts " />
+            Nuts
+          </label>
+
+          <label for="Cherry">
+            <input
+              type="checkbox"
+              id="Cherry"
+              name="toppings[]"
+              value="Cherry"
+            />
+            Cherry
+          </label>
+
+          <label for="Cream">
+            <input type="checkbox" id="Cream" name="toppings[]" value="Cream" />
+            Whipped Cream
+          </label>
+          <br />
+          <label for="comments" id="comments"
+            >Additional Comments: <br />
+            <input type="text"
+          /></label>
+        </fieldset>
+
+        <button type="submit">Submit Order</button>
+      </form>
+    </div>
+  </body>
+</html>

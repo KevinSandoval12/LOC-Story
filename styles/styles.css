@@ -1,0 +1,66 @@
+html {
+  font-family: sans-serif;
+}
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+form {
+  border-radius: 0.5rem;
+  background-color: white;
+  width: 70%;
+  margin: 0 auto 1rem auto;
+  padding: 0 1rem 2rem 1rem;
+}
+legend {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
+
+#info input {
+  width: 93%;
+}
+
+button {
+  color: white;
+  background-color: green;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+#comments input {
+  padding: 2rem auto;
+  width: 94%;
+  height: 40px;
+}
+
+input {
+  margin: 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin: 0rem 0rem 1rem 0rem;
+  padding: 0.75rem;
+}
+
+#order-detail input {
+  margin-bottom: 1rem;
+}
+
+fieldset {
+  border-radius: 0.5rem;
+}
