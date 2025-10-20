@@ -1,74 +1,63 @@
-document.getElementById("LOC-story").onsubmit = () => {};
-// Constants
-// let dean = document.getElementById("dean");
-// let PEN = document.getElementById("PEN");
-// let LOC = document.getElementById("LOC");
-// let Chair = document.getElementById("Chair");
-let divisionSelect = document.getElementById("division-selector");
-
-// (Fine Arts, Humanities, Social Science, English, Science, Technology, Health Science, Trades, etc.)
-let List = {
-  FineArt: [
-    "Miebeth Castillo-Booth",
-    "Angie Brenner",
-    "Josh Archer",
-    "Michael Wood",
-  ],
-};
-if (divisionSelect.value == "FineArt") {
-  document.addEventListener("DOMContentLoaded", () => {
-    form.addEventListener("submit", (e) => {
-      let division = (document.getElementById("division").value = "FineArt");
-      let dean = (document.getElementById("dean").value = List.FineArt[0]);
-      let PEN = (document.getElementById("PEN").value = List.FineArt[1]);
-      let LOC = (document.getElementById("LOC").value = List.FineArt[2]);
-      let Chair = (document.getElementById("Chair").value = List.FineArt[3]);
-    });
-  });
-}
-
-console.log(dean);
-console.log(division);
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   division.addEventListener("change", () => {
-//     const division = document.getElementById("division-selector");
-//     const divisionNames = document.getElementById("division-names");
-//     if (division.value !== "none") {
-//       divisionNames.style.display = "";
-//     } else {
-//       divisionNames.style.display = "none";
-//     }
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Get all main elements
+  // Get elements
   const form = document.getElementById("LOC-story");
-  const division = document.getElementById("division-selector");
+  const divisionSelect = document.getElementById("division-selector");
   const divisionNames = document.getElementById("division-names");
   const dean = document.getElementById("dean");
   const pen = document.getElementById("PEN");
   const loc = document.getElementById("Rep"); // corrected ID
   const chair = document.getElementById("Chair");
 
-  // Hide the division info section by default
+  // Division data
+  const Divisions = {
+    FineArt: [
+      "Miebeth Castillo-Booth",
+      "Angie Brenner",
+      "Josh Archer",
+      "Michael Wood",
+    ],
+    Technology: [
+      "Miebeth Castillo-Booth",
+      "Angie Brenner",
+      "Josh Archer",
+      "Michael Wood",
+    ],
+    // fill in other divisions as needed
+    Humanities: [],
+    SocialScience: [],
+    English: [],
+    Science: [],
+    HealthScience: [],
+    Trades: [],
+  };
+
+  // Hide the section by default
   divisionNames.style.display = "none";
 
-  // Show/hide section when a division is selected
-  division.addEventListener("change", () => {
-    if (division.value !== "none") {
-      divisionNames.style.display = "block";
+  // When the dropdown changes...
+  divisionSelect.addEventListener("change", () => {
+    const selected = divisionSelect.value;
+
+    if (selected !== "none") {
+      divisionNames.style.display = "block"; // show fields
+
+      // Auto-fill fields if division exists
+      if (Divisions[selected]) {
+        document.getElementById("division").value = selected;
+        dean.value = Divisions[selected][0];
+        pen.value = Divisions[selected][1];
+        loc.value = Divisions[selected][2];
+        chair.value = Divisions[selected][3];
+      }
     } else {
-      divisionNames.style.display = "none";
+      divisionNames.style.display = "none"; // hide again
     }
   });
 
-  // Optional: handle form submission for testing
+  // Optional: stop page reload + log values
   form.addEventListener("submit", (e) => {
-    e.preventDefault(); // stop refresh
-
-    console.log("Division Selected:", division.value);
+    e.preventDefault();
+    console.log("Division Selected:", divisionSelect.value);
     console.log("Dean:", dean.value);
     console.log("PEN Contact:", pen.value);
     console.log("LOC Rep:", loc.value);
