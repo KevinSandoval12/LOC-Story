@@ -4,36 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LOC User Story #1 Form</title>
-    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <script src="/js/LOC.js" defer></script>
   </head>
   <body>
     <div>
-      <form action="">
-        <h1>LOC User Story #1 Form</h1>
-        <!-- Personal Info -->
-        <fieldset id="info">
-          <legend>Personal Information</legend>
+      <form id="LOC-story" action="#" method="get" onsubmit="return false">
+        <h1>DA FORM</h1>
+        <!-- <h1>LOC User Story #1 Form</h1>
+
+        <fieldset id="division-select">
+          <legend>Select Division</legend>
           <label for="name">Name:<input type="text" /></label>
           <br />
           <label for="email">Email:<input type="text" /></label>
         </fieldset>
 
-        <!-- Choose your flavor -->
         <fieldset id="order-detail">
           <legend>Order Details</legend>
-          <label for="select">Choose your flavor:</label>
+          <label for="select">Choose your Division:</label>
           <select id="flavor" name="flavor">
             <option value="none">Select a Flavor</option>
             <option value="vanilla">Vanilla</option>
             <option value="chocolate">Chocolate</option>
             <option value="mint">Mint</option>
           </select>
-          <!-- </fieldset> -->
 
-          <!-- Choose your Cone -->
-          <!-- <fieldset> -->
           <br />
-          <label class="select">Choose your Cone</label>
+          <label class="select">Choose your Division</label>
           <br />
 
           <label for="waffle">
@@ -51,10 +49,7 @@
             Cup
           </label>
           <br />
-          <!-- </fieldset> -->
 
-          <!-- Toppings -->
-          <!-- <fieldset> -->
           <label>Toppings</label>
           <br />
           <label for="Sprinkles">
@@ -91,6 +86,41 @@
             >Additional Comments: <br />
             <input type="text"
           /></label>
+        </fieldset> -->
+
+        <!-- Drop down -->
+        <!-- (Fine Arts, Humanities, Social Science, English, Science, Technology, Health Science, Trades, etc.) -->
+        <fieldset id="order-detail">
+          <legend>Order Details</legend>
+          <label for="division-selector">Choose your Division:</label>
+          <select id="division-selector" name="flavor">
+            <option value="none">Select a Division</option>
+            <option value="FineArt">Fine Arts</option>
+            <option value="Humanities">Humanities</option>
+            <option value="SocialScience">Social Science</option>
+            <option value="English">English</option>
+            <option value="Science">Science</option>
+            <option value="Technology">Technology</option>
+            <option value="HealthScience">Health Science</option>
+            <option value="Trades">Trades</option>
+          </select>
+
+          <!-- division Name-->
+          <div id="division-names">
+            <label for="division"
+              >Division Name:<input type="text" id="division"
+            /></label>
+            <!-- dean -->
+            <label for="dean"
+              >Dean:<input type="text" id="dean" value="dean"
+            /></label>
+            <!-- PEN Contact: -->
+            <label for="PEN">PEN Contact:<input type="text" id="PEN" /></label>
+            <!-- LOC Rep -->
+            <label for="LOC">LOC Rep:<input type="text" id="Rep" /></label>
+            <!-- Chair -->
+            <label for="Chair">Chair:<input type="text" id="Chair" /></label>
+          </div>
         </fieldset>
 
         <button type="submit">Submit Order</button>

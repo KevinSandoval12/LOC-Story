@@ -64,3 +64,10 @@ select {
 fieldset {
   border-radius: 0.5rem;
 }
+label {
+  width: 50%;
+}
+
+#division-names {
+  /* display: none; */
+}
