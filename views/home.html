@@ -10,85 +10,7 @@
   <body>
     <div>
       <form id="LOC-story" action="#" method="get" onsubmit="return false">
-        <h1>DA FORM</h1>
-        <!-- <h1>LOC User Story #1 Form</h1>
-
-        <fieldset id="division-select">
-          <legend>Select Division</legend>
-          <label for="name">Name:<input type="text" /></label>
-          <br />
-          <label for="email">Email:<input type="text" /></label>
-        </fieldset>
-
-        <fieldset id="order-detail">
-          <legend>Order Details</legend>
-          <label for="select">Choose your Division:</label>
-          <select id="flavor" name="flavor">
-            <option value="none">Select a Flavor</option>
-            <option value="vanilla">Vanilla</option>
-            <option value="chocolate">Chocolate</option>
-            <option value="mint">Mint</option>
-          </select>
-
-          <br />
-          <label class="select">Choose your Division</label>
-          <br />
-
-          <label for="waffle">
-            <input type="radio" id="waffle" name="method" value="waffle" />
-            Waffle Cone
-          </label>
-
-          <label for="Sugar">
-            <input type="radio" id="Sugar" name="method" value="Sugar " />
-            Sugar Cone
-          </label>
-
-          <label for="Cup">
-            <input type="radio" id="Cup" name="method" value="Cup " />
-            Cup
-          </label>
-          <br />
-
-          <label>Toppings</label>
-          <br />
-          <label for="Sprinkles">
-            <input
-              type="checkbox"
-              id="Sprinkles"
-              name="toppings[]"
-              value="Sprinkles"
-            />
-            Sprinkles
-          </label>
-
-          <label for="Nuts">
-            <input type="checkbox" id="Nuts" name="toppings[]" value="Nuts " />
-            Nuts
-          </label>
-
-          <label for="Cherry">
-            <input
-              type="checkbox"
-              id="Cherry"
-              name="toppings[]"
-              value="Cherry"
-            />
-            Cherry
-          </label>
-
-          <label for="Cream">
-            <input type="checkbox" id="Cream" name="toppings[]" value="Cream" />
-            Whipped Cream
-          </label>
-          <br />
-          <label for="comments" id="comments"
-            >Additional Comments: <br />
-            <input type="text"
-          /></label>
-        </fieldset> -->
-
-        <!-- Drop down -->
+        <h1>Green River Document Modifier</h1>
         <!-- (Fine Arts, Humanities, Social Science, English, Science, Technology, Health Science, Trades, etc.) -->
         <fieldset id="order-detail">
           <legend>Order Details</legend>
@@ -112,21 +34,31 @@
             /></label>
             <!-- dean -->
             <span id="err-dean" class="error"> Dean cannot be empty!</span>
-            <label for="dean">Dean:<input type="text" id="dean" name="dean"/></label>
+            <label for="dean"
+              >Dean:<input type="text" id="dean" name="dean"
+            /></label>
             <!-- PEN Contact: -->
-            <span id="err-PEN" class="error"> PEN Contact cannot be empty!</span>
-            <label for="PEN">PEN Contact:<input type="text" id="PEN" name="PEN"/></label>
+            <span id="err-PEN" class="error">
+              PEN Contact cannot be empty!</span
+            >
+            <label for="PEN"
+              >PEN Contact:<input type="text" id="PEN" name="PEN"
+            /></label>
             <!-- LOC Rep -->
             <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
-            <label for="Rep">LOC Rep:<input type="text" id="Rep" name="Rep"/></label>
+            <label for="Rep"
+              >LOC Rep:<input type="text" id="Rep" name="Rep"
+            /></label>
             <!-- Chair -->
             <span id="err-Chair" class="error"> Chair cannot be empty!</span>
-            <label for="Chair">Chair:<input type="text" id="Chair" name="Chair"/></label>
+            <label for="Chair"
+              >Chair:<input type="text" id="Chair" name="Chair"
+            /></label>
           </div>
         </fieldset>
-        <button>Save</button>
-        <button>Cancel</button>
-        <button type="submit">Export</button>
+        <button id="save-button">Save</button>
+        <button id="cancel-button">Cancel</button>
+        <button type="export-button">Export</button>
       </form>
     </div>
   </body>

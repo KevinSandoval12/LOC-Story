@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const pen = document.getElementById("PEN");
   const loc = document.getElementById("Rep"); // matches HTML ID
   const chair = document.getElementById("Chair");
+  const saveButton = document.getElementById("save-button");
+  const cancelButton = document.getElementById("cancel-button");
 
   // Division data
   const Divisions = {
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     English: ["", "", "", ""],
     Science: ["", "", "", ""],
     HealthScience: ["", "", "", ""],
-    Trades: ["", "", "", ""]
+    Trades: ["", "", "", ""],
   };
 
   // Hide the section by default
@@ -40,7 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (selected !== "none") {
       divisionNames.style.display = "block"; // show fields
-
+      saveButton.style.display = "block"; // show save button
+      cancelButton.style.display = "block"; // show cancel button
       // Auto-fill fields if division exists
       if (Divisions[selected]) {
         document.getElementById("division").value = selected;
@@ -53,21 +56,28 @@ document.addEventListener("DOMContentLoaded", () => {
       divisionNames.style.display = "none"; // hide again
     }
   });
-  
-  
+
+  // Taking away save and cancel buttons
+  cancelButton.onclick = function () {
+    divisionNames.style.display = "none";
+    saveButton.style.display = "none";
+    cancelButton.style.display = "none";
+    divisionNames.value = "none";
+  };
+
   //save form
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const selectedDivision = divisionSelect.value;
-  
+
     if (selectedDivision !== "none") {
       // Get the current values from the form fields
       const deanValue = dean.value;
       const penValue = pen.value;
       const locValue = loc.value;
       const chairValue = chair.value;
-      
-      // update the values in the 
+
+      // update the values in the
       Divisions[selectedDivision] = [deanValue, penValue, locValue, chairValue];
       console.log(Divisions);
     }
@@ -76,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ERROR MESSAGE
-document.getElementById('LOC-story').onsubmit = () => {
+document.getElementById("LOC-story").onsubmit = () => {
   const form = document.getElementById("LOC-story");
   const divisionSelect = document.getElementById("division-selector");
   const divisionNames = document.getElementById("division-names");
@@ -93,7 +103,7 @@ document.getElementById('LOC-story').onsubmit = () => {
     document.getElementById("err-dean").style.display = "block";
     isValid = false;
   }
-  
+
   if (!pen.value.trim()) {
     document.getElementById("err-PEN").style.display = "block";
     isValid = false;
@@ -110,10 +120,10 @@ document.getElementById('LOC-story').onsubmit = () => {
   }
 
   return isValid;
-}
+};
 function clearErrors() {
   let errors = document.getElementsByClassName("error");
-  for (let i=0; i<errors.length; i++) {
-      errors[i].style.display = "none";
+  for (let i = 0; i < errors.length; i++) {
+    errors[i].style.display = "none";
   }
 }
