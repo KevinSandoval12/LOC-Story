@@ -111,15 +111,17 @@
               >Division Name:<input type="text" id="division"
             /></label>
             <!-- dean -->
-            <label for="dean"
-              >Dean:<input type="text" id="dean" value="dean"
-            /></label>
+            <span id="err-dean" class="error"> Dean cannot be empty!</span>
+            <label for="dean">Dean:<input type="text" id="dean" name="dean"/></label>
             <!-- PEN Contact: -->
-            <label for="PEN">PEN Contact:<input type="text" id="PEN" /></label>
+            <span id="err-PEN" class="error"> PEN Contact cannot be empty!</span>
+            <label for="PEN">PEN Contact:<input type="text" id="PEN" name="PEN"/></label>
             <!-- LOC Rep -->
-            <label for="LOC">LOC Rep:<input type="text" id="Rep" /></label>
+            <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
+            <label for="Rep">LOC Rep:<input type="text" id="Rep" name="Rep"/></label>
             <!-- Chair -->
-            <label for="Chair">Chair:<input type="text" id="Chair" /></label>
+            <span id="err-Chair" class="error"> Chair cannot be empty!</span>
+            <label for="Chair">Chair:<input type="text" id="Chair" name="Chair"/></label>
           </div>
         </fieldset>
         <button>Save</button>

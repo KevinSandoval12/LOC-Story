@@ -68,5 +68,11 @@ label {
   width: 50%;
 }
 
-#division-names {
+/* #division-names {
+} */
+
+/* error message */
+.error {
+    color: darkred;
+    display: none;
 }

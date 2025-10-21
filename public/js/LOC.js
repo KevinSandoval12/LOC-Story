@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const divisionNames = document.getElementById("division-names");
   const dean = document.getElementById("dean");
   const pen = document.getElementById("PEN");
-  const loc = document.getElementById("Rep"); // corrected ID
+  const loc = document.getElementById("Rep"); // matches HTML ID
   const chair = document.getElementById("Chair");
 
   // Division data
@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
       "Michael Wood",
     ],
     // fill in other divisions as needed
-    Humanities: [],
-    SocialScience: [],
-    English: [],
-    Science: [],
-    HealthScience: [],
-    Trades: [],
+    Humanities: ["", "", "", ""],
+    SocialScience: ["", "", "", ""],
+    English: ["", "", "", ""],
+    Science: ["", "", "", ""],
+    HealthScience: ["", "", "", ""],
+    Trades: ["", "", "", ""]
   };
 
   // Hide the section by default
@@ -53,14 +53,67 @@ document.addEventListener("DOMContentLoaded", () => {
       divisionNames.style.display = "none"; // hide again
     }
   });
-
-  // Optional: stop page reload + log values
+  
+  
+  //save form
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("Division Selected:", divisionSelect.value);
-    console.log("Dean:", dean.value);
-    console.log("PEN Contact:", pen.value);
-    console.log("LOC Rep:", loc.value);
-    console.log("Chair:", chair.value);
+    const selectedDivision = divisionSelect.value;
+  
+    if (selectedDivision !== "none") {
+      // Get the current values from the form fields
+      const deanValue = dean.value;
+      const penValue = pen.value;
+      const locValue = loc.value;
+      const chairValue = chair.value;
+      
+      // update the values in the 
+      Divisions[selectedDivision] = [deanValue, penValue, locValue, chairValue];
+      console.log(Divisions);
+    }
+    // }
   });
 });
+
+// ERROR MESSAGE
+document.getElementById('LOC-story').onsubmit = () => {
+  const form = document.getElementById("LOC-story");
+  const divisionSelect = document.getElementById("division-selector");
+  const divisionNames = document.getElementById("division-names");
+  const dean = document.getElementById("dean");
+  const pen = document.getElementById("PEN");
+  const loc = document.getElementById("Rep"); // corrected ID
+  const chair = document.getElementById("Chair");
+  // Clear previous errors
+  clearErrors();
+
+  let isValid = true;
+
+  if (!dean.value.trim()) {
+    document.getElementById("err-dean").style.display = "block";
+    isValid = false;
+  }
+  
+  if (!pen.value.trim()) {
+    document.getElementById("err-PEN").style.display = "block";
+    isValid = false;
+  }
+
+  if (!loc.value.trim()) {
+    document.getElementById("err-Rep").style.display = "block";
+    isValid = false;
+  }
+
+  if (!chair.value.trim()) {
+    document.getElementById("err-Chair").style.display = "block";
+    isValid = false;
+  }
+
+  return isValid;
+}
+function clearErrors() {
+  let errors = document.getElementsByClassName("error");
+  for (let i=0; i<errors.length; i++) {
+      errors[i].style.display = "none";
+  }
+}
