@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOC User Story #1 Form</title>
+    <title>Green River Document Modifier</title>
     <link rel="stylesheet" href="/styles/styles.css" />
     <script src="/js/LOC.js" defer></script>
   </head>
   <body>
-    <div>
-      <form id="LOC-story" action="#" method="get" onsubmit="return false">
-        <h1>Green River Document Modifier</h1>
-        <!-- (Fine Arts, Humanities, Social Science, English, Science, Technology, Health Science, Trades, etc.) -->
-        <fieldset id="order-detail">
-          <legend>Order Details</legend>
-          <label for="division-selector">Choose your Division:</label>
-          <select id="division-selector" name="flavor">
+    <header>
+      <h1>Green River Document Modifier</h1>
+    </header>
+
+    <main class="layout">
+      <!-- LEFT SIDE: File display area -->
+      <section id="file-display">
+        <h2>Year</h2>
+        <div class="file-area">file display goes here</div>
+      </section>
+
+      <!-- RIGHT SIDE: Controls panel -->
+      <aside id="controls">
+        <div class="selectors">
+          <label for="division">Division:</label>
+          <select id="division" name="division">
             <option value="none">Select a Division</option>
             <option value="FineArt">Fine Arts</option>
             <option value="Humanities">Humanities</option>
@@ -27,39 +35,45 @@
             <option value="Trades">Trades</option>
           </select>
 
-          <!-- division Name-->
-          <div id="division-names">
-            <label for="division"
-              >Division Name:<input type="text" id="division"
-            /></label>
-            <!-- dean -->
-            <span id="err-dean" class="error"> Dean cannot be empty!</span>
-            <label for="dean"
-              >Dean:<input type="text" id="dean" name="dean"
-            /></label>
-            <!-- PEN Contact: -->
-            <span id="err-PEN" class="error">
-              PEN Contact cannot be empty!</span
-            >
-            <label for="PEN"
-              >PEN Contact:<input type="text" id="PEN" name="PEN"
-            /></label>
-            <!-- LOC Rep -->
-            <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
-            <label for="Rep"
-              >LOC Rep:<input type="text" id="Rep" name="Rep"
-            /></label>
-            <!-- Chair -->
-            <span id="err-Chair" class="error"> Chair cannot be empty!</span>
-            <label for="Chair"
-              >Chair:<input type="text" id="Chair" name="Chair"
-            /></label>
-          </div>
-        </fieldset>
-        <button id="save-button">Save</button>
-        <button id="cancel-button">Cancel</button>
-        <button type="export-button">Export</button>
-      </form>
-    </div>
+          <label for="position">Position:</label>
+          <select id="position" name="position">
+            <option value="none">Select a Position</option>
+            <option value="Dean">Dean</option>
+            <option value="PEN">PEN Contact</option>
+            <option value="Rep">LOC Rep</option>
+            <option value="Chair">Chair</option>
+          </select>
+        </div>
+
+        <div id="name-fields">
+          <label for="dean">Original Name:</label>
+          <input
+            type="text"
+            id="original-name"
+            name="originalName"
+            placeholder="Original"
+          />
+          <span class="error" id="err-originalName">Dean cannot be empty!</span>
+
+          <label for="PEN">New Name:</label>
+          <input type="text" id="new-name" name="newName" placeholder="New" />
+          <span class="error" id="err-newName"
+            >PEN Contact cannot be empty!</span
+          >
+        </div>
+
+        <div class="buttons">
+          <button type="button" id="cancel-button">Cancel</button>
+          <button type="button" id="save-button">Save</button>
+        </div>
+
+        <button type="button" id="export-button">Export</button>
+
+        <div class="staff-information">
+          <p id="staff-name">Staff Member Name:</p>
+          <p id="staff-email">Staff Member Email:</p>
+        </div>
+      </aside>
+    </main>
   </body>
 </html>
