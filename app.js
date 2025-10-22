@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
   res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/home.html");
+});
+
 // start the server and make it listen on the port
 // specified above
 app.listen(PORT, () => {

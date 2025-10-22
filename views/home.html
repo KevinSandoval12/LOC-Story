@@ -15,8 +15,20 @@
     <main class="layout">
       <!-- LEFT SIDE: File display area -->
       <section id="file-display">
-        <h2>2025</h2>
-        <div class="file-area">file display goes here</div>
+        <h2>2024-2025</h2>
+        <div class="file-area">
+          <table id="csv-table">
+            <thead>
+              <tr>
+                <th>Division</th>
+                <th>Dean</th>
+                <th>Pen Contact</th>
+                <th>LOC Rep</th>
+                <th>Chair</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </section>
 
       <!-- RIGHT SIDE: Controls panel -->
@@ -37,9 +49,6 @@
 
           <!-- division Name-->
           <div id="division-names">
-            <label for="division"
-              >Division Name:<input type="text" id="division"
-            /></label>
             <!-- dean -->
             <span id="err-dean" class="error"> Dean cannot be empty!</span>
             <label for="dean"
