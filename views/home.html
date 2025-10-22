@@ -15,7 +15,7 @@
     <main class="layout">
       <!-- LEFT SIDE: File display area -->
       <section id="file-display">
-        <h2>Year</h2>
+        <h2>2025</h2>
         <div class="file-area">file display goes here</div>
       </section>
 
@@ -35,31 +35,34 @@
             <option value="Trades">Trades</option>
           </select>
 
-          <label for="position">Position:</label>
-          <select id="position" name="position">
-            <option value="none">Select a Position</option>
-            <option value="Dean">Dean</option>
-            <option value="PEN">PEN Contact</option>
-            <option value="Rep">LOC Rep</option>
-            <option value="Chair">Chair</option>
-          </select>
-        </div>
-
-        <div id="name-fields">
-          <label for="dean">Original Name:</label>
-          <input
-            type="text"
-            id="original-name"
-            name="originalName"
-            placeholder="Original"
-          />
-          <span class="error" id="err-originalName">Dean cannot be empty!</span>
-
-          <label for="PEN">New Name:</label>
-          <input type="text" id="new-name" name="newName" placeholder="New" />
-          <span class="error" id="err-newName"
-            >PEN Contact cannot be empty!</span
-          >
+          <!-- division Name-->
+          <div id="division-names">
+            <label for="division"
+              >Division Name:<input type="text" id="division"
+            /></label>
+            <!-- dean -->
+            <span id="err-dean" class="error"> Dean cannot be empty!</span>
+            <label for="dean"
+              >Dean:<input type="text" id="dean" name="dean"
+            /></label>
+            <!-- PEN Contact: -->
+            <span id="err-PEN" class="error">
+              PEN Contact cannot be empty!</span
+            >
+            <label for="PEN"
+              >PEN Contact:<input type="text" id="PEN" name="PEN"
+            /></label>
+            <!-- LOC Rep -->
+            <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
+            <label for="Rep"
+              >LOC Rep:<input type="text" id="Rep" name="Rep"
+            /></label>
+            <!-- Chair -->
+            <span id="err-Chair" class="error"> Chair cannot be empty!</span>
+            <label for="Chair"
+              >Chair:<input type="text" id="Chair" name="Chair"
+            /></label>
+          </div>
         </div>
 
         <div class="buttons">

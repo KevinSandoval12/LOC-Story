@@ -1,4 +1,4 @@
-/* ========== GLOBAL STYLES ========== */
+/* Global Styles */
 * {
   box-sizing: border-box;
 }
@@ -13,7 +13,7 @@ body {
   color: #333;
 }
 
-/* ========== HEADER ========== */
+/* Header Section */
 header {
   width: 100%;
   background-color: #f3f3f3;
@@ -27,15 +27,15 @@ header h1 {
   font-weight: 600;
 }
 
-/* ========== MAIN LAYOUT ========== */
+/* Main Page Layout */
 main.layout {
   display: grid;
-  grid-template-columns: 1fr 340px; /* big left + control panel */
+  grid-template-columns: 1fr 340px; /* Large left panel + smaller control panel */
   grid-template-rows: 1fr;
-  height: calc(100vh - 60px); /* fills remaining space after header */
+  height: calc(100vh - 60px); /* Takes up full height minus header */
 }
 
-/* ========== LEFT SIDE: FILE DISPLAY ========== */
+/* Left Side: File Display Area */
 #file-display {
   border-right: 1px solid #ccc;
   display: flex;
@@ -62,7 +62,7 @@ main.layout {
   background-color: #fafafa;
 }
 
-/* ========== RIGHT SIDE: CONTROL PANEL ========== */
+/* Right Side: Control Panel */
 #controls {
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@ main.layout {
   background-color: #fff;
 }
 
-/* Dropdown area */
+/* Dropdown section */
 .selectors {
   display: flex;
   flex-direction: column;
@@ -118,7 +118,7 @@ main.layout {
   display: none; /* shown dynamically via JS */
 }
 
-/* ========== BUTTONS ========== */
+/* Buttons section */
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -150,7 +150,7 @@ main.layout {
   background-color: #f2f2f2;
 }
 
-/* Export button (below Save/Cancel) */
+/* Export button (under Save/Cancel) */
 #export-button {
   margin-top: 14px;
   width: 100%;
@@ -162,9 +162,9 @@ main.layout {
   cursor: pointer;
 }
 
-/* Notes at the bottom */
+/* Notes section at bottom of control panel */
 .notes {
-  margin-top: auto; /* push to bottom */
+  margin-top: auto; /* pushes to the bottom */
   border-top: 1px solid #ccc;
   padding-top: 10px;
 }
@@ -175,7 +175,7 @@ main.layout {
   color: #555;
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
+/* Responsive design for smaller screens */
 @media (max-width: 900px) {
   main.layout {
     grid-template-columns: 1fr;
@@ -199,4 +199,10 @@ main.layout {
   #save-button {
     margin: 5px 0;
   }
+}
+
+#division-names label,
+#division-names input {
+  display: block;
+  width: 100%;
 }
