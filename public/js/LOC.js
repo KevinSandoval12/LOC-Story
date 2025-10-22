@@ -8,14 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const chair = document.getElementById("Chair");
   const saveButton = document.getElementById("save-button");
   const cancelButton = document.getElementById("cancel-button");
+  const exportButton = document.getElementById("export-button");
 
   // Division data
+  // Dean, pen,loc, chair
   const Divisions = {
     FineArt: [
-      "Miebeth Castillo-Booth",
-      "Angie Brenner",
-      "Josh Archer",
-      "Michael Wood",
+      "Christie Gilliland",
+      "Liz Peterson",
+      "Monica Bowen",
+      "Paul Metevier",
     ],
     Technology: [
       "Miebeth Castillo-Booth",
@@ -23,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
       "Josh Archer",
       "Michael Wood",
     ],
-    Humanities: ["", "", "", ""],
-    SocialScience: ["", "", "", ""],
-    English: ["", "", "", ""],
-    Science: ["", "", "", ""],
-    HealthScience: ["", "", "", ""],
-    Trades: ["", "", "", ""],
+    Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion"],
+    SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason"],
+    English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman"],
+    Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert"],
+    HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler "],
+    Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis"],
   };
 
   // Hide buttons and fields by default
@@ -59,6 +61,25 @@ document.addEventListener("DOMContentLoaded", () => {
       cancelButton.style.display = "none";
     }
   });
+  //save feature
+  saveButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    const selectedDivision = divisionSelect.value;
+  
+    if (selectedDivision !== "none") {
+      // Get the current values from the form fields
+      const deanValue = dean.value;
+      const penValue = pen.value;
+      const locValue = loc.value;
+      const chairValue = chair.value;
+      
+      // update the values in the 
+      Divisions[selectedDivision] = [deanValue, penValue, locValue, chairValue];
+      console.log(Divisions);
+    }
+    // }
+  });
 
   // Cancel button behavior
   cancelButton.addEventListener("click", () => {
@@ -67,4 +88,44 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelButton.style.display = "none";
     divisionSelect.value = "none"; // reset dropdown
   });
+
+  exportButton.addEventListener("click", () => {
+    const dean = document.getElementById("dean");
+    const pen = document.getElementById("PEN");
+    const loc = document.getElementById("Rep"); // corrected ID
+    const chair = document.getElementById("Chair");
+    // Clear previous errors
+    clearErrors();
+
+    let isValid = true;
+
+    if (!dean.value.trim()) {
+      document.getElementById("err-dean").style.display = "block";
+      isValid = false;
+    }
+    
+    if (!pen.value.trim()) {
+      document.getElementById("err-PEN").style.display = "block";
+      isValid = false;
+    }
+
+    if (!loc.value.trim()) {
+      document.getElementById("err-Rep").style.display = "block";
+      isValid = false;
+    }
+
+    if (!chair.value.trim()) {
+      document.getElementById("err-Chair").style.display = "block";
+      isValid = false;
+    }
+
+    return isValid;
+    
+  });
+  function clearErrors() {
+    let errors = document.getElementsByClassName("error");
+    for (let i=0; i<errors.length; i++) {
+        errors[i].style.display = "none";
+    }
+  }
 });
