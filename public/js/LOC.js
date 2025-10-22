@@ -9,27 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-button");
   const cancelButton = document.getElementById("cancel-button");
 
-  // // Division data
-  // const Divisions = {
-  //   FineArt: [
-  //     "Miebeth Castillo-Booth",
-  //     "Angie Brenner",
-  //     "Josh Archer",
-  //     "Michael Wood",
-  //   ],
-  //   Technology: [
-  //     "Miebeth Castillo-Booth",
-  //     "Angie Brenner",
-  //     "Josh Archer",
-  //     "Michael Wood",
-  //   ],
-  //   Humanities: ["", "", "", ""],
-  //   SocialScience: ["", "", "", ""],
-  //   English: ["", "", "", ""],
-  //   Science: ["", "", "", ""],
-  //   HealthScience: ["", "", "", ""],
-  //   Trades: ["", "", "", ""],
-  // };
+  // Division data
+  const Divisions = {
+    FineArt: [
+      "Miebeth Castillo-Booth",
+      "Angie Brenner",
+      "Josh Archer",
+      "Michael Wood",
+    ],
+    Technology: [
+      "Miebeth Castillo-Booth",
+      "Angie Brenner",
+      "Josh Archer",
+      "Michael Wood",
+    ],
+    Humanities: ["", "", "", ""],
+    SocialScience: ["", "", "", ""],
+    English: ["", "", "", ""],
+    Science: ["", "", "", ""],
+    HealthScience: ["", "", "", ""],
+    Trades: ["", "", "", ""],
+  };
 
   // Hide buttons and fields by default
   saveButton.style.display = "none";
