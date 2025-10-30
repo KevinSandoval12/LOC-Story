@@ -4,88 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Green River Document Modifier</title>
+    <!-- style sheet -->
     <link rel="stylesheet" href="/styles/styles.css" />
+
+    <!-- Javascript link -->
     <script src="/js/LOC.js" defer></script>
+    <!-- <script src="/js/Story.js" defer></script> -->
   </head>
   <body>
     <header>
       <h1>Green River Document Modifier</h1>
     </header>
 
-    <main class="layout">
-      <!-- LEFT SIDE: File display area -->
-      <section id="file-display">
-        <h2>2024-2025</h2>
-        <div class="file-area">
-          <table id="csv-table">
-            <thead>
-              <tr>
-                <th>Division</th>
-                <th>Dean</th>
-                <th>Pen Contact</th>
-                <th>LOC Rep</th>
-                <th>Chair</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </section>
-
-      <!-- RIGHT SIDE: Controls panel -->
-      <aside id="controls">
-        <div class="selectors">
-          <label for="division">Division:</label>
-          <select id="division" name="division">
-            <option value="none">Select a Division</option>
-            <option value="FineArt">Fine Arts</option>
-            <option value="Humanities">Humanities</option>
-            <option value="SocialScience">Social Science</option>
-            <option value="English">English</option>
-            <option value="Science">Science</option>
-            <option value="Technology">Technology</option>
-            <option value="HealthScience">Health Science</option>
-            <option value="Trades">Trades</option>
-          </select>
-
-          <!-- division Name-->
-          <div id="division-names">
-            <!-- dean -->
-            <span id="err-dean" class="error"> Dean cannot be empty!</span>
-            <label for="dean"
-              >Dean:<input type="text" id="dean" name="dean"
-            /></label>
-            <!-- PEN Contact: -->
-            <span id="err-PEN" class="error">
-              PEN Contact cannot be empty!</span
-            >
-            <label for="PEN"
-              >PEN Contact:<input type="text" id="PEN" name="PEN"
-            /></label>
-            <!-- LOC Rep -->
-            <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
-            <label for="Rep"
-              >LOC Rep:<input type="text" id="Rep" name="Rep"
-            /></label>
-            <!-- Chair -->
-            <span id="err-Chair" class="error"> Chair cannot be empty!</span>
-            <label for="Chair"
-              >Chair:<input type="text" id="Chair" name="Chair"
-            /></label>
+    <form id="Loc-story" action="submit-order" method="post">
+      <main class="layout">
+        <!-- LEFT SIDE: File display area -->
+        <section id="file-display">
+          <h2>2024-2025</h2>
+          <div class="file-area">
+            <table id="csv-table">
+              <thead>
+                <tr>
+                  <th>Division</th>
+                  <th>Dean</th>
+                  <th>Pen Contact</th>
+                  <th>LOC Rep</th>
+                  <th>Chair</th>
+                </tr>
+              </thead>
+            </table>
           </div>
-        </div>
+        </section>
 
-        <div class="buttons">
-          <button type="button" id="cancel-button">Cancel</button>
-          <button type="button" id="save-button">Save</button>
-        </div>
+        <!-- RIGHT SIDE: Controls panel -->
+        <aside id="controls">
+          <div class="selectors">
+            <label for="division">Division:</label>
+            <select id="division" name="division">
+              <option value="none">Select a Division</option>
+              <option value="FineArt">Fine Arts</option>
+              <option value="Humanities">Humanities</option>
+              <option value="SocialScience">Social Science</option>
+              <option value="English">English</option>
+              <option value="Science">Science</option>
+              <option value="Technology">Technology</option>
+              <option value="HealthScience">Health Science</option>
+              <option value="Trades">Trades</option>
+            </select>
 
-        <button type="button" id="export-button">Export</button>
+            <!-- division Name-->
+            <div id="division-names">
+              <!-- dean -->
+              <span id="err-dean" class="error"> Dean cannot be empty!</span>
+              <label for="dean"
+                >Dean:<input type="text" id="dean" name="dean"
+              /></label>
+              <!-- PEN Contact: -->
+              <span id="err-PEN" class="error">
+                PEN Contact cannot be empty!</span
+              >
+              <label for="PEN"
+                >PEN Contact:<input type="text" id="PEN" name="PEN"
+              /></label>
+              <!-- LOC Rep -->
+              <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
+              <label for="Rep"
+                >LOC Rep:<input type="text" id="Rep" name="Rep"
+              /></label>
+              <!-- Chair -->
+              <span id="err-Chair" class="error"> Chair cannot be empty!</span>
+              <label for="Chair"
+                >Chair:<input type="text" id="Chair" name="Chair"
+              /></label>
+            </div>
+          </div>
 
-        <div class="staff-information">
-          <p id="staff-name">Staff Member Name:</p>
-          <p id="staff-email">Staff Member Email:</p>
-        </div>
-      </aside>
-    </main>
+          <div class="buttons">
+            <button type="button" id="cancel-button">Cancel</button>
+            <button type="submit" id="save-button">Save</button>
+          </div>
+
+
+          <div class="staff-information">
+            <p id="staff-name">Staff Member Name:</p>
+            <p id="staff-email">Staff Member Email:</p>
+          </div>
+        </aside>
+      </main>
+    </form>
   </body>
 </html>

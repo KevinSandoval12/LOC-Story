@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cancelButton.style.display = "block";
 
       if (Divisions[selected]) {
+        clearErrors();
         // Fill fields with division info
         dean.value = Divisions[selected][0];
         pen.value = Divisions[selected][1];
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   //save feature
   saveButton.addEventListener("click", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     
     const selectedDivision = divisionSelect.value;
   
@@ -89,43 +90,46 @@ document.addEventListener("DOMContentLoaded", () => {
     divisionSelect.value = "none"; // reset dropdown
   });
 
-  exportButton.addEventListener("click", () => {
-    const dean = document.getElementById("dean");
-    const pen = document.getElementById("PEN");
-    const loc = document.getElementById("Rep"); // corrected ID
-    const chair = document.getElementById("Chair");
-    // Clear previous errors
-    clearErrors();
-
-    let isValid = true;
-
-    if (!dean.value.trim()) {
-      document.getElementById("err-dean").style.display = "block";
-      isValid = false;
-    }
-    
-    if (!pen.value.trim()) {
-      document.getElementById("err-PEN").style.display = "block";
-      isValid = false;
-    }
-
-    if (!loc.value.trim()) {
-      document.getElementById("err-Rep").style.display = "block";
-      isValid = false;
-    }
-
-    if (!chair.value.trim()) {
-      document.getElementById("err-Chair").style.display = "block";
-      isValid = false;
-    }
-
-    return isValid;
-    
-  });
-  function clearErrors() {
-    let errors = document.getElementsByClassName("error");
-    for (let i=0; i<errors.length; i++) {
-        errors[i].style.display = "none";
-    }
-  }
 });
+
+document.getElementById('Loc-story').onsubmit = () => {
+  const form = document.getElementById("LOC-story");
+  const divisionSelect = document.getElementById("division-selector");
+  const divisionNames = document.getElementById("division-names");
+  const dean = document.getElementById("dean");
+  const pen = document.getElementById("PEN");
+  const loc = document.getElementById("Rep"); // corrected ID
+  const chair = document.getElementById("Chair");
+  // Clear previous errors
+  clearErrors();
+
+  let isValid = true;
+
+  if (!dean.value.trim()) {
+    document.getElementById("err-dean").style.display = "block";
+    isValid = false;
+  }
+  
+  if (!pen.value.trim()) {
+    document.getElementById("err-PEN").style.display = "block";
+    isValid = false;
+  }
+
+  if (!loc.value.trim()) {
+    document.getElementById("err-Rep").style.display = "block";
+    isValid = false;
+  }
+
+  if (!chair.value.trim()) {
+    document.getElementById("err-Chair").style.display = "block";
+    isValid = false;
+  }
+
+  return isValid;
+}
+function clearErrors() {
+  let errors = document.getElementsByClassName("error");
+  for (let i=0; i<errors.length; i++) {
+      errors[i].style.display = "none";
+  }
+}
