@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green River Document Modifier</title>
+    <!-- style sheet -->
+    <link rel="stylesheet" href="/styles/styles.css" />
+
+    <!-- Javascript link -->
+    <script src="/js/LOC.js" defer></script>
+    <!-- <script src="/js/Story.js" defer></script> -->
+  </head>
+  <body>
+    <main>
+        <h1>Admin</h1>
+        <table id="order-table" class="display">
+            <thead>
+                <tr>
+                    <th>division</th>
+                    <th>dean</th>
+                    <th>PEN</th>
+                    <th>Rep</th>
+                    <th>Chair</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+              <% Object.entries(orders).forEach(([division, contacts]) => { %>
+              <tr>
+                  <td><%= division %></td>
+                  <td><%= contacts[0] %></td>
+                  <td><%= contacts[1] %></td>
+                  <td><%= contacts[2] %></td>
+                  <td><%= contacts[3] %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+        </table>
+        <button><a href="/">submit a form</a></button>
+        <button><a href="/admin">go to admin</a></button>
+    </main>
+  </body>
+</html>

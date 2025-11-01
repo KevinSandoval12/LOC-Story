@@ -12,26 +12,26 @@
 
 //   // Division data
 //   // Dean, pen,loc, chair
-//   const Divisions = {
-//     FineArt: [
-//       "Christie Gilliland",
-//       "Liz Peterson",
-//       "Monica Bowen",
-//       "Paul Metevier",
-//     ],
-//     Technology: [
-//       "Miebeth Castillo-Booth",
-//       "Angie Brenner",
-//       "Josh Archer",
-//       "Michael Wood",
-//     ],
-//     Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion"],
-//     SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason"],
-//     English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman"],
-//     Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert"],
-//     HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler "],
-//     Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis"],
-//   };
+  // const Divisions = {
+  //   FineArt: [
+  //     "Christie Gilliland",
+  //     "Liz Peterson",
+  //     "Monica Bowen",
+  //     "Paul Metevier",
+  //   ],
+  //   Technology: [
+  //     "Miebeth Castillo-Booth",
+  //     "Angie Brenner",
+  //     "Josh Archer",
+  //     "Michael Wood",
+  //   ],
+  //   Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion"],
+  //   SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason"],
+  //   English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman"],
+  //   Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert"],
+  //   HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler "],
+  //   Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis"],
+  // };
 
 //   // Hide buttons and fields by default
 //   saveButton.style.display = "none";

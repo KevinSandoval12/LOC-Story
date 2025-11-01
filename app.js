@@ -62,6 +62,7 @@ app.use(express.urlencoded({ extended: true }));
     HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler "],
     Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis"],
   };
+  
 
 // Define the port number where our server will listen
 const PORT = 3007;
@@ -87,16 +88,12 @@ app.get('/admin', (req, res) => {
 // Define an "submit-order" route
 app.post('/submit-order', (req, res) => {
 
-    //console.log(req.body);
-
     // Create a JSON object to store the data
     const order = req.body;
     // order.timestamp = new Date()
 
     // Add order to array
-    if (order.division && orders[order.division]) {
-        orders[order.division] = [order.dean, order.PEN, order.Rep, order.Chair];
-    }
+    orders[order.division] = [order.dean, order.PEN, order.Rep, order.Chair];
     console.log(orders);
 
     // Send user to confirmation page
