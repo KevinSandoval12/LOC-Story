@@ -18,26 +18,9 @@
 
     <form id="Loc-story" action="submit-order" method="post">
       <main class="layout">
-        <!-- LEFT SIDE: File display area -->
-        <section id="file-display">
-          <h2>2024-2025</h2>
-          <div class="file-area">
-            <table id="csv-table">
-              <thead>
-                <tr>
-                  <th>Division</th>
-                  <th>Dean</th>
-                  <th>Pen Contact</th>
-                  <th>LOC Rep</th>
-                  <th>Chair</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </section>
 
         <!-- RIGHT SIDE: Controls panel -->
-        <aside id="controls">
+        <section id="controls">
           <div class="selectors">
             <label for="division">Division:</label>
             <select id="division" name="division">
@@ -53,31 +36,53 @@
             </select>
 
             <!-- division Name-->
-            <div id="division-names">
-              <!-- dean -->
-              <span id="err-dean" class="error"> Dean cannot be empty!</span>
-              <label for="dean"
-                >Dean:<input type="text" id="dean" name="dean"
-              /></label>
-              <!-- PEN Contact: -->
-              <span id="err-PEN" class="error">
-                PEN Contact cannot be empty!</span
-              >
-              <label for="PEN"
-                >PEN Contact:<input type="text" id="PEN" name="PEN"
-              /></label>
+            <div id="division-names" style="display: grid;">
+              <!-- Dean -->
+              <div class="dean">
+                <span id="err-dean" class="error"> Dean cannot be empty!</span>
+                <label for="dean">Dean:<input type="text" id="dean" name="dean" /></label>
+              </div>
+              <!-- Pen -->
+              <div class="pen">
+                <span id="err-PEN" class="error"> PEN Contact cannot be empty!</span>
+                <label for="PEN">PEN Contact:<input type="text" id="PEN" name="PEN" /></label>
+              </div>
               <!-- LOC Rep -->
-              <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
-              <label for="Rep"
-                >LOC Rep:<input type="text" id="Rep" name="Rep"
-              /></label>
+              <div class="rep">
+                <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
+                <label for="Rep">LOC Rep:<input type="text" id="Rep" name="Rep" /></label>
+              </div>
               <!-- Chair -->
-              <span id="err-Chair" class="error"> Chair cannot be empty!</span>
-              <label for="Chair"
-                >Chair:<input type="text" id="Chair" name="Chair"
-              /></label>
-            </div>
-          </div>
+              <div class="chair">
+                <span id="err-Chair" class="error"> Chair cannot be empty!</span>
+                <label for="Chair">Chair:<input type="text" id="Chair" name="Chair" /></label>
+              </div>
+              <!-- PEN Contact -->
+              <div class="contact">
+                <span id="err-contact" class="error"> Dean cannot be empty!</span>
+                <label for="contact">Dean:<input type="text" id="contact" name="contact" /></label>
+              </div>
+              <!-- Payee(s) -->
+              <div class="payee">
+                <span id="err-Payee" class="error"> PEN Contact cannot be empty!</span>
+                <label for="Payee">PEN Contact:<input type="text" id="Payee" name="Payee" /></label>
+              </div>
+              <!-- Has Been Paid (Yes/No) -->
+              <div class="paid">
+                <span id="err-Paid" class="error"> LOC Rep cannot be empty!</span>
+                <label for="Paid">LOC Rep:<input type="text" id="Paid" name="Paid" /></label>
+              </div>
+              <!-- Report Submitted (Yes/No) -->
+              <div class="report">
+                <span id="err-Report" class="error"> Chair cannot be empty!</span>
+                <label for="Report">Chair:<input type="text" id="Report" name="Report" /></label>
+              </div>
+              <!-- Notes -->
+              <div class="notes">
+                <span id="err-Notes" class="error"> Chair cannot be empty!</span>
+                <label for="Notes">Chair:<input type="text" id="Notes" name="Notes" /></label>
+              </div>
+            </div> 
 
           <div class="buttons">
             <button type="button" id="cancel-button">Cancel</button>
@@ -89,7 +94,27 @@
             <p id="staff-name">Staff Member Name:</p>
             <p id="staff-email">Staff Member Email:</p>
           </div>
+        </section>
+
+        <!-- LEFT SIDE: File display area -->
+
+        <aside id="file-display">
+          <h2>2024-2025</h2>
+          <div class="file-area">
+            <!-- <table id="csv-table">
+              <thead>
+                <tr>
+                  <th>Division</th>
+                  <th>Dean</th>
+                  <th>Pen Contact</th>
+                  <th>LOC Rep</th>
+                  <th>Chair</th>
+                </tr>
+              </thead>
+            </table> -->
+          </div>
         </aside>
+        
       </main>
     </form>
   </body>

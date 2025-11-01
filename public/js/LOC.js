@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selected = divisionSelect.value;
 
     if (selected !== "none") {
-      divisionNames.style.display = "block";
+      divisionNames.style.display = "grid";
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
     } else {

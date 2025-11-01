@@ -201,8 +201,29 @@ main.layout {
   }
 }
 
+/* creating a grid layout for input fields */
+#division-names {
+  grid-template-areas: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: auto auto auto;
+  gap: 16px; 
+  grid-template-areas:
+    "dean pen rep chair"
+    "contact payee paid report"
+    "notes notes notes notes";
+}
+
+#division-names > .dean      { grid-area: dean; }
+#division-names > .pen       { grid-area: pen; }
+#division-names > .rep       { grid-area: rep; }
+#division-names > .chair     { grid-area: chair; }
+#division-names > .contact   { grid-area: contact; }
+#division-names > .payee     { grid-area: payee; }
+#division-names > .paid      { grid-area: paid; }
+#division-names > .report    { grid-area: report; }
+#division-names > .notes     { grid-area: notes; }
+
 #division-names label,
-#division-names input {
-  display: block;
+#division-names input{
   width: 100%;
+  display: block;
 }
