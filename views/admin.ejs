@@ -9,7 +9,10 @@
 
     <!-- Javascript link -->
     <script src="/js/LOC.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
     <!-- <script src="/js/Story.js" defer></script> -->
+     <link rel="stylesheet" href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
   </head>
   <body>
     <main>
@@ -40,5 +43,8 @@
         <button><a href="/">submit a form</a></button>
         <button><a href="/admin">go to admin</a></button>
     </main>
+    <script defer>
+        let table = new DataTable('#order-table');
+    </script>
   </body>
 </html>
