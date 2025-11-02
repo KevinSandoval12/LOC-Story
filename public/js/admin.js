@@ -36,7 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("adminForm").onsubmit = () => {
+document.getElementById("adminForm").onsubmit = (e) => {
+  //Stops form sub
+  e.preventDefault();
+  //clears errors after form sub
+  clearErrors();
+
   const form = document.getElementById("adminForm");
   const divisionSelect = document.getElementById("division");
   const divisionNames = document.getElementById("division-names");
@@ -48,7 +53,7 @@ document.getElementById("adminForm").onsubmit = () => {
   const report = document.getElementById("report"); // select
   const notes = document.getElementById("notes");
   // Clear previous errors
-  clearErrors();
+  //clearErrors();
 
   let isValid = true;
 
@@ -76,7 +81,29 @@ document.getElementById("adminForm").onsubmit = () => {
     isValid = false;
   }
 
-  return isValid;
+  //return isValid;
+  if (isValid) {
+    const confirmation = document.getElementById("save-confirmation");
+    confirmation.style.display = "block";
+
+    // Trigger the fade-in
+    setTimeout(() => {
+      confirmation.style.opacity = "1";
+    }, 10);
+
+    // Fade out after 3 seconds
+    setTimeout(() => {
+      confirmation.style.opacity = "0";
+      setTimeout(() => {
+        confirmation.style.display = "none";
+
+        //hide the edit form after the message disappears
+        //adminSection.style.display = "none;"
+      }, 400);
+    }, 3000);
+
+    console.log("Changes saved successfully!");
+  }
 };
 
 function clearErrors() {
