@@ -1,39 +1,44 @@
 # when finished use the checkbox!!!
 
 ## User Story #1: View Summary Table
+
 As a member of the Learning Outcomes Committee (LOC), I can view a summary table/grid for the current year containing all of the project information, so that I can view details at a glance.
 
 ### Acceptance Criteria #1 – Display Summary Table
-- [X] Given I am on the LOC Summary page
-- [X] When the page loads
+
+- [x] Given I am on the LOC Summary page
+- [x] When the page loads
 - [ ] Then I should see a data grid with the following columns:
-    - Division 
-    - Academic Program
-    - Division Chair
-    - Dean
-    - LOC Rep
-    - PEN Contact
-    - Payee(s)
-    - Has Been Paid (Yes/No)
-    - Report Submitted (Yes/No)
-    - Notes
+  - Division
+  - Academic Program
+  - Division Chair
+  - Dean
+  - LOC Rep
+  - PEN Contact
+  - Payee(s)
+  - Has Been Paid (Yes/No)
+  - Report Submitted (Yes/No)
+  - Notes
 - [ ] And I should be able to scroll horizontally and vertically through the table if the data exceeds the viewable area.
 
 ### Acceptance Criteria #2 – Sorting
-- [X] Given I am on the summary table
-- [X] When I click on a column header
-- [X] Then the table should sort data ascending or descending by that column.
-- [X] And the active sort column and direction should be visually indicated (e.g., arrow icon).
+
+- [x] Given I am on the summary table
+- [x] When I click on a column header
+- [x] Then the table should sort data ascending or descending by that column.
+- [x] And the active sort column and direction should be visually indicated (e.g., arrow icon).
 
 ### Acceptance Criteria #3 – Search/Filter
-- [X] Given I am viewing the summary table
-- [X] When I enter a keyword (such as a Division, Program Name, or Payee) in the search bar
-- [X] Then the table should display only rows containing matching results.
-- [X] And clearing the search field should restore the full table.
+
+- [x] Given I am viewing the summary table
+- [x] When I enter a keyword (such as a Division, Program Name, or Payee) in the search bar
+- [x] Then the table should display only rows containing matching results.
+- [x] And clearing the search field should restore the full table.
 
 ### Technical Tasks
+
 - [ ] Create a new route or page component for “LOC Summary.”
-- [X] Build a responsive data table using a JavaScript framework or library (e.g., DataTables.js, React Table, or plain JS).
+- [x] Build a responsive data table using a JavaScript framework or library (e.g., DataTables.js, React Table, or plain JS).
 - [ ] Implement sorting and search functionality using client-side filtering.
 - [ ] Ensure accessibility compliance (keyboard navigation, readable column headers).
 - [ ] Validate and test across major browsers and devices.
@@ -42,21 +47,24 @@ As a member of the Learning Outcomes Committee (LOC), I can view a summary table
 ---
 
 ## User Story #2: Update Program Information
+
 As a member of the LOC, I can update program information (Academic Program, Payee(s), Has Been Paid, Report Submitted, and Notes), and assign a Division to each program so that I can keep information current.
 
 ### Acceptance Criteria #1 – Edit Program Information
-- [ ] Given I am viewing the summary table
-- [ ] When I click on an “Edit” button for a program
-- [ ] Then I should see an editable form or inline fields for:
-    - Academic Program (cannot be blank)
-    - Payee(s)
-    - Has Been Paid
-    - Report Submitted
-    - Notes
-    - Division (select dropdown)
+
+- [x] Given I am viewing the summary table
+- [x] When I click on an “Edit” button for a program
+- [x] Then I should see an editable form or inline fields for:
+  - Academic Program (cannot be blank)
+  - Payee(s)
+  - Has Been Paid
+  - Report Submitted
+  - Notes
+  - Division (select dropdown)
 - [ ] And the fields should be pre-populated with existing data.
 
 ### Acceptance Criteria #2 – Input Validation
+
 - [ ] Given I am editing a program record
 - [ ] When I leave the Academic Program field blank
 - [ ] Then I should see an inline validation message: “Academic Program cannot be blank.”
@@ -64,6 +72,7 @@ As a member of the LOC, I can update program information (Academic Program, Paye
 - [ ] And validation messages disappear once corrected.
 
 ### Acceptance Criteria #3 – Save and Cancel
+
 - [ ] Given I have made changes to a program record
 - [ ] When I click “Save”
 - [ ] Then I will see a confirmation message, "Changes saved!"
@@ -74,6 +83,7 @@ As a member of the LOC, I can update program information (Academic Program, Paye
 - [ ] Then all unsaved changes are discarded and the summary reverts to its previous state.
 
 ### Technical Tasks
+
 - [ ] Make an editable table or form
 - [ ] Add “Edit” and “Save” buttons
 - [ ] Add input validation rules and messages
@@ -87,20 +97,24 @@ As a member of the LOC, I can update program information (Academic Program, Paye
 ---
 
 ## User Story #3: Navigation Between Forms
+
 As a member of the LOC, I can link to the summary page from the Division form (created in Sprint 1), and from the Division form to the summary page.
 
 ### Acceptance Criteria #1 – Navigation from Division Form to Summary Page
+
 - [ ] Given I am on the Division management form (from Sprint 1)
 - [ ] When I click a “View Summary” button or link
 - [ ] Then I should be navigated to the LOC Summary page
 - [ ] And I should see the summary table for the current year
 
 ### Acceptance Criteria #2 – Navigation from Summary Page to Division Form
+
 - [ ] Given I am viewing the LOC Summary page
 - [ ] When I click on a Division name or an associated “Edit Division” link
 - [ ] Then I should be navigated to the Division management form
 
 ### Technical Tasks
+
 - [ ] Add a “View Summary” link or button to the Division management form.
 - [ ] Add a “Return to Division Form” or clickable Division link on the Summary page.
 - [ ] Implement routing or navigation logic between pages.
@@ -109,6 +123,7 @@ As a member of the LOC, I can link to the summary page from the Division form (c
 ---
 
 ## Definition of Done
+
 - [ ] All code is well-formatted, commented, and validated.
 - [ ] The web app is user-friendly, accessible, and responsive.
 - [ ] Code is version-controlled on GitHub with regular, descriptive commits.
@@ -118,6 +133,6 @@ As a member of the LOC, I can link to the summary page from the Division form (c
 ---
 
 ## Deliverables
+
 - Submit the URL of your web app on Digital Ocean (one submission per team).
 - Provide a link to your GitHub repository showing Sprint 2 updates.
-
