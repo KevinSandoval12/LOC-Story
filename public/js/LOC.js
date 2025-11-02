@@ -12,26 +12,26 @@
 
 //   // Division data
 //   // Dean, pen,loc, chair
-  // const Divisions = {
-  //   FineArt: [
-  //     "Christie Gilliland",
-  //     "Liz Peterson",
-  //     "Monica Bowen",
-  //     "Paul Metevier",
-  //   ],
-  //   Technology: [
-  //     "Miebeth Castillo-Booth",
-  //     "Angie Brenner",
-  //     "Josh Archer",
-  //     "Michael Wood",
-  //   ],
-  //   Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion"],
-  //   SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason"],
-  //   English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman"],
-  //   Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert"],
-  //   HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler "],
-  //   Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis"],
-  // };
+// const Divisions = {
+//   FineArt: [
+//     "Christie Gilliland",
+//     "Liz Peterson",
+//     "Monica Bowen",
+//     "Paul Metevier",
+//   ],
+//   Technology: [
+//     "Miebeth Castillo-Booth",
+//     "Angie Brenner",
+//     "Josh Archer",
+//     "Michael Wood",
+//   ],
+//   Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion"],
+//   SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason"],
+//   English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman"],
+//   Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert"],
+//   HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler "],
+//   Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis"],
+// };
 
 //   // Hide buttons and fields by default
 //   saveButton.style.display = "none";
@@ -65,17 +65,17 @@
 //   //save feature
 //   saveButton.addEventListener("click", (e) => {
 //     // e.preventDefault();
-    
+
 //     const selectedDivision = divisionSelect.value;
-  
+
 //     if (selectedDivision !== "none") {
 //       // Get the current values from the form fields
 //       const deanValue = dean.value;
 //       const penValue = pen.value;
 //       const locValue = loc.value;
 //       const chairValue = chair.value;
-      
-//       // update the values in the 
+
+//       // update the values in the
 //       Divisions[selectedDivision] = [deanValue, penValue, locValue, chairValue];
 //       console.log(Divisions);
 //     }
@@ -109,7 +109,7 @@
 //     document.getElementById("err-dean").style.display = "block";
 //     isValid = false;
 //   }
-  
+
 //   if (!pen.value.trim()) {
 //     document.getElementById("err-PEN").style.display = "block";
 //     isValid = false;
@@ -133,10 +133,6 @@
 //       errors[i].style.display = "none";
 //   }
 // }
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
@@ -178,10 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelButton.style.display = "none";
     divisionSelect.value = "none"; // reset dropdown
   });
-
 });
 
-document.getElementById('Loc-story').onsubmit = (e) => {
+document.getElementById("Loc-story").onsubmit = (e) => {
   const form = document.getElementById("LOC-story");
   const divisionSelect = document.getElementById("division");
   const divisionNames = document.getElementById("division-names");
@@ -204,7 +199,7 @@ document.getElementById('Loc-story').onsubmit = (e) => {
     document.getElementById("err-Dean").style.display = "block";
     isValid = false;
   }
-  
+
   if (!pen.value.trim()) {
     document.getElementById("err-PEN").style.display = "block";
     isValid = false;
@@ -245,16 +240,27 @@ document.getElementById('Loc-story').onsubmit = (e) => {
   }
 
   if (!program.value.trim()) {
-    document.getElementById("err-Program").style.display ="block";
+    document.getElementById("err-Program").style.display = "block";
     isValid = false;
   }
 
-
   return isValid;
-}
+};
 function clearErrors() {
   let errors = document.getElementsByClassName("error");
-  for (let i=0; i<errors.length; i++) {
-      errors[i].style.display = "none";
+  for (let i = 0; i < errors.length; i++) {
+    errors[i].style.display = "none";
   }
 }
+
+// EDIT BUTTON JAVASCRIPT
+function toggleFormDisplay() {
+  const adminForm = document.getElementById("adminForm");
+  if (adminForm.style.display === "none" || adminForm.style.display === "") {
+    adminForm.style.display = "block";
+  } else {
+    adminForm.style.display = "none";
+  }
+}
+
+// ADMIN FORM TOGGLE DISPLAY FUNCTION
