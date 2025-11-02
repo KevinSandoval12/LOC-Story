@@ -186,6 +186,7 @@ document.getElementById('Loc-story').onsubmit = (e) => {
   const divisionSelect = document.getElementById("division");
   const divisionNames = document.getElementById("division-names");
   const dean = document.getElementById("dean");
+  const program = document.getElementById("program");
   const pen = document.getElementById("PEN");
   const loc = document.getElementById("Rep"); // corrected ID
   const chair = document.getElementById("Chair");
@@ -240,6 +241,11 @@ document.getElementById('Loc-story').onsubmit = (e) => {
   }
   if (!notes.value.trim()) {
     document.getElementById("err-Notes").style.display = "block";
+    isValid = false;
+  }
+
+  if (!program.value.trim()) {
+    document.getElementById("err-Program").style.display ="block";
     isValid = false;
   }
 

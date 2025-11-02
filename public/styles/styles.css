@@ -207,6 +207,7 @@ main.layout {
   grid-template-rows: auto auto auto;
   gap: 16px; 
   grid-template-areas:
+    "program program program program" 
     "dean pen rep chair"
     "contact payee paid report"
     "notes notes notes notes";

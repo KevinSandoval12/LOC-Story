@@ -93,7 +93,7 @@ app.post('/submit-order', (req, res) => {
     // order.timestamp = new Date()
 
     // Add order to array
-    orders[order.division] = [order.dean, order.PEN, order.Rep, order.Chair];
+    orders[order.division] = [order.dean, order.PEN, order.Rep, order.Chair, order.program];
     console.log(orders);
 
     // Send user to confirmation page
