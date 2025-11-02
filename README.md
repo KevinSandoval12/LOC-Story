@@ -75,7 +75,7 @@ As a member of the LOC, I can update program information (Academic Program, Paye
 
 - [x] Given I have made changes to a program record
 - [x] When I click “Save”
-- [ ] Then I will see a confirmation message, "Changes saved!"
+- [x] Then I will see a confirmation message, "Changes saved!"
 - [ ] And a current timestamp will be captured
 - [ ] And my data will be saved to an in-memory array
 - [x] And the array will be printed to the console
