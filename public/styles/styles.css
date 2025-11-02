@@ -222,6 +222,7 @@ main.layout {
 #division-names > .paid      { grid-area: paid; }
 #division-names > .report    { grid-area: report; }
 #division-names > .notes     { grid-area: notes; }
+/* #division-names > .program     { grid-area: program; } */
 
 #division-names #notes {
   min-height: 120px;
