@@ -96,13 +96,14 @@ document.getElementById("adminForm").onsubmit = (e) => {
 
     console.log("Changes saved successfully!");
 
+    // hides your edit form
+    adminSection.style.display = "none";
+
     // Fade out the message, then hide the form
     setTimeout(() => {
       confirmation.style.opacity = "0";
       setTimeout(() => {
-        confirmation.style.display = "none";
-        // hides your edit form
-        adminSection.style.display = "none"; 
+        confirmation.style.display = "none"; 
       }, 400);
     }, 3000);
   }
