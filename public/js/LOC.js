@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("Loc-story").onsubmit = (e) => {
+document.getElementById("Loc-story").onsubmit = () => {
   const form = document.getElementById("LOC-story");
   const divisionSelect = document.getElementById("division");
   const divisionNames = document.getElementById("division-names");
