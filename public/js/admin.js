@@ -87,6 +87,13 @@ document.getElementById("adminForm").onsubmit = (e) => {
   if (isValid) {
     const confirmation = document.getElementById("save-confirmation");
     const adminSection = document.getElementById("admin");
+    const timestamp = document.getElementById("save-timestamp");
+
+    //formatted timestamp
+    const now = new Date();
+    const formatted = now.toLocaleString();
+    timestamp.textContent = `(Last updated: ${formatted})`;
+
     confirmation.style.display = "block";
 
     // Trigger the fade-in
@@ -94,7 +101,7 @@ document.getElementById("adminForm").onsubmit = (e) => {
       confirmation.style.opacity = "1";
     }, 10);
 
-    console.log("Changes saved successfully!");
+    console.log("Changes saved successfully at:", formatted);
 
     // hides your edit form
     adminSection.style.display = "none";
@@ -105,7 +112,7 @@ document.getElementById("adminForm").onsubmit = (e) => {
       setTimeout(() => {
         confirmation.style.display = "none"; 
       }, 400);
-    }, 3000);
+    }, 5000);
   }
 };
 
