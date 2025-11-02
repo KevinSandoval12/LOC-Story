@@ -252,15 +252,3 @@ function clearErrors() {
     errors[i].style.display = "none";
   }
 }
-
-// EDIT BUTTON JAVASCRIPT
-function toggleFormDisplay() {
-  const adminForm = document.getElementById("adminForm");
-  if (adminForm.style.display === "none" || adminForm.style.display === "") {
-    adminForm.style.display = "block";
-  } else {
-    adminForm.style.display = "none";
-  }
-}
-
-// ADMIN FORM TOGGLE DISPLAY FUNCTION
