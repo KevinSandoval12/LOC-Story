@@ -109,16 +109,16 @@ As a member of the LOC, I can link to the summary page from the Division form (c
 
 ### Acceptance Criteria #2 – Navigation from Summary Page to Division Form
 
-- [ x] Given I am viewing the LOC Summary page
-- [ x] When I click on a Division name or an associated “Edit Division” link
-- [x ] Then I should be navigated to the Division management form
+- [x] Given I am viewing the LOC Summary page
+- [x] When I click on a Division name or an associated “Edit Division” link
+- [x] Then I should be navigated to the Division management form
 
 ### Technical Tasks
 
-- [ x] Add a “View Summary” link or button to the Division management form.
-- [x ] Add a “Return to Division Form” or clickable Division link on the Summary page.
-- [ x] Implement routing or navigation logic between pages.
-- [x ] Test navigation in both directions for accuracy and user flow.
+- [x] Add a “View Summary” link or button to the Division management form.
+- [x] Add a “Return to Division Form” or clickable Division link on the Summary page.
+- [x] Implement routing or navigation logic between pages.
+- [x] Test navigation in both directions for accuracy and user flow.
 
 ---
 
