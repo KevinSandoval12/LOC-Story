@@ -222,8 +222,15 @@ main.layout {
 #division-names > .report    { grid-area: report; }
 #division-names > .notes     { grid-area: notes; }
 
+#division-names #notes {
+  min-height: 120px;
+}
+
 #division-names label,
-#division-names input{
+#division-names input,
+#division-names textarea{
   width: 100%;
   display: block;
 }
+
+

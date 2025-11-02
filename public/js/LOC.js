@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-document.getElementById('Loc-story').onsubmit = () => {
+document.getElementById('Loc-story').onsubmit = (e) => {
   const form = document.getElementById("LOC-story");
   const divisionSelect = document.getElementById("division");
   const divisionNames = document.getElementById("division-names");
@@ -189,13 +189,18 @@ document.getElementById('Loc-story').onsubmit = () => {
   const pen = document.getElementById("PEN");
   const loc = document.getElementById("Rep"); // corrected ID
   const chair = document.getElementById("Chair");
+  const contact = document.getElementById("contact");
+  const payee = document.getElementById("payee");
+  const paid = document.getElementById("paid"); // select
+  const report = document.getElementById("report"); // select
+  const notes = document.getElementById("notes");
   // Clear previous errors
   clearErrors();
 
   let isValid = true;
 
   if (!dean.value.trim()) {
-    document.getElementById("err-dean").style.display = "block";
+    document.getElementById("err-Dean").style.display = "block";
     isValid = false;
   }
   
@@ -213,6 +218,31 @@ document.getElementById('Loc-story').onsubmit = () => {
     document.getElementById("err-Chair").style.display = "block";
     isValid = false;
   }
+
+  if (!contact.value.trim()) {
+    document.getElementById("err-Contact").style.display = "block";
+    isValid = false;
+  }
+
+  if (!payee.value.trim()) {
+    document.getElementById("err-Payee").style.display = "block";
+    isValid = false;
+  }
+
+  if (paid.value.trim() === "none") {
+    document.getElementById("err-Paid").style.display = "block";
+    isValid = false;
+  }
+
+  if (report.value.trim() === "none") {
+    document.getElementById("err-Report").style.display = "block";
+    isValid = false;
+  }
+  if (!notes.value.trim()) {
+    document.getElementById("err-Notes").style.display = "block";
+    isValid = false;
+  }
+
 
   return isValid;
 }
