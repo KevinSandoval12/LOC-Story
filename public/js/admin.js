@@ -52,6 +52,8 @@ document.getElementById("adminForm").onsubmit = (e) => {
   const paid = document.getElementById("paid"); // select
   const report = document.getElementById("report"); // select
   const notes = document.getElementById("notes");
+
+  
   // Clear previous errors
   //clearErrors();
 
@@ -84,6 +86,7 @@ document.getElementById("adminForm").onsubmit = (e) => {
   //return isValid;
   if (isValid) {
     const confirmation = document.getElementById("save-confirmation");
+    const adminSection = document.getElementById("admin");
     confirmation.style.display = "block";
 
     // Trigger the fade-in
@@ -91,18 +94,17 @@ document.getElementById("adminForm").onsubmit = (e) => {
       confirmation.style.opacity = "1";
     }, 10);
 
-    // Fade out after 3 seconds
+    console.log("Changes saved successfully!");
+
+    // Fade out the message, then hide the form
     setTimeout(() => {
       confirmation.style.opacity = "0";
       setTimeout(() => {
         confirmation.style.display = "none";
-
-        //hide the edit form after the message disappears
-        //adminSection.style.display = "none;"
+        // hides your edit form
+        adminSection.style.display = "none"; 
       }, 400);
     }, 3000);
-
-    console.log("Changes saved successfully!");
   }
 };
 
