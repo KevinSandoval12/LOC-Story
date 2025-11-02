@@ -8,7 +8,7 @@ As a member of the Learning Outcomes Committee (LOC), I can view a summary table
 
 - [x] Given I am on the LOC Summary page
 - [x] When the page loads
-- [ ] Then I should see a data grid with the following columns:
+- [x] Then I should see a data grid with the following columns:
   - Division
   - Academic Program
   - Division Chair
@@ -19,7 +19,7 @@ As a member of the Learning Outcomes Committee (LOC), I can view a summary table
   - Has Been Paid (Yes/No)
   - Report Submitted (Yes/No)
   - Notes
-- [ ] And I should be able to scroll horizontally and vertically through the table if the data exceeds the viewable area.
+- [x] And I should be able to scroll horizontally and vertically through the table if the data exceeds the viewable area.
 
 ### Acceptance Criteria #2 – Sorting
 
@@ -37,10 +37,10 @@ As a member of the Learning Outcomes Committee (LOC), I can view a summary table
 
 ### Technical Tasks
 
-- [ ] Create a new route or page component for “LOC Summary.”
+- [x] Create a new route or page component for “LOC Summary.”
 - [x] Build a responsive data table using a JavaScript framework or library (e.g., DataTables.js, React Table, or plain JS).
-- [ ] Implement sorting and search functionality using client-side filtering.
-- [ ] Ensure accessibility compliance (keyboard navigation, readable column headers).
+- [x] Implement sorting and search functionality using client-side filtering.
+- [x] Ensure accessibility compliance (keyboard navigation, readable column headers).
 - [ ] Validate and test across major browsers and devices.
 - [ ] Commit changes to GitHub with clear messages referencing Sprint 2.
 
@@ -65,30 +65,30 @@ As a member of the LOC, I can update program information (Academic Program, Paye
 
 ### Acceptance Criteria #2 – Input Validation
 
-- [ ] Given I am editing a program record
-- [ ] When I leave the Academic Program field blank
-- [ ] Then I should see an inline validation message: “Academic Program cannot be blank.”
-- [ ] And I cannot save until all required fields are filled.
-- [ ] And validation messages disappear once corrected.
+- [x] Given I am editing a program record
+- [x] When I leave the Academic Program field blank
+- [x] Then I should see an inline validation message: “Academic Program cannot be blank.”
+- [x] And I cannot save until all required fields are filled.
+- [x] And validation messages disappear once corrected.
 
 ### Acceptance Criteria #3 – Save and Cancel
 
-- [ ] Given I have made changes to a program record
-- [ ] When I click “Save”
+- [x] Given I have made changes to a program record
+- [x] When I click “Save”
 - [ ] Then I will see a confirmation message, "Changes saved!"
 - [ ] And a current timestamp will be captured
 - [ ] And my data will be saved to an in-memory array
-- [ ] And the array will be printed to the console
-- [ ] When I click “Cancel”
-- [ ] Then all unsaved changes are discarded and the summary reverts to its previous state.
+- [x] And the array will be printed to the console
+- [x] When I click “Cancel”
+- [x] Then all unsaved changes are discarded and the summary reverts to its previous state.
 
 ### Technical Tasks
 
-- [ ] Make an editable table or form
-- [ ] Add “Edit” and “Save” buttons
-- [ ] Add input validation rules and messages
-- [ ] Implement “Save” functionality (data is not actually saved at this point)
-- [ ] Implement “Cancel” to close the form or editable fields
+- [x] Make an editable table or form
+- [x] Add “Edit” and “Save” buttons
+- [x] Add input validation rules and messages
+- [x] Implement “Save” functionality (data is not actually saved at this point)
+- [x] Implement “Cancel” to close the form or editable fields
 - [ ] Ensure data integrity (e.g., Academic Program cannot be null)
 - [ ] Add loading or success indicators for save operations
 - [ ] Test for usability, error handling, and data persistence
@@ -102,23 +102,23 @@ As a member of the LOC, I can link to the summary page from the Division form (c
 
 ### Acceptance Criteria #1 – Navigation from Division Form to Summary Page
 
-- [ ] Given I am on the Division management form (from Sprint 1)
-- [ ] When I click a “View Summary” button or link
-- [ ] Then I should be navigated to the LOC Summary page
+- [x] Given I am on the Division management form (from Sprint 1)
+- [x] When I click a “View Summary” button or link
+- [x] Then I should be navigated to the LOC Summary page
 - [ ] And I should see the summary table for the current year
 
 ### Acceptance Criteria #2 – Navigation from Summary Page to Division Form
 
-- [ ] Given I am viewing the LOC Summary page
-- [ ] When I click on a Division name or an associated “Edit Division” link
-- [ ] Then I should be navigated to the Division management form
+- [x] Given I am viewing the LOC Summary page
+- [x] When I click on a Division name or an associated “Edit Division” link
+- [x] Then I should be navigated to the Division management form
 
 ### Technical Tasks
 
-- [ ] Add a “View Summary” link or button to the Division management form.
-- [ ] Add a “Return to Division Form” or clickable Division link on the Summary page.
-- [ ] Implement routing or navigation logic between pages.
-- [ ] Test navigation in both directions for accuracy and user flow.
+- [x] Add a “View Summary” link or button to the Division management form.
+- [x] Add a “Return to Division Form” or clickable Division link on the Summary page.
+- [x] Implement routing or navigation logic between pages.
+- [x] Test navigation in both directions for accuracy and user flow.
 
 ---
 
