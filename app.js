@@ -49,7 +49,7 @@ app.use(express.urlencoded({ extended: true }));
       "Monica Bowen",
       "Paul Metevier",
       "Music",
-      "Sam - $333, Kelly - $333, Ruth - $333"
+      "Sam = $333, Kelly = $333, Ruth = $333"
     ],
     Technology: [
       "Miebeth Castillo-Booth",
@@ -57,11 +57,11 @@ app.use(express.urlencoded({ extended: true }));
       "Josh Archer",
       "Michael Wood",
       "Aviation, CAD Design and Engineering Tech., Natural Resources",
-      "Tad Henry(CAD) - $1000, Seunghye Jang - $1000",
+      "Tad Henry(CAD) = $1000, Seunghye Jang = $1000",
     ],
     Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion", "Communication Studies", "",],
-    SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason", "Anthropology, History, PoliSci, Psychology", "Madeline - $500, Joy Crawford - $500",],
-    English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman", "English"],
+    SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason", "Anthropology, History, PoliSci, Psychology", "Madeline = $500, Joy Crawford = $500 (Anthrology)/Lindsey = $500, Yoav = $500 (PoliSci)"],
+    English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman", "English", "Aley Martin"],
     Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert", "Anatomy & Physiology, Biology/Environmental Sci, Geology/Oceanography"],
     HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler ", "Practical Nursing, Physical Therapist Assistant"],
     Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis", "Automotive Technology, Manufacturing"],
