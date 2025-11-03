@@ -1,3 +1,5 @@
+const orders = window.orders;
+console.log(orders);
 //Storing edited program data
 const savedPrograms = [];
 

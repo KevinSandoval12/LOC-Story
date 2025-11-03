@@ -9,12 +9,17 @@
     <link rel="stylesheet" href="/styles/formStyles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
+    <!-- Dont touch it works, This grabs orders data from app.js to admin.js -->
+    <script>
+      window.orders = <%- JSON.stringify(orders) %>;
+    </script>
     <!-- Javascript link -->
-    <script src="/js/LOC.js" defer></script>
+    <!-- <script src="/js/LOC.js" defer></script> -->
     <script src="/js/admin.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+
     <!-- <script src="/js/Story.js" defer></script> -->
     <link
       rel="stylesheet"
@@ -49,12 +54,12 @@
           <% Object.entries(orders).forEach(([division, contacts]) => { %>
           <tr>
             <td><%= division %></td>
-            <td><%= contacts[0] %></td>
-            <td><%= contacts[1] %></td>
-            <td><%= contacts[2] %></td>
-            <td><%= contacts[3] %></td>
-            <td><%= contacts[4] %></td>
-            <td><%= contacts[5] %></td>
+            <td><%= contacts.Dean %></td>
+            <td><%= contacts.PEN %></td>
+            <td><%= contacts.Rep %></td>
+            <td><%= contacts.Chair %></td>
+            <td><%= contacts.AcademicProgram %></td>
+            <td><%= contacts.Payees %></td>
           </tr>
           <% }); %>
         </tbody>
@@ -66,7 +71,7 @@
       </button>
 
       <section id="admin">
-        <form id="adminForm" action="">
+        <form id="adminForm" action="submit-order2" method="post">
           <div id="formContainer">
             <section id="controls">
               <div class="selectors">

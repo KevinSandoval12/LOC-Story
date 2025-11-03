@@ -41,34 +41,123 @@ app.use(express.static('public'));
 // Allow the app to parse form data (req.body)
 app.use(express.urlencoded({ extended: true }));
 
+// // Create an array to store divisions
+//   const orders = {
+//     FineArt: [
+//       "Christie Gilliland",
+//       "Liz Peterson",
+//       "Monica Bowen",
+//       "Paul Metevier",
+//       "Music",
+//       "Sam = $333, Kelly = $333, Ruth = $333"
+//     ],
+//     Technology: [
+//       "Miebeth Castillo-Booth",
+//       "Angie Brenner",
+//       "Josh Archer",
+//       "Michael Wood",
+//       "Aviation, CAD Design and Engineering Tech., Natural Resources",
+//       "Tad Henry(CAD) = $1000, Seunghye Jang = $1000",
+//     ],
+//     Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion", "Communication Studies", "",],
+//     SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason", "Anthropology, History, PoliSci, Psychology", "Madeline = $500, Joy Crawford = $500 (Anthrology)/Lindsey = $500, Yoav = $500 (PoliSci)"],
+//     English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman", "English", "Aley Martin"],
+//     Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert", "Anatomy & Physiology, Biology/Environmental Sci, Geology/Oceanography"],
+//     HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler ", "Practical Nursing, Physical Therapist Assistant"],
+//     Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis", "Automotive Technology, Manufacturing"],
+//   };
 // Create an array to store divisions
-  const orders = {
-    FineArt: [
-      "Christie Gilliland",
-      "Liz Peterson",
-      "Monica Bowen",
-      "Paul Metevier",
-      "Music",
-      "Sam = $333, Kelly = $333, Ruth = $333"
-    ],
-    Technology: [
-      "Miebeth Castillo-Booth",
-      "Angie Brenner",
-      "Josh Archer",
-      "Michael Wood",
-      "Aviation, CAD Design and Engineering Tech., Natural Resources",
-      "Tad Henry(CAD) = $1000, Seunghye Jang = $1000",
-    ],
-    Humanities: ["Jamie Fitzgerald", "Liz Peterson", "Lisa Luengo", "Katie Cunnion", "Communication Studies", "",],
-    SocialScience: ["Christie Gilliland", "Liz Peterson", "Joy Crawford ", "Mark Thomason", "Anthropology, History, PoliSci, Psychology", "Madeline = $500, Joy Crawford = $500 (Anthrology)/Lindsey = $500, Yoav = $500 (PoliSci)"],
-    English: ["Jamie Fitzgerald", "Liz Peterson", "Jake Frye", "Ian Sherman", "English", "Aley Martin"],
-    Science: ["Katy Shaw and Danny Najera", "Miebeth Bustillo-Booth", "Nicole Feider", "Heather Lambert", "Anatomy & Physiology, Biology/Environmental Sci, Geology/Oceanography"],
-    HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler ", "Practical Nursing, Physical Therapist Assistant"],
-    Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis", "Automotive Technology, Manufacturing"],
-    
-    
 
-  };
+const orders = {
+  FineArt: {
+    Dean: "Christie Gilliland",
+    PEN: "Liz Peterson",
+    Rep: "Monica Bowen",
+    Chair: "Paul Metevier",
+    AcademicProgram: "Music",
+    Payees: "Sam = $333, Kelly = $333, Ruth = $333",
+    Paid: "Yes",
+    Report: "Yes",
+    Notes: "Preparing gallery showcase"
+  },
+  Technology: {
+    Dean: "Miebeth Castillo-Booth",
+    PEN: "Angie Brenner",
+    Rep: "Josh Archer",
+    Chair: "Michael Wood",
+    AcademicProgram: "Aviation, CAD Design and Engineering Tech., Natural Resources",
+    Payees: "Tad Henry(CAD) = $1000, Seunghye Jang = $1000",
+    Paid: "Yes",
+    Report: "No",
+    Notes: "Preparing next quarter's project updates"
+  },
+  Humanities: {
+    Dean: "Jamie Fitzgerald",
+    PEN: "Liz Peterson",
+    Rep: "Lisa Luengo",
+    Chair: "Katie Cunnion",
+    AcademicProgram: "Communication Studies",
+    Payees: "",
+    Paid: "Yes",
+    Report: "No",
+    Notes: "Completed department review for Fall"
+  },
+  SocialScience: {
+    Dean: "Christie Gilliland",
+    PEN: "Liz Peterson",
+    Rep: "Joy Crawford",
+    Chair: "Mark Thomason",
+    AcademicProgram: "Anthropology, History, PoliSci, Psychology",
+    Payees: "Madeline = $500, Joy Crawford = $500 (Anthrology)/Lindsey = $500, Yoav = $500 (PoliSci)",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "Pending research approval update"
+  },
+  English: {
+    Dean: "Jamie Fitzgerald",
+    PEN: "Liz Peterson",
+    Rep: "Jake Frye",
+    Chair: "Ian Sherman",
+    AcademicProgram: "English",
+    Payees: "Aley Martin",
+    Paid: "No",
+    Report: "No",
+    Notes: "Revising course outcomes for next term"
+  },
+  Science: {
+    Dean: "Katy Shaw and Danny Najera",
+    PEN: "Miebeth Bustillo-Booth",
+    Rep: "Nicole Feider",
+    Chair: "Heather Lambert",
+    AcademicProgram: "Anatomy & Physiology, Biology/Environmental Sci, Geology/Oceanography",
+    Payees: "",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "Research grant proposal submitted"
+  },
+  HealthScience: {
+    Dean: "Lionel Candido Flores",
+    PEN: "Thom Jackson",
+    Rep: "",
+    Chair: "Leslie Kessler",
+    AcademicProgram: "Practical Nursing, Physical Therapist Assistant",
+    Payees: "",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "Report submitted for spring term"
+  },
+  Trades: {
+    Dean: "Lea Ann Simpson",
+    PEN: "Mary Singer",
+    Rep: "Ben Orr",
+    Chair: "David Lewis",
+    AcademicProgram: "Automotive Technology, Manufacturing",
+    Payees: "",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "New equipment installed in shop"
+  }
+};
   
 
 // Define the port number where our server will listen
@@ -81,7 +170,8 @@ app.get('/', (req, res) => {
 
     // Send a response to the client
     // res.send(`<h1>Welcome to Poppa\'s Pizza!</h1>`);
-    res.render('home');
+    // res.render('home');
+    res.render('home', { orders });
 });
 
 // Define an "admin" route
@@ -92,7 +182,7 @@ app.get('/admin', (req, res) => {
     //res.sendFile(`${import.meta.dirname}/views/admin.html`);
 });
 
-// Define an "submit-order" route
+// Define an "submit-order" route (home.ejs)
 app.post('/submit-order', (req, res) => {
 
     // Create a JSON object to store the data
@@ -100,11 +190,47 @@ app.post('/submit-order', (req, res) => {
     // order.timestamp = new Date()
 
     // Add order to array
-    orders[order.division] = [order.dean, order.PEN, order.Rep, order.Chair, order.program];
+    orders[order.division] = {
+      Dean: order.dean,
+      PEN: order.PEN,
+      Rep: order.Rep,
+      Chair: order.Chair,
+      AcademicProgram: order.program,
+      Payees: order.payee, // add this if you have a payee field in your form
+      Paid: order.paid,
+      Report: order.report,
+      Notes: order.notes
+
+    };
     console.log(orders);
 
     // Send user to confirmation page
     res.render('confirmation', { order });
+});
+
+// Define an "submit-order2" route (admin.ejs)
+app.post('/submit-order2', (req, res) => {
+
+    // Create a JSON object to store the data
+    const order = req.body;
+    // order.timestamp = new Date()
+
+    // Add order to array
+    orders[order.division] = {
+      Dean: order.dean,
+      PEN: order.PEN,
+      Rep: order.Rep,
+      Chair: order.Chair,
+      AcademicProgram: order.program,
+      Payees: order.payee, // add this if you have a payee field in your form
+      Paid: order.paid,
+      Report: order.report,
+      Notes: order.notes
+    };
+    console.log(orders);
+
+    // Send user to confirmation page
+    res.send({ success: true, message: 'Order updated', order });
 });
 
 // Start the server and make it listen on the port 

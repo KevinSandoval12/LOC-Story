@@ -21,6 +21,11 @@
     <p>PEN: <%= order.PEN %></p>
     <p>Rep: <%= order.Rep %></p>
     <p>Chair: <%= order.Chair %></p>
+    <p>Academic Program: <%= order.program  %></p>
+    <p>Payees: <%= order.payee || order.Payees %></p>
+    <p>Paid: <%= order.paid || order.Paid %></p>
+    <p>Report: <%= order.report || order.Report %></p>
+    <p>Notes: <%= order.notes || order.Notes %></p>
     <button><a href="/">submit a form</a></button>
     <button><a href="/admin">go to admin</a></button>
   </body>
