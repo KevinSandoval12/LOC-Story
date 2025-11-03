@@ -105,7 +105,7 @@ As a member of the LOC, I can link to the summary page from the Division form (c
 - [x] Given I am on the Division management form (from Sprint 1)
 - [x] When I click a “View Summary” button or link
 - [x] Then I should be navigated to the LOC Summary page
-- [ ] And I should see the summary table for the current year
+- [x] And I should see the summary table for the current year
 
 ### Acceptance Criteria #2 – Navigation from Summary Page to Division Form
 
