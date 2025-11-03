@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("adminForm").onsubmit = (e) => {
   //Stops form sub
-  e.preventDefault();
+  // e.preventDefault();
   //clears errors after form sub
   clearErrors();
 

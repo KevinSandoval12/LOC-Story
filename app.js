@@ -229,8 +229,9 @@ app.post('/submit-order2', (req, res) => {
     };
     console.log(orders);
 
-    // Send user to confirmation page
-    res.send({ success: true, message: 'Order updated', order });
+    // updates the form, but waits 3 seconds before refreshing the page so the table is updated.
+    setTimeout(() => res.redirect('/admin'), 3000);
+    
 });
 
 // Start the server and make it listen on the port 
