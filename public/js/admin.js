@@ -36,7 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.getElementById("adminForm").onsubmit = () => {
+document.getElementById("adminForm").onsubmit = (e) => {
+  //Stops form sub
+  e.preventDefault();
+  //clears errors after form sub
+  clearErrors();
+
   const form = document.getElementById("adminForm");
   const divisionSelect = document.getElementById("division");
   const divisionNames = document.getElementById("division-names");
@@ -47,8 +52,10 @@ document.getElementById("adminForm").onsubmit = () => {
   const paid = document.getElementById("paid"); // select
   const report = document.getElementById("report"); // select
   const notes = document.getElementById("notes");
+
+  
   // Clear previous errors
-  clearErrors();
+  //clearErrors();
 
   let isValid = true;
 
@@ -76,7 +83,37 @@ document.getElementById("adminForm").onsubmit = () => {
     isValid = false;
   }
 
-  return isValid;
+  //return isValid;
+  if (isValid) {
+    const confirmation = document.getElementById("save-confirmation");
+    const adminSection = document.getElementById("admin");
+    const timestamp = document.getElementById("save-timestamp");
+
+    //formatted timestamp
+    const now = new Date();
+    const formatted = now.toLocaleString();
+    timestamp.textContent = `(Last updated: ${formatted})`;
+
+    confirmation.style.display = "block";
+
+    // Trigger the fade-in
+    setTimeout(() => {
+      confirmation.style.opacity = "1";
+    }, 10);
+
+    console.log("Changes saved successfully at:", formatted);
+
+    // hides your edit form
+    adminSection.style.display = "none";
+
+    // Fade out the message, then hide the form
+    setTimeout(() => {
+      confirmation.style.opacity = "0";
+      setTimeout(() => {
+        confirmation.style.display = "none"; 
+      }, 400);
+    }, 5000);
+  }
 };
 
 function clearErrors() {
