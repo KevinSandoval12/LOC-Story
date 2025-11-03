@@ -1,3 +1,6 @@
+//Storing edited program data
+const savedPrograms = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
   const divisionSelect = document.getElementById("division");
@@ -94,6 +97,22 @@ document.getElementById("adminForm").onsubmit = (e) => {
     const formatted = now.toLocaleString();
     timestamp.textContent = `(Last updated: ${formatted})`;
 
+    //Capturing the current timestamp
+    const updatedProgram = {
+      division: division.value,
+      program: program.value.trim(),
+      payee: payee.value.trim(),
+      paid: paid.value,
+      report: report.value,
+      notes: notes.value.trim(),
+      timestamp: new Date().toLocaleString()
+    }; 
+
+    //Saving to the in-memory array
+    savedPrograms.push(updatedProgram);
+
+    console.log("Current saved programs:", savedPrograms);
+
     confirmation.style.display = "block";
 
     // Trigger the fade-in
@@ -113,8 +132,7 @@ document.getElementById("adminForm").onsubmit = (e) => {
         confirmation.style.display = "none"; 
       }, 400);
     }, 5000);
-  }
-};
+  }};
 
 function clearErrors() {
   let errors = document.getElementsByClassName("error");
