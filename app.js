@@ -75,7 +75,7 @@ const orders = {
     Rep: "Monica Bowen",
     Chair: "Paul Metevier",
     AcademicProgram: "Music",
-    Payees: "Sam = $333, Kelly = $333, Ruth = $333",
+    Payees: "Sam = $333 (Music)\nKelly = $333 (Music)\nRuth = $333 (Music)",
     Paid: "Yes",
     Report: "Yes",
     Notes: "Preparing gallery showcase"
@@ -85,8 +85,8 @@ const orders = {
     PEN: "Angie Brenner",
     Rep: "Josh Archer",
     Chair: "Michael Wood",
-    AcademicProgram: "Aviation, CAD Design and Engineering Tech., Natural Resources",
-    Payees: "Tad Henry(CAD) = $1000, Seunghye Jang = $1000",
+    AcademicProgram: "Aviation\nCAD Design and Engineering Tech.\nNatural Resources",
+    Payees: "Tad Henry = $1000 (Aviation)\nSeunghye Jang = $1000 (CAD Design and Engineering Tech.)\nNone (Natural Resources",
     Paid: "Yes",
     Report: "No",
     Notes: "Preparing next quarter's project updates"
@@ -97,7 +97,7 @@ const orders = {
     Rep: "Lisa Luengo",
     Chair: "Katie Cunnion",
     AcademicProgram: "Communication Studies",
-    Payees: "",
+    Payees: "None (Humanities)",
     Paid: "Yes",
     Report: "No",
     Notes: "Completed department review for Fall"
@@ -107,8 +107,8 @@ const orders = {
     PEN: "Liz Peterson",
     Rep: "Joy Crawford",
     Chair: "Mark Thomason",
-    AcademicProgram: "Anthropology, History, PoliSci, Psychology",
-    Payees: "Madeline = $500, Joy Crawford = $500 (Anthrology)/Lindsey = $500, Yoav = $500 (PoliSci)",
+    AcademicProgram: "Anthropology\nHistory\nPolitical Science\nPsychology",
+    Payees: "Madeline = $500 (Anthrology)\nJoy Crawford = $500 (Anthrology)\nNone (History)\nLindsey = $500, Yoav = $500 (PoliticalScience)\nJoy = $500, Jerry = $500 (Psychology)",
     Paid: "No",
     Report: "Yes",
     Notes: "Pending research approval update"
@@ -119,7 +119,7 @@ const orders = {
     Rep: "Jake Frye",
     Chair: "Ian Sherman",
     AcademicProgram: "English",
-    Payees: "Aley Martin",
+    Payees: "Aley Martin: $175 (English)\nClaire Salcedo: $175 (English)\nEricka Nelson: $175 (English)\nJake: $475 (English)",
     Paid: "No",
     Report: "No",
     Notes: "Revising course outcomes for next term"
@@ -129,8 +129,8 @@ const orders = {
     PEN: "Miebeth Bustillo-Booth",
     Rep: "Nicole Feider",
     Chair: "Heather Lambert",
-    AcademicProgram: "Anatomy & Physiology, Biology/Environmental Sci, Geology/Oceanography",
-    Payees: "",
+    AcademicProgram: "Anatomy & Physiology\nBiology/Environmental Science\nGeology/Oceanography",
+    Payees: "None (Anatomy & Physiology)\nLeo - $334.00 (Biology/Environmental)\nStephanie Hoffman - $333.00 (Biology/Environmental)\nDanny Najera - $333.00 (Biology/Environmental)\nNone (Geology/Oceanography)", 
     Paid: "No",
     Report: "Yes",
     Notes: "Research grant proposal submitted"
@@ -140,8 +140,8 @@ const orders = {
     PEN: "Thom Jackson",
     Rep: "",
     Chair: "Leslie Kessler",
-    AcademicProgram: "Practical Nursing, Physical Therapist Assistant",
-    Payees: "",
+    AcademicProgram: "Practical Nursing\nPhysical Therapist Assistant",
+    Payees: "None (Practical Nursing)\nPam Kikillus = $500 (Physical Therapist Assistant)\nAnna Neil = $500 (Physical Therapist Assistant)",
     Paid: "No",
     Report: "Yes",
     Notes: "Report submitted for spring term"
@@ -151,12 +151,12 @@ const orders = {
     PEN: "Mary Singer",
     Rep: "Ben Orr",
     Chair: "David Lewis",
-    AcademicProgram: "Automotive Technology, Manufacturing",
-    Payees: "",
+    AcademicProgram: "Automotive Technology\nManufacturing",
+    Payees: "None (Automotive Technology)\nNone (Manufacturing)",
     Paid: "No",
     Report: "Yes",
     Notes: "New equipment installed in shop"
-  }
+  },
 };
   
 

@@ -58,8 +58,12 @@
             <td><%= contacts.PEN %></td>
             <td><%= contacts.Rep %></td>
             <td><%= contacts.Chair %></td>
-            <td><%= contacts.AcademicProgram %></td>
-            <td><%= contacts.Payees %></td>
+            <!-- Replace newline characters (\n) with <br> tags 
+            so each Academic Program appears on its own line -->
+            <td><%- contacts.AcademicProgram.replace(/\n/g, "<br>") %></td>
+            <!-- Replace newline characters (\n) with <br> tags 
+            so each Payee appears on its own line -->
+            <td><%- contacts.Payees.replace(/\n/g, "<br>") %></td>
           </tr>
           <% }); %>
         </tbody>
