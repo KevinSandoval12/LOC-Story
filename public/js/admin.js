@@ -6,60 +6,60 @@ const savedPrograms = [];
 //Mock data to fill the edit form with pre-existing data
 const mockPrograms = {
   Technology: {
-    program: "Software Development",
-    payee: "Tyrell Chappel",
-    paid: "Yes",
+    program: "Aviation",
+    payee: "Tad Henry",
+    paid: "Emails sent to Building Admins on 5/2/2025",
     report: "No",
-    notes: "Preparing next quarter's project updates"
+    notes: "Yes! Tad is takeing this on"
   },
   HealthScience: {
-    program: "Nursing",
-    payee: "Jhoanna Opilac",
-    paid: "No",
+    program: "Physical Therapist Assistant",
+    payee: "Pam Kikillus",
+    paid: "Emails sent to Building Admins on 5/2/2025",
     report: "Yes",
-    notes: "Report submitted for spring term"
+    notes: "Yes! Pam and Anna will do this"
   },
   FineArt: {
-    program: "Visual Arts",
-    payee: "Jermaine Felicitas",
-    paid: "Yes",
-    report: "Yes",
-    notes: "Preparing gallery showcase"
+    program: "Music",
+    payee: "Ruth",
+    paid: "Emails sent to Building Admins on 5/2/2025",
+    report: "No",
+    notes: "Yes! Sam, Kelly, and Ruth all work on this together and divide the money three ways."
   },
   Humanities: {
-    program: "Philosophy",
-    payee: "Howell Diga",
-    paid: "Yes",
+    program: "Communication Studies",
+    payee: "",
+    paid: "Emails sent to Building Admins on 5/2/2025",
     report: "No",
-    notes: "Completed department review for Fall"
+    notes: "No"
   },
   SocialScience: {
     program: "Psychology",
-    payee: "Amphi Halili",
-    paid: "No",
-    report: "Yes",
-    notes: "Pending research approval update"
+    payee: "Joy",
+    paid: "Emails sent to Building Admins on 5/2/2025",
+    report: "Submitted 6/15",
+    notes: "Yes! Joy and Jerry will do the project together"
   },
   English: {
-    program: "Creative Writing",
-    payee: "Glenda Diga",
-    paid: "No",
-    report: "No",
-    notes: "Revising course outcomes for next term"
+    program: "English",
+    payee: "Aley Martin",
+    paid: "Emails sent to Building Admins on 5/2/2025",
+    report: "Report to be completed year 2",
+    notes: "Yes! See notes on adjuncts to pay. Will submit report next year 2025-2026"
   },
   Science: {
-    program: "Biology",
-    payee: "Tony Lewis",
-    paid: "No",
-    report: "Yes",
-    notes: "Research grant proposal submitted"
+    program: "Biology/Environmental Science",
+    payee: "Danny Najera",
+    paid: "Emails sent to Building Admins on 5/2/2025",
+    report: "Report coming this summer",
+    notes: "Yes, they are doing a 2-year project with majors level Bio classes"
   },
   Trades: {
-    program: "Autmotive",
-    payee: "Xavier Lewis",
-    paid: "No",
-    report: "Yes",
-    notes: "New equipment installed in shop"
+    program: "Autmotive Technology",
+    payee: "",
+    paid: "Emails sent to Building Admins on 5/2/2025",
+    report: "Np",
+    notes: "Initial Invite Sent from Juli  9/26/24. Follow up on 10/21"
   },
 };
 
