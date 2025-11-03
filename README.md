@@ -61,7 +61,7 @@ As a member of the LOC, I can update program information (Academic Program, Paye
   - Report Submitted
   - Notes
   - Division (select dropdown)
-- [ ] And the fields should be pre-populated with existing data.
+- [x] And the fields should be pre-populated with existing data.
 
 ### Acceptance Criteria #2 – Input Validation
 
@@ -89,10 +89,10 @@ As a member of the LOC, I can update program information (Academic Program, Paye
 - [x] Add input validation rules and messages
 - [x] Implement “Save” functionality (data is not actually saved at this point)
 - [x] Implement “Cancel” to close the form or editable fields
-- [ ] Ensure data integrity (e.g., Academic Program cannot be null)
-- [ ] Add loading or success indicators for save operations
-- [ ] Test for usability, error handling, and data persistence
-- [ ] Push all updates to GitHub with detailed commit notes
+- [x] Ensure data integrity (e.g., Academic Program cannot be null)
+- [x] Add loading or success indicators for save operations
+- [x] Test for usability, error handling, and data persistence
+- [x] Push all updates to GitHub with detailed commit notes
 
 ---
 
