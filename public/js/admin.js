@@ -1,6 +1,68 @@
 //Storing edited program data
 const savedPrograms = [];
 
+//Mock data to fill the edit form with pre-existing data
+const mockPrograms = {
+  Technology: {
+    program: "Software Development",
+    payee: "Tyrell Chappel",
+    paid: "Yes",
+    report: "No",
+    notes: "Preparing next quarter's project updates"
+  },
+  HealthScience: {
+    program: "Nursing",
+    payee: "Jhoanna Opilac",
+    paid: "No",
+    report: "Yes",
+    notes: "Report submitted for spring term"
+  },
+  FineArt: {
+    program: "Visual Arts",
+    payee: "Jermaine Felicitas",
+    paid: "Yes",
+    report: "Yes",
+    notes: "Preparing gallery showcase"
+  },
+  Humanities: {
+    program: "Philosophy",
+    payee: "Howell Diga",
+    paid: "Yes",
+    report: "No",
+    notes: "Completed department review for Fall"
+  },
+  SocialScience: {
+    program: "Psychology",
+    payee: "Amphi Halili",
+    paid: "No",
+    report: "Yes",
+    notes: "Pending research approval update"
+  },
+  English: {
+    program: "Creative Writing",
+    payee: "Glenda Diga",
+    paid: "No",
+    report: "No",
+    notes: "Revising course outcomes for next term"
+  },
+  Science: {
+    program: "Biology",
+    payee: "Tony Lewis",
+    paid: "No",
+    report: "Yes",
+    notes: "Research grant proposal submitted"
+  },
+  Trades: {
+    program: "Autmotive",
+    payee: "Xavier Lewis",
+    paid: "No",
+    report: "Yes",
+    notes: "New equipment installed in shop"
+  },
+};
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
   const divisionSelect = document.getElementById("division");
@@ -18,10 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
   divisionSelect.addEventListener("change", () => {
     const selected = divisionSelect.value;
 
+
     if (selected !== "none") {
       divisionNames.style.display = "grid";
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
+      prefillDivsionData(selected);
     } else {
       // Hide if 'none'
       divisionNames.style.display = "none";
@@ -152,5 +216,15 @@ function toggleFormDisplay() {
 }
 
 // PRE-FILLING ADMIN FORM WITH INFORMATION
+function prefillDivsionData(division) {
+  const data = mockPrograms[division];
+  if (!data) return;
+
+  document.getElementById("program").value = data.program || "";
+  document.getElementById("payee").value = data.payee || "";
+  document.getElementById("paid").value = data.paid || "none";
+  document.getElementById("report").value = data.report || "none";
+  document.getElementById("notes").value = data.notes || "";
+}
 
 // Check latest information given to Division -> Academic Program
