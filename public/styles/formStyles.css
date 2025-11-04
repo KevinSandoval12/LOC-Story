@@ -75,6 +75,7 @@ a {
   box-shadow: #04240088 0.5px 1px 5px 1px;
 }
 
+/* Admin Form Edit Button */
 #editBtn {
   display: flex;
   justify-self: center;
@@ -224,7 +225,6 @@ a {
   display: block;
   overflow-x: auto;
   /* white-space: nowrap; */
-  
 }
 
 /* creating a grid layout for input fields */

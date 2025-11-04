@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// home page form on submit function
 document.getElementById("Loc-story").onsubmit = () => {
   const form = document.getElementById("LOC-story");
   const divisionSelect = document.getElementById("division");
@@ -55,7 +56,6 @@ document.getElementById("Loc-story").onsubmit = () => {
   const pen = document.getElementById("PEN");
   const loc = document.getElementById("Rep"); // corrected ID
   const chair = document.getElementById("Chair");
-  // const contact = document.getElementById("contact");
   const payee = document.getElementById("payee");
   const paid = document.getElementById("paid"); // select
   const report = document.getElementById("report"); // select
@@ -65,6 +65,7 @@ document.getElementById("Loc-story").onsubmit = () => {
 
   let isValid = true;
 
+  // Flags for validation checks
   if (!dean.value.trim()) {
     document.getElementById("err-Dean").style.display = "block";
     isValid = false;
@@ -110,13 +111,17 @@ document.getElementById("Loc-story").onsubmit = () => {
   }
 
   return isValid;
-};
+}; // end of on submit
+
+// Clears validation errors function
 function clearErrors() {
   let errors = document.getElementsByClassName("error");
   for (let i = 0; i < errors.length; i++) {
     errors[i].style.display = "none";
   }
 }
+
+// prefill home page form function
 function prefillDivsionData(division) {
   const data = orders[division];
   if (!data) return;
