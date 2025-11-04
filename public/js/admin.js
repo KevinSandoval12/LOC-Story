@@ -1,3 +1,4 @@
+// This grabs orders data from app.js to admin.js
 const orders = window.orders;
 console.log(orders);
 

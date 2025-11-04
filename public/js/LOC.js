@@ -134,6 +134,10 @@
 //   }
 // }
 
+// This grabs orders data from app.js to LOC.js
+const orders = window.orders;
+console.log(orders);
+
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
   const divisionSelect = document.getElementById("division");
@@ -159,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       divisionNames.style.display = "grid";
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
+      prefillDivsionData(selected);
     } else {
       // Hide if 'none'
       divisionNames.style.display = "none";
@@ -185,7 +190,7 @@ document.getElementById("Loc-story").onsubmit = () => {
   const pen = document.getElementById("PEN");
   const loc = document.getElementById("Rep"); // corrected ID
   const chair = document.getElementById("Chair");
-  const contact = document.getElementById("contact");
+  // const contact = document.getElementById("contact");
   const payee = document.getElementById("payee");
   const paid = document.getElementById("paid"); // select
   const report = document.getElementById("report"); // select
@@ -215,10 +220,10 @@ document.getElementById("Loc-story").onsubmit = () => {
     isValid = false;
   }
 
-  if (!contact.value.trim()) {
-    document.getElementById("err-Contact").style.display = "block";
-    isValid = false;
-  }
+  // if (!contact.value.trim()) {
+  //   document.getElementById("err-Contact").style.display = "block";
+  //   isValid = false;
+  // }
 
   if (!payee.value.trim()) {
     document.getElementById("err-Payee").style.display = "block";
@@ -251,4 +256,18 @@ function clearErrors() {
   for (let i = 0; i < errors.length; i++) {
     errors[i].style.display = "none";
   }
+}
+function prefillDivsionData(division) {
+  const data = orders[division];
+  if (!data) return;
+
+  document.getElementById("program").value = data.AcademicProgram || "";
+  document.getElementById("payee").value = data.Payees || "";
+  document.getElementById("paid").value = data.Paid || "none";
+  document.getElementById("report").value = data.Report || "none";
+  document.getElementById("notes").value = data.Notes || "";
+  document.getElementById("dean").value = data.Dean || "";
+  document.getElementById("PEN").value = data.PEN || "";
+  document.getElementById("Rep").value = data.Rep || "";
+  document.getElementById("Chair").value = data.Chair || "";
 }
