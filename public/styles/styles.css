@@ -54,6 +54,7 @@ main.layout {
   padding-top: 1rem;
 }
 
+/* Creating button looks */
 a {
   text-decoration: none;
   border: #005320 2px solid;
@@ -301,6 +302,5 @@ a {
       "notes notes"
       "notes notes";
     grid-template-columns: 1fr 1fr;
-
   }
 }
