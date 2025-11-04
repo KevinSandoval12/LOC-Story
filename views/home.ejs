@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Green River Document Modifier</title>
+    <link rel="icon" href="/img/GRC_Logo_White.png">
     <!-- style sheet -->
     <link rel="stylesheet" href="/styles/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -19,7 +20,10 @@
   </head>
   <body>
     <header>
-      <h1>Green River Document Modifier</h1>
+      <div>
+        <img rel="image" src="/img/GRC_Logo_White.png">
+        <h1>Green River Document Modifier</h1>
+      </div>
     </header>
 
     <form id="Loc-story" action="submit-order" method="post">
@@ -28,82 +32,85 @@
         <!-- RIGHT SIDE: Controls panel -->
         <section id="controls">
           <div class="selectors">
-            <label for="division">Division:</label>
-            <select id="division" name="division">
-              <option value="none">Select a Division</option>
-              <option value="FineArt">Fine Arts</option>
-              <option value="Humanities">Humanities</option>
-              <option value="SocialScience">Social Science</option>
-              <option value="English">English</option>
-              <option value="Science">Science</option>
-              <option value="Technology">Technology</option>
-              <option value="HealthScience">Health Science</option>
-              <option value="Trades">Trades</option>
-            </select>
+            <div id="form-shell">
 
-            <!-- division Name-->
-            <div id="division-names" style="display: grid;">
-              <!-- Dean -->
-              <div class="dean">
-                <span id="err-Dean" class="error"> Dean cannot be empty!</span>
-                <label for="dean">Dean:<input type="text" id="dean" name="dean" /></label>
-              </div>
-              <!-- Academic Program -->
-              <div class="program">
-                <span id="err-Program" class="error"> Academic Program cannot be empty!</span>
-                <label for="program">Academic Program:<input type="text" id="program" name="program"/></label>
-              </div>
-              <!-- Pen -->
-              <div class="pen">
-                <span id="err-PEN" class="error"> PEN Contact cannot be empty!</span>
-                <label for="PEN">PEN Contact:<input type="text" id="PEN" name="PEN" /></label>
-              </div>
-              <!-- LOC Rep -->
-              <div class="rep">
-                <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
-                <label for="Rep">LOC Rep:<input type="text" id="Rep" name="Rep" /></label>
-              </div>
-              <!-- Chair -->
-              <div class="chair">
-                <span id="err-Chair" class="error"> Chair cannot be empty!</span>
-                <label for="Chair">Chair:<input type="text" id="Chair" name="Chair" /></label>
-              </div>
-              <!-- PEN Contact -->
-              <div class="contact">
-                <span id="err-Contact" class="error"> Pen Contact cannot be empty!</span>
-                <label for="contact">Pen Contact:<input type="text" id="contact" name="contact" /></label>
-              </div>
-              <!-- Payee(s) -->
-              <div class="payee">
-                <span id="err-Payee" class="error"> Payee(s) cannot be empty!</span>
-                <label for="payee">Payee(s):<input type="text" id="payee" name="payee" /></label>
-              </div>
-              <!-- Has Been Paid (Yes/No) -->
-              <div class="paid">
-                <span id="err-Paid" class="error"> paid option cannot be empty!</span>
-                <label for="paid">Has Been Paid (Yes/No):</label>
-                <select id="paid" name="paid">
-                  <option value="none">Select an option</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-              <!-- Report Submitted (Yes/No) -->
-              <div class="report">
-                <span id="err-Report" class="error"> report option cannot be empty!</span>
-                <label for="report">Report Submitted (Yes/No):</label>
-                <select id="report" name="report">
-                  <option value="none">Select an option</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-              <!-- Notes -->
-              <div class="notes">
-                <span id="err-Notes" class="error"> Notes cannot be empty!</span>
-                <label for="notes">Notes:<textarea type="text" id="notes" name="notes"></textarea></label>
-              </div>
-            </div> 
+              <label for="division">Division:</label>
+              <select id="division" name="division">
+                <option value="none">Select a Division</option>
+                <option value="FineArt">Fine Arts</option>
+                <option value="Humanities">Humanities</option>
+                <option value="SocialScience">Social Science</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="Technology">Technology</option>
+                <option value="HealthScience">Health Science</option>
+                <option value="Trades">Trades</option>
+              </select>
+  
+              <!-- division Name-->
+              <div id="division-names" style="display: grid;">
+                <!-- Dean -->
+                <div class="dean">
+                  <span id="err-Dean" class="error"> Dean cannot be empty!</span>
+                  <label for="dean">Dean:<input type="text" id="dean" name="dean" /></label>
+                </div>
+                <!-- Academic Program -->
+                <div class="program">
+                  <span id="err-Program" class="error"> Academic Program cannot be empty!</span>
+                  <label for="program">Academic Program:<input type="text" id="program" name="program"/></label>
+                </div>
+                <!-- Pen -->
+                <div class="pen">
+                  <span id="err-PEN" class="error"> PEN Contact cannot be empty!</span>
+                  <label for="PEN">PEN Contact:<input type="text" id="PEN" name="PEN" /></label>
+                </div>
+                <!-- LOC Rep -->
+                <div class="rep">
+                  <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
+                  <label for="Rep">LOC Rep:<input type="text" id="Rep" name="Rep" /></label>
+                </div>
+                <!-- Chair -->
+                <div class="chair">
+                  <span id="err-Chair" class="error"> Chair cannot be empty!</span>
+                  <label for="Chair">Chair:<input type="text" id="Chair" name="Chair" /></label>
+                </div>
+                <!-- PEN Contact -->
+                <div class="contact">
+                  <span id="err-Contact" class="error"> Pen Contact cannot be empty!</span>
+                  <label for="contact">Pen Contact:<input type="text" id="contact" name="contact" /></label>
+                </div>
+                <!-- Payee(s) -->
+                <div class="payee">
+                  <span id="err-Payee" class="error"> Payee(s) cannot be empty!</span>
+                  <label for="payee">Payee(s):<input type="text" id="payee" name="payee" /></label>
+                </div>
+                <!-- Has Been Paid (Yes/No) -->
+                <div class="paid">
+                  <span id="err-Paid" class="error"> paid option cannot be empty!</span>
+                  <label for="paid">Has Been Paid (Yes/No):</label>
+                  <select id="paid" name="paid">
+                    <option value="none">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <!-- Report Submitted (Yes/No) -->
+                <div class="report">
+                  <span id="err-Report" class="error"> report option cannot be empty!</span>
+                  <label for="report">Report Submitted (Yes/No):</label>
+                  <select id="report" name="report">
+                    <option value="none">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <!-- Notes -->
+                <div class="notes">
+                  <span id="err-Notes" class="error"> Notes cannot be empty!</span>
+                  <label for="notes">Notes:<textarea type="text" id="notes" name="notes"></textarea></label>
+                </div>
+              </div> 
+            </div>
 
           <div class="buttons">
             <button type="button" id="cancel-button">Cancel</button>
@@ -113,35 +120,11 @@
           <!-- View Summary Link -->
            <div class="view-summary">
             <a href="/admin" id="view-summary-link">
-              <i class="fa-solid fa-arrow-right"></i> View Summary
+              View Summary
             </a>
            </div>
 
-          <div class="staff-information">
-            <p id="staff-name">Staff Member Name:</p>
-            <p id="staff-email">Staff Member Email:</p>
-          </div>
-        </section>
-
-        <!-- LEFT SIDE: File display area -->
-
-        <aside id="file-display">
-          <h2>2024-2025</h2>
-          <div class="file-area">
-            <!-- <table id="csv-table">
-              <thead>
-                <tr>
-                  <th>Division</th>
-                  <th>Dean</th>
-                  <th>Pen Contact</th>
-                  <th>LOC Rep</th>
-                  <th>Chair</th>
-                </tr>
-              </thead>
-            </table> -->
-          </div>
-        </aside>
-        
+        </section>        
       </main>
     </form>
   </body>
