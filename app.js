@@ -66,8 +66,8 @@ app.use(express.urlencoded({ extended: true }));
 //     HealthScience: ["Lionel Candido Flores", "Thom Jackson", "", "Leslie Kessler ", "Practical Nursing, Physical Therapist Assistant"],
 //     Trades: ["Lea Ann Simpson", "Mary Singer", "Ben Orr", "David Lewis", "Automotive Technology, Manufacturing"],
 //   };
-// Create an array to store divisions
 
+// Create an array to store divisions
 const orders = {
   FineArt: {
     Dean: "Christie Gilliland",

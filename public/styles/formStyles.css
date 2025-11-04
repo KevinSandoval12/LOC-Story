@@ -218,24 +218,13 @@ a {
   color: #373a3b;
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 900px) {
-  main.layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-  }
-
-  #controls {
-    padding: 20px;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-
-  .btn {
-    margin: 5px 0;
-  }
+/* Tables Jquery */
+#order-table {
+  font-size: 0.8rem;
+  display: block;
+  overflow-x: auto;
+  /* white-space: nowrap; */
+  
 }
 
 /* creating a grid layout for input fields */
@@ -243,12 +232,12 @@ a {
   margin-bottom: 20px;
 }
 #division-names {
-  grid-template-areas: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 16px;
+  display: grid;
+  gap: 20px;
   grid-template-areas:
     "program payee paid report"
     "notes notes notes notes";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 #division-names > .dean {
@@ -289,4 +278,17 @@ a {
 #division-names textarea {
   width: 100%;
   display: block;
+}
+@media (max-width: 700px) {
+  #order-table {
+    width: 100%;
+    font-size: 0.7rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #order-table th,
+  #order-table td {
+    padding: 4px 8px;
+  }
 }

@@ -239,13 +239,13 @@ a {
   margin-bottom: 20px;
 }
 #division-names {
-  grid-template-areas: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  display: grid;
   gap: 20px;
   grid-template-areas:
     "dean pen rep chair"
     "program payee paid report"
     "notes notes notes notes";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 /* "program program program program" */
 
@@ -287,4 +287,20 @@ a {
 #division-names textarea {
   width: 100%;
   display: block;
+}
+
+@media (max-width: 768px) {
+  #division-names {
+    display: grid;
+    gap: 20px;
+    grid-template-areas:
+      "dean pen"
+      "rep chair"
+      "program payee"
+      "paid report"
+      "notes notes"
+      "notes notes";
+    grid-template-columns: 1fr 1fr;
+
+  }
 }
