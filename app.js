@@ -191,7 +191,7 @@ app.post('/submit-order', (req, res) => {
 
     // Add order to array
     orders[order.division] = {
-      Dean: orders.dean,
+      Dean: order.dean,
       PEN: order.PEN,
       Rep: order.Rep,
       Chair: order.Chair,

@@ -4,64 +4,64 @@ console.log(orders);
 const savedPrograms = [];
 
 //Mock data to fill the edit form with pre-existing data
-const mockPrograms = {
-  Technology: {
-    program: "Aviation",
-    payee: "Tad Henry",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "No",
-    notes: "Yes! Tad is takeing this on"
-  },
-  HealthScience: {
-    program: "Physical Therapist Assistant",
-    payee: "Pam Kikillus",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "Yes",
-    notes: "Yes! Pam and Anna will do this"
-  },
-  FineArt: {
-    program: "Music",
-    payee: "Ruth",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "No",
-    notes: "Yes! Sam, Kelly, and Ruth all work on this together and divide the money three ways."
-  },
-  Humanities: {
-    program: "Communication Studies",
-    payee: "",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "No",
-    notes: "No"
-  },
-  SocialScience: {
-    program: "Psychology",
-    payee: "Joy",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "Submitted 6/15",
-    notes: "Yes! Joy and Jerry will do the project together"
-  },
-  English: {
-    program: "English",
-    payee: "Aley Martin",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "Report to be completed year 2",
-    notes: "Yes! See notes on adjuncts to pay. Will submit report next year 2025-2026"
-  },
-  Science: {
-    program: "Biology/Environmental Science",
-    payee: "Danny Najera",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "Report coming this summer",
-    notes: "Yes, they are doing a 2-year project with majors level Bio classes"
-  },
-  Trades: {
-    program: "Autmotive Technology",
-    payee: "",
-    paid: "Emails sent to Building Admins on 5/2/2025",
-    report: "Np",
-    notes: "Initial Invite Sent from Juli  9/26/24. Follow up on 10/21"
-  },
-};
+// const mockPrograms = {
+//   Technology: {
+//     program: "Aviation",
+//     payee: "Tad Henry",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "No",
+//     notes: "Yes! Tad is takeing this on"
+//   },
+//   HealthScience: {
+//     program: "Physical Therapist Assistant",
+//     payee: "Pam Kikillus",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "Yes",
+//     notes: "Yes! Pam and Anna will do this"
+//   },
+//   FineArt: {
+//     program: "Music",
+//     payee: "Ruth",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "No",
+//     notes: "Yes! Sam, Kelly, and Ruth all work on this together and divide the money three ways."
+//   },
+//   Humanities: {
+//     program: "Communication Studies",
+//     payee: "",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "No",
+//     notes: "No"
+//   },
+//   SocialScience: {
+//     program: "Psychology",
+//     payee: "Joy",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "Submitted 6/15",
+//     notes: "Yes! Joy and Jerry will do the project together"
+//   },
+//   English: {
+//     program: "English",
+//     payee: "Aley Martin",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "Report to be completed year 2",
+//     notes: "Yes! See notes on adjuncts to pay. Will submit report next year 2025-2026"
+//   },
+//   Science: {
+//     program: "Biology/Environmental Science",
+//     payee: "Danny Najera",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "Report coming this summer",
+//     notes: "Yes, they are doing a 2-year project with majors level Bio classes"
+//   },
+//   Trades: {
+//     program: "Autmotive Technology",
+//     payee: "",
+//     paid: "Emails sent to Building Admins on 5/2/2025",
+//     report: "Np",
+//     notes: "Initial Invite Sent from Juli  9/26/24. Follow up on 10/21"
+//   },
+// };
 
 
 
@@ -220,14 +220,14 @@ function toggleFormDisplay() {
 
 // PRE-FILLING ADMIN FORM WITH INFORMATION
 function prefillDivsionData(division) {
-  const data = mockPrograms[division];
+  const data = orders[division];
   if (!data) return;
 
-  document.getElementById("program").value = data.program || "";
-  document.getElementById("payee").value = data.payee || "";
-  document.getElementById("paid").value = data.paid || "none";
-  document.getElementById("report").value = data.report || "none";
-  document.getElementById("notes").value = data.notes || "";
+  document.getElementById("program").value = data.AcademicProgram || "";
+  document.getElementById("payee").value = data.Payees || "";
+  document.getElementById("paid").value = data.Paid || "none";
+  document.getElementById("report").value = data.Report || "none";
+  document.getElementById("notes").value = data.Notes || "";
 }
 
 // Check latest information given to Division -> Academic Program
