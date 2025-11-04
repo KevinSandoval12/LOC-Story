@@ -48,6 +48,9 @@
             <th>Chair</th>
             <th>Academic Program</th>
             <th>Payee(s)</th>
+            <th>Paid</th>
+            <th>Report</th>
+            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +63,9 @@
             <td><%= contacts.Chair %></td>
             <td><%= contacts.AcademicProgram %></td>
             <td><%= contacts.Payees %></td>
+            <td><%= contacts.Paid %></td>
+            <td><%= contacts.Report %></td>
+            <td><%= contacts.Notes %></td>
           </tr>
           <% }); %>
         </tbody>
@@ -96,7 +102,7 @@
                       Academic Program cannot be empty!</span
                     >
                     <label for="program"
-                      >Academic Program:<input type="text" id="program"
+                      >Academic Program:<input type="text" id="program" name="program"
                     /></label>
                   </div>
 

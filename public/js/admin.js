@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("adminForm").onsubmit = (e) => {
   //Stops form sub
-  // e.preventDefault();
+  e.preventDefault();
   //clears errors after form sub
   clearErrors();
 
@@ -154,6 +154,7 @@ document.getElementById("adminForm").onsubmit = (e) => {
 
   //return isValid;
   if (isValid) {
+    form.submit()
     const confirmation = document.getElementById("save-confirmation");
     const adminSection = document.getElementById("admin");
     const timestamp = document.getElementById("save-timestamp");

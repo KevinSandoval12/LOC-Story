@@ -191,7 +191,7 @@ app.post('/submit-order', (req, res) => {
 
     // Add order to array
     orders[order.division] = {
-      Dean: order.dean,
+      Dean: orders.dean,
       PEN: order.PEN,
       Rep: order.Rep,
       Chair: order.Chair,
@@ -217,11 +217,12 @@ app.post('/submit-order2', (req, res) => {
 
     // Add order to array
     orders[order.division] = {
-      Dean: order.dean,
-      PEN: order.PEN,
-      Rep: order.Rep,
-      Chair: order.Chair,
-      AcademicProgram: order.program,
+      // if (order.dean) is empty, then use (orders[order.division].Dean) to keep the original value
+      Dean: order.dean || orders[order.division].Dean,
+      PEN: order.PEN || orders[order.division].PEN,
+      Rep: order.Rep || orders[order.division].Rep,
+      Chair: order.Chair || orders[order.division].Chair,
+      AcademicProgram: order.program || orders[order.division].AcademicProgram,
       Payees: order.payee, // add this if you have a payee field in your form
       Paid: order.paid,
       Report: order.report,
