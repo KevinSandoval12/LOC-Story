@@ -13,20 +13,27 @@
   </head>
   <body>
     <header>
-      <h1>Green River Document Confirmation</h1>
+      <div>
+        <img src="/img/GRC_Logo_White.png" alt="Green River Logo" />
+        <h1>Green River Document Confirmation</h1>
+      </div>
     </header>
-    <h2>Order Summary</h2>
-    <p>division: <%= order.division %></p>
-    <p>dean: <%= order.dean %></p>
-    <p>PEN: <%= order.PEN %></p>
-    <p>Rep: <%= order.Rep %></p>
-    <p>Chair: <%= order.Chair %></p>
-    <p>Academic Program: <%= order.program  %></p>
-    <p>Payees: <%= order.payee || order.Payees %></p>
-    <p>Paid: <%= order.paid || order.Paid %></p>
-    <p>Report: <%= order.report || order.Report %></p>
-    <p>Notes: <%= order.notes || order.Notes %></p>
-    <button><a href="/">submit a form</a></button>
-    <button><a href="/admin">go to admin</a></button>
+    <main id="confirmation">
+      <h2 id="confirm-title">Order Summary</h2>
+      <div id="confirmation-table">
+        <p><strong> Division: </strong> <%= order.division %></p>
+        <p><strong>Dean: </strong> <%= order.dean %></p>
+        <p><strong>PEN: </strong> <%= order.PEN %></p>
+        <p><strong>Rep: </strong> <%= order.Rep %></p>
+        <p><strong>Chair: </strong><%= order.Chair %></p>
+        <p><strong>Academic Program: </strong> <%= order.program %></p>
+        <p><strong>Payees: </strong> <%= order.payee || order.Payees %></p>
+        <p><strong>Paid: </strong> <%= order.paid || order.Paid %></p>
+        <p><strong>Report: </strong> <%= order.report || order.Report %></p>
+        <p><strong>Notes: </strong> <%= order.notes || order.Notes %></p>
+      </div>
+      <a href="/">Submit a Form</a>
+      <a href="/admin">Go to Admin</a>
+    </main>
   </body>
 </html>
