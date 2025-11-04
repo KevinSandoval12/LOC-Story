@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
       prefillDivsionData(selected);
+      clearErrors();
     } else {
       // Hide if 'none'
       divisionNames.style.display = "none";
@@ -93,11 +94,6 @@ document.getElementById("adminForm").onsubmit = (e) => {
     isValid = false;
   }
 
-  if (!isValid) {
-    e.preventDefault(); // Only prevent submission if invalid
-    clearErrors();
-    return false;
-  }
   //return isValid;
   if (isValid) {
     const confirmation = document.getElementById("save-confirmation");

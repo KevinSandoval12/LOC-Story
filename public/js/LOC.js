@@ -164,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
       prefillDivsionData(selected);
+      clearErrors();
     } else {
       // Hide if 'none'
       divisionNames.style.display = "none";
