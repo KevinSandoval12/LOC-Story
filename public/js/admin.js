@@ -1,68 +1,8 @@
 const orders = window.orders;
 console.log(orders);
+
 //Storing edited program data
-const savedPrograms = [];
-
-//Mock data to fill the edit form with pre-existing data
-// const mockPrograms = {
-//   Technology: {
-//     program: "Aviation",
-//     payee: "Tad Henry",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "No",
-//     notes: "Yes! Tad is takeing this on"
-//   },
-//   HealthScience: {
-//     program: "Physical Therapist Assistant",
-//     payee: "Pam Kikillus",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "Yes",
-//     notes: "Yes! Pam and Anna will do this"
-//   },
-//   FineArt: {
-//     program: "Music",
-//     payee: "Ruth",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "No",
-//     notes: "Yes! Sam, Kelly, and Ruth all work on this together and divide the money three ways."
-//   },
-//   Humanities: {
-//     program: "Communication Studies",
-//     payee: "",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "No",
-//     notes: "No"
-//   },
-//   SocialScience: {
-//     program: "Psychology",
-//     payee: "Joy",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "Submitted 6/15",
-//     notes: "Yes! Joy and Jerry will do the project together"
-//   },
-//   English: {
-//     program: "English",
-//     payee: "Aley Martin",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "Report to be completed year 2",
-//     notes: "Yes! See notes on adjuncts to pay. Will submit report next year 2025-2026"
-//   },
-//   Science: {
-//     program: "Biology/Environmental Science",
-//     payee: "Danny Najera",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "Report coming this summer",
-//     notes: "Yes, they are doing a 2-year project with majors level Bio classes"
-//   },
-//   Trades: {
-//     program: "Autmotive Technology",
-//     payee: "",
-//     paid: "Emails sent to Building Admins on 5/2/2025",
-//     report: "Np",
-//     notes: "Initial Invite Sent from Juli  9/26/24. Follow up on 10/21"
-//   },
-// };
-
+// const savedPrograms = [];
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -107,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("adminForm").onsubmit = (e) => {
   //Stops form sub
-  e.preventDefault();
+  // e.preventDefault();
   //clears errors after form sub
   clearErrors();
 
@@ -152,9 +92,13 @@ document.getElementById("adminForm").onsubmit = (e) => {
     isValid = false;
   }
 
+  if (!isValid) {
+    e.preventDefault(); // Only prevent submission if invalid
+    clearErrors();
+    return false;
+  }
   //return isValid;
   if (isValid) {
-    form.submit()
     const confirmation = document.getElementById("save-confirmation");
     const adminSection = document.getElementById("admin");
     const timestamp = document.getElementById("save-timestamp");
@@ -176,9 +120,9 @@ document.getElementById("adminForm").onsubmit = (e) => {
     }; 
 
     //Saving to the in-memory array
-    savedPrograms.push(updatedProgram);
-
-    console.log("Current saved programs:", savedPrograms);
+    // savedPrograms.push(updatedProgram);
+    
+    console.log("Current saved programs:", updatedProgram);
 
     confirmation.style.display = "block";
 
@@ -199,7 +143,10 @@ document.getElementById("adminForm").onsubmit = (e) => {
         confirmation.style.display = "none"; 
       }, 400);
     }, 5000);
-  }};
+  }
+  // this is to submit a form
+  return isValid;
+};
 
 function clearErrors() {
   let errors = document.getElementsByClassName("error");
