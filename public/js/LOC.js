@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const chair = document.getElementById("Chair");
   const saveButton = document.getElementById("save-button");
   const cancelButton = document.getElementById("cancel-button");
-  const exportButton = document.getElementById("export-button");
 
   // Hide buttons and fields by default
   saveButton.style.display = "none";
@@ -23,11 +22,96 @@ document.addEventListener("DOMContentLoaded", () => {
   divisionSelect.addEventListener("change", () => {
     const selected = divisionSelect.value;
 
+    const FineArt = [
+      { value: "Music", text: "Music" },
+    ];
+
+    const Technology = [
+      { value: "Aviation", text: "Aviation" },
+      { value: "CAD", text: "CAD Design and Engineering Tech." },
+      { value: "NaturalResources", text: "Natural Resources" }
+    ];
+
+    const Humanities = [
+      { value: "CommunicationStudies", text: "Communication Studies" },
+    ];
+
+    const SocialScience = [
+      { value: "Anthropology", text: "Anthropology" },
+      { value: "History", text: "History" },
+      { value: "PoliticalScience", text: "Political Science" },
+      { value: "Psychology", text: "Psychology" }
+    ];
+
+    const English = [
+      { value: "English", text: "English" },
+    ];
+
+    const Science = [
+      { value: "AnatomyPhysiology", text: "Anatomy & Physiology" },
+      { value: "BiologyEnvironmental", text: "Biology/Environmental Science" },
+      { value: "GeologyOceanography", text: "Geology/Oceanography" }
+    ];
+
+    const HealthScience = [
+      { value: "PracticalNursing", text: "Practical Nursing" },
+      { value: "Physical", text: "Physical Therapist Assistant" }
+    ];
+
+    const Trades = [
+      { value: "Automotive", text: "Automotive Technology" },
+      { value: "Manufacturing", text: "Manufacturing" }
+    ];
+
+
+    function setProgramsOptions(options) {
+      const select = document.getElementById("program");
+      // Remove all current options
+      select.innerHTML = '<option value="none">Select a Division</option>';
+      // Add new options
+      options.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt.value;
+        option.textContent = opt.text;
+        select.appendChild(option);
+      });
+    }
+
     if (selected !== "none") {
       divisionNames.style.display = "grid";
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
       prefillDivsionData(selected);
+      // setProgramsOptions(alternatePrograms)
+      switch (selected) {
+        case "FineArt":
+          setProgramsOptions(FineArt);
+          break;
+        case "Technology":
+          setProgramsOptions(Technology);
+          break;
+        case "Humanities":
+          setProgramsOptions(Humanities);
+          break;
+        case "SocialScience":
+          setProgramsOptions(SocialScience);
+          break;
+        case "English":
+          setProgramsOptions(English);
+          break;
+        case "Science":
+          setProgramsOptions(Science);
+          break;
+        case "HealthScience":
+          setProgramsOptions(HealthScience);
+          break;
+        case "Trades":
+          setProgramsOptions(Trades);
+          break;
+        default:
+          setProgramsOptions(FineArt);
+          break;
+      }
       clearErrors();
     } else {
       // Hide if 'none'
@@ -126,7 +210,7 @@ function prefillDivsionData(division) {
   const data = orders[division];
   if (!data) return;
 
-  document.getElementById("program").value = data.AcademicProgram || "";
+  // document.getElementById("program").value = data.AcademicProgram || "";
   document.getElementById("payee").value = data.Payees || "";
   document.getElementById("paid").value = data.Paid || "none";
   document.getElementById("report").value = data.Report || "none";

@@ -166,7 +166,7 @@ app.get('/db-test', async(req, res) => {
     try {
 
 
-        const [orders] = await pool.query('SELECT * FROM Division');
+        const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
 
 
         // Send the orders data back to the browser as JSON
