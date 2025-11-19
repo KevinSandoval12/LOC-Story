@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function setProgramsOptions(options) {
       const program = document.getElementById("program");
       // Remove all current options
-      program.innerHTML = '<option value="none">Select a Division</option>';
+      program.innerHTML = '';
       // Add new options
       options.forEach(opt => {
         const option = document.createElement("option");
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (selected !== "none") {
+      
       divisionNames.style.display = "grid";
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
@@ -117,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
           setProgramsOptions(FineArt);
           break;
       }
+      const program = programSelect.value;
+      prefillAcademicData(program);
       clearErrors();
+
 
     } else {
       // Hide if 'none'
@@ -126,14 +130,13 @@ document.addEventListener("DOMContentLoaded", () => {
       cancelButton.style.display = "none";
     }
   });
-
+  
   programSelect.addEventListener("change", () => {
     const program = programSelect.value;
 
     if (program !== "none") {
       prefillAcademicData(program);
-    } else {
-
+      clearErrors();
     }
   });
 
@@ -254,16 +257,10 @@ function prefillAcademicData(program) {
       document.getElementById("paid").value = order.Paid || "none";
       document.getElementById("report").value = order.Report || "none";
       document.getElementById("notes").value = order.Notes || "";
+      break;
       
-    } 
-    else if ("none" == program) {
-      document.getElementById("payee").value = "";
-      document.getElementById("paid").value =  "none";
-      document.getElementById("report").value =  "none";
-      document.getElementById("notes").value = "";
     }
-    
+
   }
-  console.log(program);
-  console.log(orders[0].Dean);
+  
 }
