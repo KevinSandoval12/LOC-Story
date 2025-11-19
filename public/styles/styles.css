@@ -243,8 +243,9 @@ a {
   display: grid;
   gap: 20px;
   grid-template-areas:
-    "program pen rep chair"
-    "dean payee paid report"
+    "dean pen rep chair"
+    "program program program program"
+    "payee paid report report"
     "notes notes notes notes";
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
@@ -252,6 +253,9 @@ a {
 
 #division-names > .dean {
   grid-area: dean;
+}
+#division-names > .program {
+  grid-area: program;
 }
 #division-names > .pen {
   grid-area: pen;
@@ -277,9 +281,7 @@ a {
 #division-names > .notes {
   grid-area: notes;
 }
-/* #division-names > .program-area {
-  grid-area: program;
-} */
+
 /* #division-names > .program     { grid-area: program; } */
 
 #division-names #notes {
