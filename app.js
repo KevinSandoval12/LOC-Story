@@ -231,64 +231,29 @@ app.get('/admin', (req, res) => {
 //     // Send user to confirmation page
 //     res.render('confirmation', { order });
 // });
-app.post('/submit-order', async(req, res) => {
-    // Wrap everything in try/catch to handle potential database errors
-    try {
-        // Get the order data from the form submission
-        // req.body contains all the form fields (fname, lname, email, etc.)
-        const order = req.body;
+app.post('/submit-order', (req, res) => {
 
-        // Convert the toppings array into a comma-separated string
-        // HTML checkboxes submit as an array, but MySQL stores as TEXT
-        order.toppings = Array.isArray(order.toppings) ? 
-        order.toppings.join(", ") : "";
+    // Create a JSON object to store the data
+    const order = req.body;
+    // order.timestamp = new Date()
 
-        // Add a timestamp to track when this order was placed
-        order.timestamp = new Date();
+    // Add order to array
+    orders[order.division] = {
+      Dean: order.dean,
+      PEN: order.PEN,
+      Rep: order.Rep,
+      Chair: order.Chair,
+      AcademicProgram: order.program,
+      Payees: order.payee, // add this if you have a payee field in your form
+      Paid: order.paid,
+      Report: order.report,
+      Notes: order.notes
 
-        // Log the order to the server console (helpful for debugging)
-        console.log('New order received:', order);
+    };
+    console.log(orders);
 
-        // Define an SQL INSERT query
-        // The ? are PLACEHOLDERS that will be replaced with actual values
-        // This prevents SQL injection (a common security vulnerability)
-        const sql = `INSERT INTO orders 
-                     (fname, lname, email, size, method, toppings, timestamp) 
-                     VALUES (?, ?, ?, ?, ?, ?, ?)`;
-
-        // Create an array of parameters for each ? placeholder in order
-        const params = [
-            order.fname,
-            order.lname,
-            order.email,
-            order.size,
-            order.method,
-            order.toppings,
-            order.timestamp
-        ];
-        
-        // Execute the query with the parameters
-        const [result] = await pool.execute(sql, params);
-
-        // Optional: You can access the newly inserted row's ID
-        console.log('Order inserted with ID:', result.insertId);
-
-        // Pass the order data to the confirmation page 
-        res.render('confirmation', { order: order });
-
-    } catch(err) {
-
-        // If ANYTHING goes wrong, this runs
-        console.error('Error inserting order:', err);
-
-        // Check if it's a duplicate email error
-        if (err.code === 'ER_DUP_ENTRY') {
-            res.status(409).send('An order with this email already exists.');
-        } else {
-            // Generic error message for other issues
-            res.status(500).send('Sorry, there was an error processing your order. Please try again.');
-        }
-    }
+    // Send user to confirmation page
+    res.render('confirmation', { order });
 });
 
 // Define an "submit-order2" route (admin.ejs)
