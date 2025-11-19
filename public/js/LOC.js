@@ -118,18 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
           setProgramsOptions(FineArt);
           break;
       }
-      //prefills when the pages load
+      //prefills programs when the pages load
       const program = programSelect.value;
       prefillAcademicData(program);
 
-      //prefills when the dropdown changes
-      programSelect.addEventListener("change", () => {
-
-        if (program !== "none") {
-          prefillAcademicData(program);
-        }
-      });
-      clearErrors();
 
     } else {
       // Hide if 'none'
@@ -138,6 +130,14 @@ document.addEventListener("DOMContentLoaded", () => {
       cancelButton.style.display = "none";
     }
   });
+  //prefills when the program Selection dropdown changes
+  programSelect.addEventListener("change", () => {
+    const program = programSelect.value;
+    if (program !== "none") {
+      prefillAcademicData(program);
+    }
+  });
+  clearErrors();
   
 
   // Cancel button behavior
@@ -254,13 +254,28 @@ function prefillAcademicData(program) {
     if (name == program) {
       // set dean, PEN, Rep, Chair to value ex: orders[division].Dean
       document.getElementById("payee").value = order.Payees || "";
-      document.getElementById("paid").value = order.Paid || "none";
-      document.getElementById("report").value = order.Report || "none";
       document.getElementById("notes").value = order.Notes || "";
+
+
+      document.getElementById("paid").value = checkYesOrNo(order.Paid) || "none";
+      document.getElementById("report").value = checkYesOrNo(order.Report) || "none";
+      
       break;
       
     }
 
   }
-  
+  function checkYesOrNo(Binary) {
+    // if Binary == 1 (true):
+    if (Binary == 1) {
+      return "Yes";
+    }
+    // else if Binary == 0 (false):
+    if (Binary == 0) {
+      return "No";
+    }
+      
+  }
 }
+
+// console.log(orders[0].Paid)
