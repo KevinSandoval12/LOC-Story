@@ -7,6 +7,7 @@ console.log(orders[0].Dean);
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
   const divisionSelect = document.getElementById("division");
+  const programSelect = document.getElementById("program");
   const divisionNames = document.getElementById("division-names");
   const dean = document.getElementById("dean");
   const pen = document.getElementById("PEN");
@@ -30,18 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const Technology = [
       { value: "Aviation", text: "Aviation" },
-      { value: "CAD", text: "CAD Design and Engineering Tech." },
-      { value: "NaturalResources", text: "Natural Resources" }
+      { value: "CAD Design and Engineering Tech.", text: "CAD Design and Engineering Tech." },
+      { value: "Natural Resources", text: "Natural Resources" }
     ];
 
     const Humanities = [
-      { value: "CommunicationStudies", text: "Communication Studies" },
+      { value: "Communication Studies", text: "Communication Studies" },
     ];
 
     const SocialScience = [
       { value: "Anthropology", text: "Anthropology" },
       { value: "History", text: "History" },
-      { value: "PoliticalScience", text: "Political Science" },
+      { value: "Political Science", text: "Political Science" },
       { value: "Psychology", text: "Psychology" }
     ];
 
@@ -50,18 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const Science = [
-      { value: "AnatomyPhysiology", text: "Anatomy & Physiology" },
-      { value: "BiologyEnvironmental", text: "Biology/Environmental Science" },
-      { value: "GeologyOceanography", text: "Geology/Oceanography" }
+      { value: "Anatomy & Physiology", text: "Anatomy & Physiology" },
+      { value: "Biology/Environmental Science", text: "Biology/Environmental Science" },
+      { value: "Geology/Oceanography", text: "Geology/Oceanography" }
     ];
 
     const HealthScience = [
-      { value: "PracticalNursing", text: "Practical Nursing" },
-      { value: "Physical", text: "Physical Therapist Assistant" }
+      { value: "Practical Nursing", text: "Practical Nursing" },
+      { value: "Physical Therapist Assistant", text: "Physical Therapist Assistant" }
     ];
 
     const Trades = [
-      { value: "Automotive", text: "Automotive Technology" },
+      { value: "Automotive Technology", text: "Automotive Technology" },
       { value: "Manufacturing", text: "Manufacturing" }
     ];
 
@@ -86,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       prefillDivsionData(selected);
       
       // setProgramsOptions(alternatePrograms)
+      
       switch (selected) {
         case "FineArt":
           setProgramsOptions(FineArt);
@@ -116,11 +118,22 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
       }
       clearErrors();
+
     } else {
       // Hide if 'none'
       divisionNames.style.display = "none";
       saveButton.style.display = "none";
       cancelButton.style.display = "none";
+    }
+  });
+
+  programSelect.addEventListener("change", () => {
+    const program = programSelect.value;
+
+    if (program !== "none") {
+      prefillAcademicData(program);
+    } else {
+
     }
   });
 
@@ -224,24 +237,33 @@ function prefillDivsionData(division) {
       document.getElementById("Chair").value = order.Chair || "";
       
     }
-    // else if not the same value
-      // continue
   }
-  // for (const order of orders) {
-  //   console.log(orders[order].DivisionName)
-  // }
-  // document.getElementById("dean").value = orders[0].Dean || "";
-  // document.getElementById("PEN").value = orders[0].Dean || "";
-  // document.getElementById("Rep").value = orders[0].Dean || "";
-  // document.getElementById("Chair").value = orders[0].Dean || "";
+
 }
 
-function prefillAcademicData(division) {
-  const data = orders[division];
-  if (!data) return;
-
-  document.getElementById("payee").value = data.Payees || "";
-  document.getElementById("paid").value = data.Paid || "none";
-  document.getElementById("report").value = data.Report || "none";
-  document.getElementById("notes").value = data.Notes || "";
+function prefillAcademicData(program) {
+  //  loop over orders array
+  for (const order of orders) {
+    //  select DivisionName (division.DivisionName)
+    const name = order.AcademicPrograms;
+    //  check if DivisionName is the same as the argument value (division).
+    // if the value is the same
+    if (name == program) {
+      // set dean, PEN, Rep, Chair to value ex: orders[division].Dean
+      document.getElementById("payee").value = order.Payees || "";
+      document.getElementById("paid").value = order.Paid || "none";
+      document.getElementById("report").value = order.Report || "none";
+      document.getElementById("notes").value = order.Notes || "";
+      
+    } 
+    else if ("none" == program) {
+      document.getElementById("payee").value = "";
+      document.getElementById("paid").value =  "none";
+      document.getElementById("report").value =  "none";
+      document.getElementById("notes").value = "";
+    }
+    
+  }
+  console.log(program);
+  console.log(orders[0].Dean);
 }
