@@ -9,7 +9,8 @@ body {
   padding: 0;
   height: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #006225;
+  color: #0f3e1b;
+  background-color: #f3f8f1;
 }
 
 /* Header Section */
@@ -42,10 +43,14 @@ header div {
 
 /* Main Page Layout */
 main.layout {
-  display: grid;
-  grid-template-columns: 1fr; /* Large left panel + smaller control panel */
-  grid-template-rows: 1fr;
-  height: calc(100vh - 60px); /* Takes up full height minus header */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem 3rem;
+  min-height: calc(100vh - 60px); /*leave room for header*/
+  /*grid-template-columns: 1fr;*/ /* Large left panel + smaller control panel */
+  /*grid-template-rows: 1fr;*/
+  /*height: calc(100vh - 60px);*/ /* Takes up full height minus header */
 }
 
 .view-summary {
@@ -70,8 +75,13 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 16px;
-  background-color: #fff;
+  padding: 24px 28px;
+  /*padding: 16px;*/
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.8);
+  max-width: 1100px; /* keeps form from being too wide */
+  width: 100%;
 }
 
 /* Dropdown section */
