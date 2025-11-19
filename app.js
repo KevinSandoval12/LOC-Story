@@ -190,12 +190,25 @@ app.get('/db-test', async(req, res) => {
 // Define a default "route" ('/')
 // req: contains information about the incoming request
 // res: allows us to send back a response to the client
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
 
     // Send a response to the client
     // res.send(`<h1>Welcome to Poppa\'s Pizza!</h1>`);
     // res.render('home');
-    res.render('home', { orders });
+    // res.render('home', { orders });
+    try {
+        const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
+
+        // Send the orders data back to the browser as JSON
+        res.render('home', { orders });
+
+
+    } catch(err) {
+
+        console.error('Database error:', err);
+
+        res.status(500).send('Database error: ' + err.message);
+    }
 });
 
 // Define an "admin" route
