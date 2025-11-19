@@ -210,11 +210,30 @@ function clearErrors() {
 
 // prefill home page form function
 function prefillDivsionData(division) {
-
-  document.getElementById("dean").value = orders[0].Dean || "";
-  document.getElementById("PEN").value = data.PEN || "";
-  document.getElementById("Rep").value = data.Rep || "";
-  document.getElementById("Chair").value = data.Chair || "";
+  //  loop over orders array
+  for (const order of orders) {
+    //  select DivisionName (division.DivisionName)
+    const name = order.DivisionName;
+    //  check if DivisionName is the same as the argument value (division).
+    // if the value is the same
+    if (name == division) {
+      // set dean, PEN, Rep, Chair to value ex: orders[division].Dean
+      document.getElementById("dean").value = order.Dean || "";
+      document.getElementById("PEN").value = order.Pen || "";
+      document.getElementById("Rep").value = order.Rep || "";
+      document.getElementById("Chair").value = order.Chair || "";
+      
+    }
+    // else if not the same value
+      // continue
+  }
+  // for (const order of orders) {
+  //   console.log(orders[order].DivisionName)
+  // }
+  // document.getElementById("dean").value = orders[0].Dean || "";
+  // document.getElementById("PEN").value = orders[0].Dean || "";
+  // document.getElementById("Rep").value = orders[0].Dean || "";
+  // document.getElementById("Chair").value = orders[0].Dean || "";
 }
 
 function prefillAcademicData(division) {
