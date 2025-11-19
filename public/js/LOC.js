@@ -1,6 +1,8 @@
 // This grabs orders data from app.js to LOC.js
 const orders = window.orders;
 console.log(orders);
+console.log(orders[0]);
+console.log(orders[0].Dean);
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
@@ -65,15 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function setProgramsOptions(options) {
-      const select = document.getElementById("program");
+      const program = document.getElementById("program");
       // Remove all current options
-      select.innerHTML = '<option value="none">Select a Division</option>';
+      program.innerHTML = '<option value="none">Select a Division</option>';
       // Add new options
       options.forEach(opt => {
         const option = document.createElement("option");
         option.value = opt.value;
         option.textContent = opt.text;
-        select.appendChild(option);
+        program.appendChild(option);
       });
     }
 
@@ -82,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
       prefillDivsionData(selected);
+      
       // setProgramsOptions(alternatePrograms)
       switch (selected) {
         case "FineArt":
@@ -207,15 +210,8 @@ function clearErrors() {
 
 // prefill home page form function
 function prefillDivsionData(division) {
-  const data = orders[division];
-  if (!data) return;
 
-  // document.getElementById("program").value = data.AcademicProgram || "";
-  document.getElementById("payee").value = data.Payees || "";
-  document.getElementById("paid").value = data.Paid || "none";
-  document.getElementById("report").value = data.Report || "none";
-  document.getElementById("notes").value = data.Notes || "";
-  document.getElementById("dean").value = data.Dean || "";
+  document.getElementById("dean").value = orders[0].Dean || "";
   document.getElementById("PEN").value = data.PEN || "";
   document.getElementById("Rep").value = data.Rep || "";
   document.getElementById("Chair").value = data.Chair || "";
@@ -225,7 +221,6 @@ function prefillAcademicData(division) {
   const data = orders[division];
   if (!data) return;
 
-  // document.getElementById("program").value = data.AcademicProgram || "";
   document.getElementById("payee").value = data.Payees || "";
   document.getElementById("paid").value = data.Paid || "none";
   document.getElementById("report").value = data.Report || "none";
