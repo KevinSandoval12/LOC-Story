@@ -220,3 +220,14 @@ function prefillDivsionData(division) {
   document.getElementById("Rep").value = data.Rep || "";
   document.getElementById("Chair").value = data.Chair || "";
 }
+
+function prefillAcademicData(division) {
+  const data = orders[division];
+  if (!data) return;
+
+  // document.getElementById("program").value = data.AcademicProgram || "";
+  document.getElementById("payee").value = data.Payees || "";
+  document.getElementById("paid").value = data.Paid || "none";
+  document.getElementById("report").value = data.Report || "none";
+  document.getElementById("notes").value = data.Notes || "";
+}
