@@ -118,10 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
           setProgramsOptions(FineArt);
           break;
       }
+      //prefills when the pages load
       const program = programSelect.value;
       prefillAcademicData(program);
-      clearErrors();
 
+      //prefills when the dropdown changes
+      programSelect.addEventListener("change", () => {
+
+        if (program !== "none") {
+          prefillAcademicData(program);
+        }
+      });
+      clearErrors();
 
     } else {
       // Hide if 'none'
@@ -131,14 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   
-  programSelect.addEventListener("change", () => {
-    const program = programSelect.value;
-
-    if (program !== "none") {
-      prefillAcademicData(program);
-      clearErrors();
-    }
-  });
 
   // Cancel button behavior
   cancelButton.addEventListener("click", () => {
