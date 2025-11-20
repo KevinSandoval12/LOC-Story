@@ -47,7 +47,8 @@ body {
   padding: 0;
   height: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #006225;
+  color: #0f3e1b;
+  background-color: #f3f8f1;
 }
 
 /* Header Section */
@@ -68,7 +69,7 @@ header h1 {
 
 /* Green River Logo */
 header img {
-  width: 28%;
+  width: 17%;
 }
 
 /* Center Header and Img */
@@ -80,10 +81,11 @@ header div {
 
 /* Main Page Layout */
 main.layout {
-  display: grid;
-  grid-template-columns: 1fr; /* Large left panel + smaller control panel */
-  grid-template-rows: 1fr;
-  height: calc(100vh - 60px); /* Takes up full height minus header */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem 3rem;
+  min-height: calc(100vh - 60px); /* Takes up full height minus header */
 }
 
 .view-summary {
