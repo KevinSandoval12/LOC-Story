@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green River Document Modifier</title>
+    <!-- style sheet -->
+    <link rel="stylesheet" href="/styles/formStyles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Dont touch it works, This grabs orders data from app.js to admin.js -->
+    <script>
+      window.orders = <%- JSON.stringify(orders) %>;
+      window.selectedDivision = <%- JSON.stringify(selectedDivision) %>;
+    </script>
+    <!-- Javascript link -->
+    <!-- <script src="/js/LOC.js" defer></script> -->
+    <script src="/js/test.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+    <!-- <script src="/js/Story.js" defer></script> -->
+    <link
+      rel="stylesheet"
+      href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="/img/GRC_Logo_White.png" alt="Green River Logo" />
+        <h1>Admin</h1>
+      </div>
+    </header>
+    <main>
+      <h2>
+        LOC Summary <%= new Date().getFullYear() %>-<%= new Date().getFullYear()
+        + 1 %>
+      </h2>
+      <table id="order-table" class="display">
+        <thead>
+          <tr>
+            <th>Division</th>
+            <th>Dean</th>
+            <th>PEN</th>
+            <th>Rep</th>
+            <th>Chair</th>
+            <th>Academic Program</th>
+            <th>Payee(s)</th>
+            <th>Paid</th>
+            <th>Report</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Object.entries(orders).forEach(([division, contacts]) => { %>
+          <tr>
+            <td><%= contacts.DivisionName %></td>
+            <td><%= contacts.Dean %></td>
+            <td><%= contacts.Pen %></td>
+            <td><%= contacts.Rep %></td>
+            <td><%= contacts.Chair %></td>
+            <td><%= contacts.AcademicPrograms %></td>
+            <td><%= contacts.Payees %></td>
+            <td><%= contacts.Paid == 1 ? "Yes" : "No" %></td>
+            <td><%= contacts.Report == 1 ? "Yes" : "No" %></td>
+            <td><%= contacts.Notes %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <div class="row-buttons">
+        <a href="/" id="back-to-form-link">
+          <i class="fa-solid fa-arrow-left"></i> Return to Division Form
+        </a>
+
+        <button onclick="toggleFormDisplay()" class="btn" id="editBtn">
+          Edit Data Table
+        </button>
+      </div>
+      <!-- Division Selector -->
+      <section id="admin">
+        <form id="adminForm" action="submit-order3" method="post">
+          <div id="formContainer">
+            <section id="controls">
+              <div class="selectors">
+                <label for="division">Division:</label>
+                <select id="division" name="division" onchange="this.form.submit()" >
+                  <option value="none">Select a Division</option>
+                  <option value="FineArt">Fine Arts</option>
+                  <option value="Humanities">Humanities</option>
+                  <option value="SocialScience">Social Science</option>
+                  <option value="English">English</option>
+                  <option value="Science">Science</option>
+                  <option value="Technology">Technology</option>
+                  <option value="HealthScience">Health Science</option>
+                  <option value="Trades">Trades</option>
+                  <option value="*">All</option>
+                </select>
+              </div>
+            </section>
+          </div>
+        </form>
+      </section>
+
+      
+    </main>
+
+    <script defer>
+      let table = new DataTable("#order-table");
+    </script>
+  </body>
+</html>
