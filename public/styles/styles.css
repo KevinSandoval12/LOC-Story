@@ -242,13 +242,6 @@ a {
 /* CONFIRMATION PAGEE CSS */
 #confirmation {
   justify-self: center;
-  padding: 24px 8rem;
-  margin-top: 2rem;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
-  max-width: 1100px; /* keeps form from being too wide */
-  width: 100%;
 }
 
 #confirm-title {
@@ -258,6 +251,15 @@ a {
 #confirmation-table {
   display: flex;
   flex-direction: column;
+
+  justify-content: flex-start;
+  padding: 24px 28px;
+  margin-top: 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+  max-width: 1100px; /* keeps form from being too wide */
+  width: 100%;
 }
 
 /* Responsive design for smaller screens */
@@ -299,7 +301,6 @@ a {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   border: 1px solid #0f3e1b;
 }
-
 /* "program program program program" */
 
 #division-names > .dean {
@@ -335,12 +336,6 @@ a {
 #division-names > div {
   margin-top: 4px;
   margin-bottom: 16px;
-}
-#division-names > .payee,
-#division-names > .paid,
-#division-names > .report {
-  grid-column: span 1;
-  /* justify-self: center; */
 }
 
 /* #division-names > .program     { grid-area: program; } */
