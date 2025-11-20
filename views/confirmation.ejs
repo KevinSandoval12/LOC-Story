@@ -8,6 +8,7 @@
 
     <!-- style sheet -->
     <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/formStyles.css" />
 
     <!-- Javascript link -->
     <script src="/js/LOC.js" defer></script>
@@ -22,8 +23,8 @@
     </header>
     <!-- Getting order information using app.js from Home Page -->
     <main id="confirmation">
-      <h2 id="confirm-title">Order Summary</h2>
       <div id="confirmation-table">
+        <h2 id="confirm-title">Order Summary</h2>
         <p><strong> Division: </strong> <%= order.division %></p>
         <p><strong>Dean: </strong> <%= order.dean %></p>
         <p><strong>PEN: </strong> <%= order.PEN %></p>
@@ -34,10 +35,10 @@
         <p><strong>Paid: </strong> <%= order.paid || order.Paid %></p>
         <p><strong>Report: </strong> <%= order.report || order.Report %></p>
         <p><strong>Notes: </strong> <%= order.notes || order.Notes %></p>
-      </div>
-      <div id="btns">
-        <a href="/">Submit a Form</a>
-        <a href="/admin">Go to Admin</a>
+        <div id="btns">
+          <a href="/">Submit a Form</a>
+          <a href="/admin">Go to Admin</a>
+        </div>
       </div>
     </main>
   </body>
