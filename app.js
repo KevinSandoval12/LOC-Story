@@ -195,10 +195,7 @@ app.get('/db-test', async(req, res) => {
 // res: allows us to send back a response to the client
 app.get('/', async(req, res) => {
 
-    // Send a response to the client
-    // res.send(`<h1>Welcome to Poppa\'s Pizza!</h1>`);
-    // res.render('home');
-    // res.render('home', { orders });
+
     try {
         const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
 
@@ -214,43 +211,14 @@ app.get('/', async(req, res) => {
     }
 });
 
-// Define an "admin" route
-// app.get('/admin', async(req, res) => {
-//     try {
-//         const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
-        
-//         // Send the orders data back to the browser as JSON
-//         res.render('admin', { orders });
 
-
-//     } catch(err) {
-
-//         console.error('Database error:', err);
-
-//         res.status(500).send('Database error: ' + err.message);
-//     }
-// });
 app.get('/admin', async (req, res) => {
-  try {
-        const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
-
-        // Send the orders data back to the browser as JSON
-        res.render('admin', { orders });
-
-
-    } catch(err) {
-
-        console.error('Database error:', err);
-
-        res.status(500).send('Database error: ' + err.message);
-    }
-});
-app.get('/test', async (req, res) => {
   try {
     const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
     const selectedDivision = req.query.division || "none";
-    const divisionData = orders.find(order => order.DivisionName === selectedDivision);
-    res.render('test', { orders, selectedDivision, divisionData });
+    
+    res.render('admin', { orders, selectedDivision });
+
   } catch (err) {
     console.error('Database error:', err);
     res.status(500).send('Database error: ' + err.message);
@@ -284,32 +252,9 @@ app.post('/submit-order', (req, res) => {
 });
 
 // Define an "submit-order2" route (admin.ejs)
-app.post('/submit-order2', (req, res) => {
+app.post('/submit-order2', async(req, res) => {
 
-    // Create a JSON object to store the data
-    const order = req.body;
-    // order.timestamp = new Date()
 
-    // Add order to array
-    orders[order.division] = {
-      // if (order.dean) is empty, then use (orders[order.division].Dean) to keep the original value
-      Dean: order.dean || orders[order.division].Dean,
-      PEN: order.PEN || orders[order.division].PEN,
-      Rep: order.Rep || orders[order.division].Rep,
-      Chair: order.Chair || orders[order.division].Chair,
-      AcademicProgram: order.program || orders[order.division].AcademicProgram,
-      Payees: order.payee, // add this if you have a payee field in your form
-      Paid: order.paid,
-      Report: order.report,
-      Notes: order.notes
-    };
-    console.log(orders);
-
-    // updates the form, but waits 3 seconds before refreshing the page so the table is updated.
-    setTimeout(() => res.redirect('/admin'), 3000);
-    
-});
-app.post('/submit-order3', async (req, res) => {
     const selectedDivision = req.body.division || "none";
     let [orders] = [];
 
@@ -323,8 +268,41 @@ app.post('/submit-order3', async (req, res) => {
       [selectedDivision]);
     }
 
-    res.render('test', { orders, selectedDivision});
+    res.render('admin', { orders, selectedDivision});
+    
 });
+
+
+// app.get('/test', async (req, res) => {
+//   try {
+//     const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
+//     const selectedDivision = req.query.division || "none";
+//     const divisionData = orders.find(order => order.DivisionName === selectedDivision);
+//     res.render('test', { orders, selectedDivision, divisionData });
+//   } catch (err) {
+//     console.error('Database error:', err);
+//     res.status(500).send('Database error: ' + err.message);
+//   }
+// });
+
+
+// //this belongs to the test
+// app.post('/submit-order3', async (req, res) => {
+//     const selectedDivision = req.body.division || "none";
+//     let [orders] = [];
+
+//     // if user selects all, the data will call all info
+//     if (selectedDivision == "*" && selectedDivision == "none") {
+//       [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
+//     } 
+//     // call info only for the selected division
+//     else {
+//       [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName WHERE a.DivisionName = ?;',
+//       [selectedDivision]);
+//     }
+
+//     res.render('test', { orders, selectedDivision});
+// });
 
 // Start the server and make it listen on the port 
 // specified above
