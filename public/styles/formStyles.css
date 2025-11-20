@@ -26,7 +26,13 @@
 /* Wrapper for Database */
 .admin-table-wrapper {
   overflow-x: auto;
+  border: 1px solid #d7e5db;
   border-radius: 12px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 h2 {
