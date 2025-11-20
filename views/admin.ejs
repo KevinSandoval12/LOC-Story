@@ -14,6 +14,7 @@
     <!-- Dont touch it works, This grabs orders data from app.js to admin.js -->
     <script>
       window.orders = <%- JSON.stringify(orders) %>;
+      
     </script>
     <!-- Javascript link -->
     <!-- <script src="/js/LOC.js" defer></script> -->
@@ -57,12 +58,12 @@
         <tbody>
           <% Object.entries(orders).forEach(([division, contacts]) => { %>
           <tr>
-            <td><%= division %></td>
+            <td><%= contacts.DivisionName %></td>
             <td><%= contacts.Dean %></td>
-            <td><%= contacts.PEN %></td>
+            <td><%= contacts.Pen %></td>
             <td><%= contacts.Rep %></td>
             <td><%= contacts.Chair %></td>
-            <td><%= contacts.AcademicProgram %></td>
+            <td><%= contacts.AcademicPrograms %></td>
             <td><%= contacts.Payees %></td>
             <td><%= contacts.Paid %></td>
             <td><%= contacts.Report %></td>
