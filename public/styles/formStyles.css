@@ -2,6 +2,33 @@
   display: none;
 }
 
+/* Admin Card Container styles */
+.admin-card {
+  background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  border: 1px solid #d4e5d8;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+/* Card Title */
+.admin-title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #0a4d26;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+/* Wrapper for Database */
+.admin-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
 h2 {
   text-align: center;
   margin: 20px 0;

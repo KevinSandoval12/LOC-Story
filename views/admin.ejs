@@ -35,42 +35,46 @@
       </div>
     </header>
     <main>
-      <h2>
-        LOC Summary <%= new Date().getFullYear() %>-<%= new Date().getFullYear()
-        + 1 %>
-      </h2>
-      <table id="order-table" class="display">
-        <thead>
-          <tr>
-            <th>Division</th>
-            <th>Dean</th>
-            <th>PEN</th>
-            <th>Rep</th>
-            <th>Chair</th>
-            <th>Academic Program</th>
-            <th>Payee(s)</th>
-            <th>Paid</th>
-            <th>Report</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% Object.entries(orders).forEach(([division, contacts]) => { %>
-          <tr>
-            <td><%= division %></td>
-            <td><%= contacts.Dean %></td>
-            <td><%= contacts.PEN %></td>
-            <td><%= contacts.Rep %></td>
-            <td><%= contacts.Chair %></td>
-            <td><%= contacts.AcademicProgram %></td>
-            <td><%= contacts.Payees %></td>
-            <td><%= contacts.Paid %></td>
-            <td><%= contacts.Report %></td>
-            <td><%= contacts.Notes %></td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
+      <div class="admin-card">
+        <h2 class="admin-title">
+          LOC Summary <%= new Date().getFullYear() %>-<%= new Date().getFullYear()
+          + 1 %>
+        </h2>
+        <div class="admin-table-wrapper">
+          <table id="order-table" class="display">
+            <thead>
+              <tr>
+                <th>Division</th>
+                <th>Dean</th>
+                <th>PEN</th>
+                <th>Rep</th>
+                <th>Chair</th>
+                <th>Academic Program</th>
+                <th>Payee(s)</th>
+                <th>Paid</th>
+                <th>Report</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Object.entries(orders).forEach(([division, contacts]) => { %>
+              <tr>
+                <td><%= division %></td>
+                <td><%= contacts.Dean %></td>
+                <td><%= contacts.PEN %></td>
+                <td><%= contacts.Rep %></td>
+                <td><%= contacts.Chair %></td>
+                <td><%= contacts.AcademicProgram %></td>
+                <td><%= contacts.Payees %></td>
+                <td><%= contacts.Paid %></td>
+                <td><%= contacts.Report %></td>
+                <td><%= contacts.Notes %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="row-buttons">
         <a href="/" id="back-to-form-link">
           <i class="fa-solid fa-arrow-left"></i> Return to Division Form
