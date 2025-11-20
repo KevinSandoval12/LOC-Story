@@ -40,96 +40,96 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Create an array to store divisions
-// const orders = {
-//   FineArt: {
-//     Dean: "Christie Gilliland",
-//     PEN: "Liz Peterson",
-//     Rep: "Monica Bowen",
-//     Chair: "Paul Metevier",
-//     AcademicProgram: "Music",
-//     Payees: "Sam = $333 (Music), Kelly = $333 (Music), Ruth = $333 (Music)",
-//     Paid: "Yes",
-//     Report: "Yes",
-//     Notes: "Preparing gallery showcase"
-//   },
-//   Technology: {
-//     Dean: "Miebeth Castillo-Booth",
-//     PEN: "Angie Brenner",
-//     Rep: "Josh Archer",
-//     Chair: "Michael Wood",
-//     AcademicProgram: "Aviation, CAD Design and Engineering Tech., Natural Resources",
-//     Payees: "Tad Henry = $1000 (Aviation), Seunghye Jang = $1000 (CAD Design and Engineering Tech.), None (Natural Resources",
-//     Paid: "Yes",
-//     Report: "No",
-//     Notes: "Preparing next quarter's project updates"
-//   },
-//   Humanities: {
-//     Dean: "Jamie Fitzgerald",
-//     PEN: "Liz Peterson",
-//     Rep: "Lisa Luengo",
-//     Chair: "Katie Cunnion",
-//     AcademicProgram: "Communication Studies",
-//     Payees: "None (Humanities)",
-//     Paid: "Yes",
-//     Report: "No",
-//     Notes: "Completed department review for Fall"
-//   },
-//   SocialScience: {
-//     Dean: "Christie Gilliland",
-//     PEN: "Liz Peterson",
-//     Rep: "Joy Crawford",
-//     Chair: "Mark Thomason",
-//     AcademicProgram: "Anthropology, History, Political Science, Psychology",
-//     Payees: "Madeline = $500 (Anthrology), Joy Crawford = $500 (Anthrology), None (History), Lindsey = $500, Yoav = $500 (PoliticalScience), Joy = $500, Jerry = $500 (Psychology)",
-//     Paid: "No",
-//     Report: "Yes",
-//     Notes: "Pending research approval update"
-//   },
-//   English: {
-//     Dean: "Jamie Fitzgerald",
-//     PEN: "Liz Peterson",
-//     Rep: "Jake Frye",
-//     Chair: "Ian Sherman",
-//     AcademicProgram: "English",
-//     Payees: "Aley Martin: $175 (English), Claire Salcedo: $175 (English), Ericka Nelson: $175 (English), Jake: $475 (English)",
-//     Paid: "No",
-//     Report: "No",
-//     Notes: "Revising course outcomes for next term"
-//   },
-//   Science: {
-//     Dean: "Katy Shaw and Danny Najera",
-//     PEN: "Miebeth Bustillo-Booth",
-//     Rep: "Nicole Feider",
-//     Chair: "Heather Lambert",
-//     AcademicProgram: "Anatomy & Physiology, Biology/Environmental Science, Geology/Oceanography",
-//     Payees: "None (Anatomy & Physiology), Leo - $334.00 (Biology/Environmental), Stephanie Hoffman - $333.00 (Biology/Environmental), Danny Najera - $333.00 (Biology/Environmental), None (Geology/Oceanography)", 
-//     Paid: "No",
-//     Report: "Yes",
-//     Notes: "Research grant proposal submitted"
-//   },
-//   HealthScience: {
-//     Dean: "Lionel Candido Flores",
-//     PEN: "Thom Jackson",
-//     Rep: "",
-//     Chair: "Leslie Kessler",
-//     AcademicProgram: "Practical Nursing, Physical Therapist Assistant",
-//     Payees: "None (Practical Nursing), Pam Kikillus = $500 (Physical Therapist Assistant), Anna Neil = $500 (Physical Therapist Assistant)",
-//     Paid: "No",
-//     Report: "Yes",
-//     Notes: "Report submitted for spring term"
-//   },
-//   Trades: {
-//     Dean: "Lea Ann Simpson",
-//     PEN: "Mary Singer",
-//     Rep: "Ben Orr",
-//     Chair: "David Lewis",
-//     AcademicProgram: "Automotive Technology, Manufacturing",
-//     Payees: "None (Automotive Technology), None (Manufacturing)",
-//     Paid: "No",
-//     Report: "Yes",
-//     Notes: "New equipment installed in shop"
-//   },
-// };
+const orders = {
+  FineArt: {
+    Dean: "Christie Gilliland",
+    PEN: "Liz Peterson",
+    Rep: "Monica Bowen",
+    Chair: "Paul Metevier",
+    AcademicProgram: "Music",
+    Payees: "Sam = $333 (Music), Kelly = $333 (Music), Ruth = $333 (Music)",
+    Paid: "Yes",
+    Report: "Yes",
+    Notes: "Preparing gallery showcase"
+  },
+  Technology: {
+    Dean: "Miebeth Castillo-Booth",
+    PEN: "Angie Brenner",
+    Rep: "Josh Archer",
+    Chair: "Michael Wood",
+    AcademicProgram: "Aviation, CAD Design and Engineering Tech., Natural Resources",
+    Payees: "Tad Henry = $1000 (Aviation), Seunghye Jang = $1000 (CAD Design and Engineering Tech.), None (Natural Resources",
+    Paid: "Yes",
+    Report: "No",
+    Notes: "Preparing next quarter's project updates"
+  },
+  Humanities: {
+    Dean: "Jamie Fitzgerald",
+    PEN: "Liz Peterson",
+    Rep: "Lisa Luengo",
+    Chair: "Katie Cunnion",
+    AcademicProgram: "Communication Studies",
+    Payees: "None (Humanities)",
+    Paid: "Yes",
+    Report: "No",
+    Notes: "Completed department review for Fall"
+  },
+  SocialScience: {
+    Dean: "Christie Gilliland",
+    PEN: "Liz Peterson",
+    Rep: "Joy Crawford",
+    Chair: "Mark Thomason",
+    AcademicProgram: "Anthropology, History, Political Science, Psychology",
+    Payees: "Madeline = $500 (Anthrology), Joy Crawford = $500 (Anthrology), None (History), Lindsey = $500, Yoav = $500 (PoliticalScience), Joy = $500, Jerry = $500 (Psychology)",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "Pending research approval update"
+  },
+  English: {
+    Dean: "Jamie Fitzgerald",
+    PEN: "Liz Peterson",
+    Rep: "Jake Frye",
+    Chair: "Ian Sherman",
+    AcademicProgram: "English",
+    Payees: "Aley Martin: $175 (English), Claire Salcedo: $175 (English), Ericka Nelson: $175 (English), Jake: $475 (English)",
+    Paid: "No",
+    Report: "No",
+    Notes: "Revising course outcomes for next term"
+  },
+  Science: {
+    Dean: "Katy Shaw and Danny Najera",
+    PEN: "Miebeth Bustillo-Booth",
+    Rep: "Nicole Feider",
+    Chair: "Heather Lambert",
+    AcademicProgram: "Anatomy & Physiology, Biology/Environmental Science, Geology/Oceanography",
+    Payees: "None (Anatomy & Physiology), Leo - $334.00 (Biology/Environmental), Stephanie Hoffman - $333.00 (Biology/Environmental), Danny Najera - $333.00 (Biology/Environmental), None (Geology/Oceanography)", 
+    Paid: "No",
+    Report: "Yes",
+    Notes: "Research grant proposal submitted"
+  },
+  HealthScience: {
+    Dean: "Lionel Candido Flores",
+    PEN: "Thom Jackson",
+    Rep: "",
+    Chair: "Leslie Kessler",
+    AcademicProgram: "Practical Nursing, Physical Therapist Assistant",
+    Payees: "None (Practical Nursing), Pam Kikillus = $500 (Physical Therapist Assistant), Anna Neil = $500 (Physical Therapist Assistant)",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "Report submitted for spring term"
+  },
+  Trades: {
+    Dean: "Lea Ann Simpson",
+    PEN: "Mary Singer",
+    Rep: "Ben Orr",
+    Chair: "David Lewis",
+    AcademicProgram: "Automotive Technology, Manufacturing",
+    Payees: "None (Automotive Technology), None (Manufacturing)",
+    Paid: "No",
+    Report: "Yes",
+    Notes: "New equipment installed in shop"
+  },
+};
   
 
 // Define the port number where our server will listen
