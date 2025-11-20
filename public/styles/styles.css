@@ -288,11 +288,11 @@ a {
   display: grid;
   gap: 20px;
   grid-template-areas:
-    "dean pen rep chair"
-    "program program program program"
-    "payee paid report report"
-    "notes notes notes notes";
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+    "dean dean dean pen pen pen rep rep rep chair chair chair"
+    "program program program program program program program program program program program program"
+    "payee payee payee payee paid paid paid paid report report report report"
+    "notes notes notes notes notes notes notes notes notes notes notes notes";
+  grid-template-columns: repeat(12, 1fr);
   background: #ffffff;
   padding: 24px;
   border-radius: 18px;
