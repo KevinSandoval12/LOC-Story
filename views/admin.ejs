@@ -14,10 +14,10 @@
     />
 
     <!-- Dont touch it works, This grabs orders data from app.js to admin.js -->
-    <script>
+    <!-- <script>
       window.orders = <%- JSON.stringify(orders) %>;
-      
-    </script>
+      window.selectedDivision = <%- JSON.stringify(selectedDivision) %>;
+    </script> -->
     <!-- Javascript link -->
     <!-- <script src="/js/LOC.js" defer></script> -->
     <script src="/js/admin.js" defer></script>
@@ -62,15 +62,15 @@
             <tbody>
               <% Object.entries(orders).forEach(([division, contacts]) => { %>
               <tr>
-                <td><%= division %></td>
+                <td><%= contacts.DivisionName %></td>
                 <td><%= contacts.Dean %></td>
-                <td><%= contacts.PEN %></td>
+                <td><%= contacts.Pen %></td>
                 <td><%= contacts.Rep %></td>
                 <td><%= contacts.Chair %></td>
-                <td><%= contacts.AcademicProgram %></td>
+                <td><%= contacts.AcademicPrograms %></td>
                 <td><%= contacts.Payees %></td>
-                <td><%= contacts.Paid %></td>
-                <td><%= contacts.Report %></td>
+                <td><%= contacts.Paid == 1 ? "Yes" : "No" %></td>
+                <td><%= contacts.Report == 1 ? "Yes" : "No" %></td>
                 <td><%= contacts.Notes %></td>
               </tr>
               <% }); %>
@@ -94,7 +94,7 @@
             <section id="controls">
               <div class="selectors">
                 <label for="division">Division:</label>
-                <select id="division" name="division">
+                <select id="division" name="division" onchange="this.form.submit()">
                   <option value="none">Select a Division</option>
                   <option value="FineArt">Fine Arts</option>
                   <option value="Humanities">Humanities</option>
@@ -104,95 +104,14 @@
                   <option value="Technology">Technology</option>
                   <option value="HealthScience">Health Science</option>
                   <option value="Trades">Trades</option>
+                  <option value="*">All</option>
                 </select>
 
-                <!-- division Name-->
-                <div id="division-names" style="display: grid">
-                  <!-- Academic Program -->
-                  <div class="program">
-                    <span id="err-Program" class="error">
-                      Academic Program cannot be blank.</span
-                    >
-                    <label for="program"
-                      >Academic Program:<input
-                        type="text"
-                        id="program"
-                        name="program"
-                    /></label>
-                  </div>
-
-                  <!-- Payee(s) -->
-                  <div class="payee">
-                    <span id="err-Payee" class="error">
-                      Payee(s) cannot be empty!</span
-                    >
-                    <label for="payee"
-                      >Payee(s):<input type="text" id="payee" name="payee"
-                    /></label>
-                  </div>
-                  <!-- Has Been Paid (Yes/No) -->
-                  <div class="paid">
-                    <span id="err-Paid" class="error">
-                      paid option cannot be empty!</span
-                    >
-                    <label for="paid">Has Been Paid (Yes/No):</label>
-                    <select id="paid" name="paid">
-                      <option value="none">Select an option</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
-                  </div>
-                  <!-- Report Submitted (Yes/No) -->
-                  <div class="report">
-                    <span id="err-Report" class="error">
-                      report option cannot be empty!</span
-                    >
-                    <label for="report">Report Submitted (Yes/No):</label>
-                    <select id="report" name="report">
-                      <option value="none">Select an option</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
-                  </div>
-                  <!-- Notes -->
-                  <div class="notes">
-                    <span id="err-Notes" class="error">
-                      Notes cannot be empty!</span
-                    >
-                    <label for="notes"
-                      >Notes:<textarea
-                        type="text"
-                        id="notes"
-                        name="notes"
-                      ></textarea>
-                    </label>
-
-                    <!-- Cancel and Save Button -->
-                    <div class="buttons">
-                      <button type="button" class="btn" id="cancel-button">
-                        Cancel
-                      </button>
-                      <button type="submit" class="btn" id="save-button">
-                        Save
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </div>
             </section>
           </div>
         </form>
       </section>
-
-      <!-- Success message (Changes saved) -->
-      <div
-        id="save-confirmation"
-        class="success-message"
-        style="display: none; opacity: 0"
-      >
-        Changes saved!
-        <span id="save-timestamp"></span>
-      </div>
     </main>
 
     <script defer>

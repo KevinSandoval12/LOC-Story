@@ -5,7 +5,7 @@
 // const selectedDivision = window.selectedDivision;
 // console.log(selectedDivision);
 
-document.getElementById("adminForm").onsubmit = (e) => {
+document.getElementById("adminFormTest").onsubmit = (e) => {
   clearErrors();
   console.log('hi');
   return isValid;
