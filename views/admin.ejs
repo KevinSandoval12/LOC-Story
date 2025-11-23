@@ -92,6 +92,13 @@
         <button onclick="toggleFormDisplay()" class="btn" id="editBtn">
           Edit Data Table
         </button>
+
+        <% if (selectedDivision && selectedDivision !== "none") { %>
+          <a href="/" class="btn" id="resetSummaryBtn">
+            <i class="fa-solid fa-rotate-left"></i> Return to Full Summary
+          </a>
+        <% } %>
+
       </div>
       <!-- Division Selector -->
       <section id="admin">
