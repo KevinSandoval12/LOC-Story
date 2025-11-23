@@ -38,6 +38,12 @@
       </div>
     </header>
     <main>
+      <% if (success) { %>
+        <div class="success-banner">
+          <i class="fa-solid fa-circle-check"></i>
+          Program updated successfully!
+        </div>
+      <% } %>  
       <div class="admin-card">
         <h2 class="admin-title">
           LOC Summary <%= new Date().getFullYear() %>-<%= new
@@ -79,8 +85,8 @@
         </div>
       </div>
       <div class="row-buttons">
-        <a href="/" id="back-to-form-link">
-          <i class="fa-solid fa-arrow-left"></i> Return to Division Form
+        <a href="/form" id="back-to-form-link">
+          <i class="fa-solid fa-arrow-left"></i> Edit Division Form
         </a>
 
         <button onclick="toggleFormDisplay()" class="btn" id="editBtn">
@@ -117,5 +123,24 @@
     <script defer>
       let table = new DataTable("#order-table");
     </script>
+
+    <script>
+      // If the URL contains ?success=true, remove it without reloading the page
+      if (window.location.search.includes('success=true')) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    </script>
+
+    <script>
+      // Auto-hide the success banner after 3 seconds
+      const banner = document.querySelector('.success-banner');
+      if (banner) {
+        setTimeout(() => {
+          banner.style.opacity = '0';
+          banner.style.transition = 'opacity 0.5s ease';
+        }, 3000);
+      }
+    </script>
+
   </body>
 </html>

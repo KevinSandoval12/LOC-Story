@@ -199,8 +199,11 @@ app.get('/', async(req, res) => {
     try {
         const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
 
+        const success = req.query.success === 'true';
+
         // Send the orders data back to the browser as JSON
-        res.render('home', { orders });
+        //res.render('home', { orders });
+        res.render('admin', { orders, selectedDivision: "none", success});
 
 
     } catch(err) {
@@ -211,13 +214,13 @@ app.get('/', async(req, res) => {
     }
 });
 
-
-app.get('/admin', async (req, res) => {
+// Route to form page
+app.get('/form', async (req, res) => {
   try {
     const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
     const selectedDivision = req.query.division || "none";
     
-    res.render('admin', { orders, selectedDivision });
+    res.render('home', { orders });
 
   } catch (err) {
     console.error('Database error:', err);
@@ -248,7 +251,10 @@ app.post('/submit-order', (req, res) => {
     console.log(orders);
 
     // Send user to confirmation page
-    res.render('confirmation', { order });
+    //res.render('confirmation', { order });
+
+    // Direct user back to summary page(pass success indicator as URL parameter)
+    res.redirect('/?success=true');
 });
 
 // Define an "submit-order2" route (admin.ejs)
@@ -268,7 +274,7 @@ app.post('/submit-order2', async(req, res) => {
       [selectedDivision]);
     }
 
-    res.render('admin', { orders, selectedDivision});
+    res.render('admin', { orders, selectedDivision, success: false});
     
 });
 

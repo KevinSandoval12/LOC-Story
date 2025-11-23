@@ -100,6 +100,37 @@ main.layout {
   padding-top: 1rem;
 }
 
+/* Success banner */
+.success-banner {
+  background-color: #d1f1d8;
+  color: #1a7c2e;
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  border: 1px solid #1a7c2e33;
+  animation: fadeSlideDown 0.4s ease out;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-banner i {
+  color: #1a7c2e;
+  font-size: 1.2rem;
+}
+
 a {
   text-decoration: none;
   border: #005320 2px solid;
