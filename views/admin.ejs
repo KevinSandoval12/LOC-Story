@@ -62,6 +62,7 @@
                 <th>Payee(s)</th>
                 <th>Paid</th>
                 <th>Report</th>
+                <th>Under Review</th>
                 <th>Notes</th>
               </tr>
             </thead>
@@ -77,6 +78,11 @@
                 <td><%= contacts.Payees %></td>
                 <td><%= contacts.Paid == 1 ? "Yes" : "No" %></td>
                 <td><%= contacts.Report == 1 ? "Yes" : "No" %></td>
+                <td>
+                  <% if (contacts.UnderReview == 1 || contacts.UnderReview === true) { %>
+                    <span class="under-review-badge">Under Review</span>
+                  <% } %>
+                </td>
                 <td><%= contacts.Notes %></td>
               </tr>
               <% }); %>

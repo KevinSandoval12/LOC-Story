@@ -238,6 +238,7 @@ function prefillDivsionData(division) {
       document.getElementById("PEN").value = order.Pen || "";
       document.getElementById("Rep").value = order.Rep || "";
       document.getElementById("Chair").value = order.Chair || "";
+      document.getElementById("underReview").checked = order.UnderReview == 1;
       
     }
   }
@@ -259,6 +260,8 @@ function prefillAcademicData(program) {
 
       document.getElementById("paid").value = checkYesOrNo(order.Paid) || "none";
       document.getElementById("report").value = checkYesOrNo(order.Report) || "none";
+
+      document.getElementById("underReview").checked = order.UnderReview == 1;
       
       break;
       

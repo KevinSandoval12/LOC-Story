@@ -190,6 +190,20 @@ app.get('/db-test', async(req, res) => {
     }
 });
 
+//checks to make sure your on your local mysql database
+app.get("/which-db", async (req, res) => {
+  try {
+    const [db] = await pool.query("SELECT DATABASE() AS db;");
+    const [host] = await pool.query("SELECT @@hostname AS host;");
+    res.json({
+      connected_database: db[0].db,
+      mysql_host: host[0].host
+    });
+  } catch (err) {
+    res.send("DB ERROR: " + err.message);
+  }
+});
+
 // Define a default "route" ('/')
 // req: contains information about the incoming request
 // res: allows us to send back a response to the client
@@ -229,32 +243,62 @@ app.get('/form', async (req, res) => {
 });
 
 
-app.post('/submit-order', (req, res) => {
+app.post('/submit-order', async (req, res) => {
 
     // Create a JSON object to store the data
     const order = req.body;
     // order.timestamp = new Date()
 
-    // Add order to array
-    orders[order.division] = {
-      Dean: order.dean,
-      PEN: order.PEN,
-      Rep: order.Rep,
-      Chair: order.Chair,
-      AcademicProgram: order.program,
-      Payees: order.payee, // add this if you have a payee field in your form
-      Paid: order.paid,
-      Report: order.report,
-      Notes: order.notes
+    // Convert checkbox to 1 / 0 for MySql
+    const underReviewValue = order.underReview ? 1 : 0;
 
-    };
-    console.log(orders);
+    try {
+      await pool.query(
+        `UPDATE AcademicPrograms
+         SET
+            Payees = ?,
+            Paid = ?,
+            Report = ?,
+            Notes = ?,
+            UnderReview = ?
+         WHERE DivisionName = ?
+         AND AcademicPrograms = ?`,
+        [
+            order.payee,
+            order.paid =="Yes" ? 1 : 0,
+            order.report =="Yes" ? 1 : 0,
+            order.notes,
+            underReviewValue,
+            order.division,
+            order.program
+        ]
+      );
+
+    // Add order to array
+    // orders[order.division] = {
+    //   Dean: order.dean,
+    //   PEN: order.PEN,
+    //   Rep: order.Rep,
+    //   Chair: order.Chair,
+    //   AcademicProgram: order.program,
+    //   Payees: order.payee, // add this if you have a payee field in your form
+    //   Paid: order.paid,
+    //   Report: order.report,
+    //   Notes: order.notes,
+    //   UnderReview: order.underReview ? true : false
+
+    // };
+    // console.log(orders);
 
     // Send user to confirmation page
     //res.render('confirmation', { order });
 
-    // Direct user back to summary page(pass success indicator as URL parameter)
-    res.redirect('/?success=true');
+      // Direct user back to summary page(pass success indicator as URL parameter)
+      res.redirect('/?success=true');
+    } catch (err) {
+      console.error("SQL Update Error:", err);
+      res.status(500).send("Database update failed.");
+    }
 });
 
 // Define an "submit-order2" route (admin.ejs)
