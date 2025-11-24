@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs Under Review</title>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Programs Under Review</h1>
+    </div>
+  </header>
+
+  <main id="under-review-layout">
+    <!-- Aside Bar -->
+    <aside id="under-review-aside">
+      <h2>Under Review</h2>
+
+      <% if (programs.length === 0) { %>
+        <p class="empty">No programs are currently under review.</p>
+      <% } else { %>
+        <ul>
+          <% programs.forEach(p => { %>
+            <li>
+              <a href="/form-from-under-review?programID=<%= p.ProgramID %>">
+                <strong><%= p.AcademicPrograms %></strong>
+                <br>
+                <span class="division"><%= p.DivisionName %></span>
+              </a>
+            </li>
+          <% }) %>  
+        </ul>  
+      <% } %>  
+    </aside>
+
+    <!-- Content Placeholder -->
+    <section id="content">
+      <p>Select a program from the left to continue editing.</p>
+    </section>
+  </main>
+</body>
+</html>

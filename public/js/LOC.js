@@ -1,8 +1,12 @@
+// This pulls programData from the server if it exists; otherwize us null so script doesnt break
+const programData = window.programData || null;
+
 // This grabs orders data from app.js to LOC.js
 const orders = window.orders;
 console.log(orders);
 console.log(orders[0]);
 console.log(orders[0].Dean);
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
@@ -16,11 +20,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-button");
   const cancelButton = document.getElementById("cancel-button");
 
-  // Hide buttons and fields by default
-  saveButton.style.display = "none";
-  cancelButton.style.display = "none";
-  divisionNames.style.display = "none";
+  // If user clicked a program from the Under Review page, prefill everything
+  if (programData) {
 
+    console.log("PROGRAM DATA LOADED:", programData);
+
+    // Show full form
+    divisionNames.style.display = "grid";
+    saveButton.style.display = "block";
+    cancelButton.style.display = "block";
+
+    // Set division
+    divisionSelect.value = programData.DivisionName;
+
+    divisionSelect.dispatchEvent(new Event("change"));
+
+    // Select the correct academic program
+    setTimeout(() => {
+      programSelect.Value = programData.AcademicPrograms;
+
+      // Prefill the Division info
+      document.getElementById("dean").value = programData.Dean || "";
+      document.getElementById("PEN").value = programData.Pen || "";
+      document.getElementById("Rep").value = programData.Rep || "";
+      document.getElementById("Chair").value = programData.Chair || "";
+
+      prefillAcademicData(programData.AcademicPrograms);
+
+      // 5. Prefill Academic Program info
+      document.getElementById("payee").value = programData.Payees || "";
+      document.getElementById("notes").value = programData.Notes || "";
+      document.getElementById("paid").value = programData.Paid ? "Yes" : "No";
+      document.getElementById("report").value = programData.Report ? "Yes" : "No";
+      document.getElementById("underReview").checked = programData.UnderReview ? true : false;
+  }, 50);
+}
+
+  // Hide buttons and fields by default
+  if (!programData) {
+    saveButton.style.display = "none";
+    cancelButton.style.display = "none";
+    divisionNames.style.display = "none";
+  }  
   // When dropdown changes
   divisionSelect.addEventListener("change", () => {
     const selected = divisionSelect.value;

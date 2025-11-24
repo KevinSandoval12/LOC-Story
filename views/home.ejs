@@ -14,9 +14,15 @@
       window.orders = <%- JSON.stringify(orders) %>;
     </script>
 
+    <!-- Dont touch this either, it works, This grabs prefill data from the db and loads the form from under review -->
+    <script>
+      window.programData = <%- JSON.stringify(programData || null) %>;
+    </script>
+
+
     <!-- Javascript link -->
     <script src="/js/LOC.js" defer></script>
-    <!-- <script src="/js/Story.js" defer></script> -->
+    <!-- <script src="/js/Story.js" defer></scrip> -->
   </head>
   <body>
     <header>

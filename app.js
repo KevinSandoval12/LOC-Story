@@ -234,7 +234,7 @@ app.get('/form', async (req, res) => {
     const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
     const selectedDivision = req.query.division || "none";
     
-    res.render('home', { orders });
+    res.render('home', { orders, programData: null });
 
   } catch (err) {
     console.error('Database error:', err);
@@ -242,6 +242,56 @@ app.get('/form', async (req, res) => {
   }
 });
 
+// Route to under review page
+app.get('/under-review', async (req, res) => {
+  try {
+    //DB query
+    const [programs] = await pool.query("SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1");
+    // Send programs to EJS
+
+    res.render('underReview', { programs }) // temp placeholder
+  } catch (err) {
+    console.error("Error loading Under Review page:", err);
+    res.status(500).send("Error loading Under Review page.")
+  }
+});
+
+// Prefilled form from Under Review list
+app.get('/form-from-under-review', async(req, res) => {
+  const programID = req.query.programID;
+
+  if (!programID) {
+    return res.redirect('/under-review');
+  }
+  
+  try {
+    const [rows] = await pool.query(`
+      SELECT * FROM AcademicPrograms a
+      JOIN Division d ON a.DivisionName = d.DivisionName
+      WHERE a.ProgramID = ?`,
+      [programID]
+    );
+
+    if (rows.length === 0) {
+      return res.redirect('/under-review');
+    }
+
+    const programData = rows[0];
+
+    const [orders] = await pool.query(
+      `SELECT * FROM AcademicPrograms a
+       JOIN Division d ON a.DivisionName = d.DivisionName`
+    );
+
+    res.render('home', {
+      orders, //js pulls from programData
+      programData
+    });
+  } catch (err) {
+    console.error("Error loading program:", err);
+    res.status(500).send("Failed to load program");
+  }
+});
 
 app.post('/submit-order', async (req, res) => {
 
