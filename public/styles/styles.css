@@ -454,6 +454,7 @@ label[for="division"] {
       "payee"
       "paid"
       "report"
+      "under"
       "notes";
     gap: 18px; /* reduces jumping between elements */
     padding: 20px; /* tighter padding for mobile */
