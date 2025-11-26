@@ -1,12 +1,11 @@
-
 // Import the mysql2 module
 // mysql2 allows Node.js to communicate with a MySQL database
-import mysql2 from 'mysql2';
+import mysql2 from "mysql2";
 
 // Import the express module
-import express from 'express';
+import express from "express";
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 // Load environment variables from .env file
 // This MUST be called before accessing process.env
@@ -15,30 +14,28 @@ dotenv.config();
 // Create a CONNECTION POOL to the database
 // Now using environment variables from the .env file
 // process.env.VARIABLE_NAME accesses variables from .env
-const pool = mysql2.createPool({
+const pool = mysql2
+  .createPool({
     // These values come from the .env file
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
-
-
-}).promise();
+    port: process.env.DB_PORT,
+  })
+  .promise();
 
 // Create an instance of an Express application
 const app = express();
 
 // Set EJS as our view engine
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // Enable static file serving
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // Allow the app to parse form data (req.body)
 app.use(express.urlencoded({ extended: true }));
-
-
 
 // Create an array to store divisions
 const orders = {
@@ -51,18 +48,20 @@ const orders = {
     Payees: "Sam = $333 (Music), Kelly = $333 (Music), Ruth = $333 (Music)",
     Paid: "Yes",
     Report: "Yes",
-    Notes: "Preparing gallery showcase"
+    Notes: "Preparing gallery showcase",
   },
   Technology: {
     Dean: "Miebeth Castillo-Booth",
     PEN: "Angie Brenner",
     Rep: "Josh Archer",
     Chair: "Michael Wood",
-    AcademicProgram: "Aviation, CAD Design and Engineering Tech., Natural Resources",
-    Payees: "Tad Henry = $1000 (Aviation), Seunghye Jang = $1000 (CAD Design and Engineering Tech.), None (Natural Resources",
+    AcademicProgram:
+      "Aviation, CAD Design and Engineering Tech., Natural Resources",
+    Payees:
+      "Tad Henry = $1000 (Aviation), Seunghye Jang = $1000 (CAD Design and Engineering Tech.), None (Natural Resources",
     Paid: "Yes",
     Report: "No",
-    Notes: "Preparing next quarter's project updates"
+    Notes: "Preparing next quarter's project updates",
   },
   Humanities: {
     Dean: "Jamie Fitzgerald",
@@ -73,7 +72,7 @@ const orders = {
     Payees: "None (Humanities)",
     Paid: "Yes",
     Report: "No",
-    Notes: "Completed department review for Fall"
+    Notes: "Completed department review for Fall",
   },
   SocialScience: {
     Dean: "Christie Gilliland",
@@ -81,10 +80,11 @@ const orders = {
     Rep: "Joy Crawford",
     Chair: "Mark Thomason",
     AcademicProgram: "Anthropology, History, Political Science, Psychology",
-    Payees: "Madeline = $500 (Anthrology), Joy Crawford = $500 (Anthrology), None (History), Lindsey = $500, Yoav = $500 (PoliticalScience), Joy = $500, Jerry = $500 (Psychology)",
+    Payees:
+      "Madeline = $500 (Anthrology), Joy Crawford = $500 (Anthrology), None (History), Lindsey = $500, Yoav = $500 (PoliticalScience), Joy = $500, Jerry = $500 (Psychology)",
     Paid: "No",
     Report: "Yes",
-    Notes: "Pending research approval update"
+    Notes: "Pending research approval update",
   },
   English: {
     Dean: "Jamie Fitzgerald",
@@ -92,21 +92,24 @@ const orders = {
     Rep: "Jake Frye",
     Chair: "Ian Sherman",
     AcademicProgram: "English",
-    Payees: "Aley Martin: $175 (English), Claire Salcedo: $175 (English), Ericka Nelson: $175 (English), Jake: $475 (English)",
+    Payees:
+      "Aley Martin: $175 (English), Claire Salcedo: $175 (English), Ericka Nelson: $175 (English), Jake: $475 (English)",
     Paid: "No",
     Report: "No",
-    Notes: "Revising course outcomes for next term"
+    Notes: "Revising course outcomes for next term",
   },
   Science: {
     Dean: "Katy Shaw and Danny Najera",
     PEN: "Miebeth Bustillo-Booth",
     Rep: "Nicole Feider",
     Chair: "Heather Lambert",
-    AcademicProgram: "Anatomy & Physiology, Biology/Environmental Science, Geology/Oceanography",
-    Payees: "None (Anatomy & Physiology), Leo - $334.00 (Biology/Environmental), Stephanie Hoffman - $333.00 (Biology/Environmental), Danny Najera - $333.00 (Biology/Environmental), None (Geology/Oceanography)", 
+    AcademicProgram:
+      "Anatomy & Physiology, Biology/Environmental Science, Geology/Oceanography",
+    Payees:
+      "None (Anatomy & Physiology), Leo - $334.00 (Biology/Environmental), Stephanie Hoffman - $333.00 (Biology/Environmental), Danny Najera - $333.00 (Biology/Environmental), None (Geology/Oceanography)",
     Paid: "No",
     Report: "Yes",
-    Notes: "Research grant proposal submitted"
+    Notes: "Research grant proposal submitted",
   },
   HealthScience: {
     Dean: "Lionel Candido Flores",
@@ -114,10 +117,11 @@ const orders = {
     Rep: "",
     Chair: "Leslie Kessler",
     AcademicProgram: "Practical Nursing, Physical Therapist Assistant",
-    Payees: "None (Practical Nursing), Pam Kikillus = $500 (Physical Therapist Assistant), Anna Neil = $500 (Physical Therapist Assistant)",
+    Payees:
+      "None (Practical Nursing), Pam Kikillus = $500 (Physical Therapist Assistant), Anna Neil = $500 (Physical Therapist Assistant)",
     Paid: "No",
     Report: "Yes",
-    Notes: "Report submitted for spring term"
+    Notes: "Report submitted for spring term",
   },
   Trades: {
     Dean: "Lea Ann Simpson",
@@ -128,21 +132,16 @@ const orders = {
     Payees: "None (Automotive Technology), None (Manufacturing)",
     Paid: "No",
     Report: "Yes",
-    Notes: "New equipment installed in shop"
+    Notes: "New equipment installed in shop",
   },
 };
-  
 
 // Define the port number where our server will listen
 const PORT = 3007;
 
-
-
 // Database test - http://localhost:3007/db-test to test this route
-app.get('/db-test', async(req, res) => {
-
-
-    /* 
+app.get("/db-test", async (req, res) => {
+  /* 
      * 'async' tells JavaScript that this function will do asynchronous work
      * Asynchronous means "it takes time to complete" (like waiting for
      * database). By marking it 'async', we can use 'await' inside it
@@ -164,30 +163,23 @@ app.get('/db-test', async(req, res) => {
      *   {id: 2, customer: 'Jane', pizza: 'Veggie'} ]
      */
 
+  // try/catch block for error handling
+  try {
+    const [orders] = await pool.query(
+      "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;"
+    );
 
-    // try/catch block for error handling
-    try {
+    // Send the orders data back to the browser as JSON
+    res.send(orders);
+  } catch (err) {
+    // If ANY error happened in the 'try' block, this code runs
+    // Log the error to the server console (for developers to see)
+    console.error("Database error:", err);
 
-
-        const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
-
-
-        // Send the orders data back to the browser as JSON
-        res.send(orders);
-
-
-    } catch(err) {
-
-
-        // If ANY error happened in the 'try' block, this code runs
-        // Log the error to the server console (for developers to see)
-        console.error('Database error:', err);
-
-
-        // Send an error response to the browser
-        // status(500) means "Internal Server Error"
-        res.status(500).send('Database error: ' + err.message);
-    }
+    // Send an error response to the browser
+    // status(500) means "Internal Server Error"
+    res.status(500).send("Database error: " + err.message);
+  }
 });
 
 //checks to make sure your on your local mysql database
@@ -197,7 +189,7 @@ app.get("/which-db", async (req, res) => {
     const [host] = await pool.query("SELECT @@hostname AS host;");
     res.json({
       connected_database: db[0].db,
-      mysql_host: host[0].host
+      mysql_host: host[0].host,
     });
   } catch (err) {
     res.send("DB ERROR: " + err.message);
@@ -207,65 +199,74 @@ app.get("/which-db", async (req, res) => {
 // Define a default "route" ('/')
 // req: contains information about the incoming request
 // res: allows us to send back a response to the client
-app.get('/', async(req, res) => {
+app.get("/", async (req, res) => {
+  try {
+    const [orders] = await pool.query(
+      "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;"
+    );
 
+    const [programs] = await pool.query(
+      "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
+    );
 
-    try {
-        const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
+    const success = req.query.success === "true";
 
-        const success = req.query.success === 'true';
-
-        // Send the orders data back to the browser as JSON
-        //res.render('home', { orders });
-        res.render('admin', { orders, selectedDivision: "none", success});
-
-
-    } catch(err) {
-
-        console.error('Database error:', err);
-
-        res.status(500).send('Database error: ' + err.message);
-    }
+    // Send the orders data back to the browser as JSON
+    //res.render('home', { orders });
+    res.render("admin", {
+      orders,
+      selectedDivision: "none",
+      success,
+      programs,
+    });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).send("Database error: " + err.message);
+  }
 });
 
 // Route to form page
-app.get('/form', async (req, res) => {
+app.get("/form", async (req, res) => {
   try {
-    const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
+    const [orders] = await pool.query(
+      "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;"
+    );
     const selectedDivision = req.query.division || "none";
-    
-    res.render('home', { orders, programData: null });
 
+    res.render("home", { orders, programData: null });
   } catch (err) {
-    console.error('Database error:', err);
-    res.status(500).send('Database error: ' + err.message);
+    console.error("Database error:", err);
+    res.status(500).send("Database error: " + err.message);
   }
 });
 
 // Route to under review page
-app.get('/under-review', async (req, res) => {
+app.get("/under-review", async (req, res) => {
   try {
     //DB query
-    const [programs] = await pool.query("SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1");
+    const [programs] = await pool.query(
+      "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
+    );
     // Send programs to EJS
 
-    res.render('underReview', { programs }) // temp placeholder
+    res.render("underReview", { programs }); // temp placeholder
   } catch (err) {
     console.error("Error loading Under Review page:", err);
-    res.status(500).send("Error loading Under Review page.")
+    res.status(500).send("Error loading Under Review page.");
   }
 });
 
 // Prefilled form from Under Review list
-app.get('/form-from-under-review', async(req, res) => {
+app.get("/form-from-under-review", async (req, res) => {
   const programID = req.query.programID;
 
   if (!programID) {
-    return res.redirect('/under-review');
+    return res.redirect("/under-review");
   }
-  
+
   try {
-    const [rows] = await pool.query(`
+    const [rows] = await pool.query(
+      `
       SELECT * FROM AcademicPrograms a
       JOIN Division d ON a.DivisionName = d.DivisionName
       WHERE a.ProgramID = ?`,
@@ -273,7 +274,7 @@ app.get('/form-from-under-review', async(req, res) => {
     );
 
     if (rows.length === 0) {
-      return res.redirect('/under-review');
+      return res.redirect("/under-review");
     }
 
     const programData = rows[0];
@@ -283,9 +284,9 @@ app.get('/form-from-under-review', async(req, res) => {
        JOIN Division d ON a.DivisionName = d.DivisionName`
     );
 
-    res.render('home', {
+    res.render("home", {
       orders, //js pulls from programData
-      programData
+      programData,
     });
   } catch (err) {
     console.error("Error loading program:", err);
@@ -293,18 +294,17 @@ app.get('/form-from-under-review', async(req, res) => {
   }
 });
 
-app.post('/submit-order', async (req, res) => {
+app.post("/submit-order", async (req, res) => {
+  // Create a JSON object to store the data
+  const order = req.body;
+  // order.timestamp = new Date()
 
-    // Create a JSON object to store the data
-    const order = req.body;
-    // order.timestamp = new Date()
+  // Convert checkbox to 1 / 0 for MySql
+  const underReviewValue = order.underReview ? 1 : 0;
 
-    // Convert checkbox to 1 / 0 for MySql
-    const underReviewValue = order.underReview ? 1 : 0;
-
-    try {
-      await pool.query(
-        `UPDATE AcademicPrograms
+  try {
+    await pool.query(
+      `UPDATE AcademicPrograms
          SET
             Payees = ?,
             Paid = ?,
@@ -313,16 +313,16 @@ app.post('/submit-order', async (req, res) => {
             UnderReview = ?
          WHERE DivisionName = ?
          AND AcademicPrograms = ?`,
-        [
-            order.payee,
-            order.paid =="Yes" ? 1 : 0,
-            order.report =="Yes" ? 1 : 0,
-            order.notes,
-            underReviewValue,
-            order.division,
-            order.program
-        ]
-      );
+      [
+        order.payee,
+        order.paid == "Yes" ? 1 : 0,
+        order.report == "Yes" ? 1 : 0,
+        order.notes,
+        underReviewValue,
+        order.division,
+        order.program,
+      ]
+    );
 
     // Add order to array
     // orders[order.division] = {
@@ -343,35 +343,40 @@ app.post('/submit-order', async (req, res) => {
     // Send user to confirmation page
     //res.render('confirmation', { order });
 
-      // Direct user back to summary page(pass success indicator as URL parameter)
-      res.redirect('/?success=true');
-    } catch (err) {
-      console.error("SQL Update Error:", err);
-      res.status(500).send("Database update failed.");
-    }
+    // Direct user back to summary page(pass success indicator as URL parameter)
+    res.redirect("/?success=true");
+  } catch (err) {
+    console.error("SQL Update Error:", err);
+    res.status(500).send("Database update failed.");
+  }
 });
 
 // Define an "submit-order2" route (admin.ejs)
-app.post('/submit-order2', async(req, res) => {
+app.post("/submit-order2", async (req, res) => {
+  const selectedDivision = req.body.division || "none";
+  let [orders] = [];
 
-
-    const selectedDivision = req.body.division || "none";
-    let [orders] = [];
-
-    // if user selects all, the data will call all info
+  // if user selects all, the data will call all info
+  try {
     if (selectedDivision == "*") {
-      [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
-    } 
+      [orders] = await pool.query(
+        "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;"
+      );
+    }
     // call info only for the selected division
     else {
-      [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName WHERE a.DivisionName = ?;',
-      [selectedDivision]);
+      [orders] = await pool.query(
+        "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName WHERE a.DivisionName = ?;",
+        [selectedDivision]
+      );
     }
 
-    res.render('admin', { orders, selectedDivision, success: false});
-    
+    res.render("admin", { orders, selectedDivision, success: false });
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).send("Database error: " + err.message);
+  }
 });
-
 
 // app.get('/test', async (req, res) => {
 //   try {
@@ -385,7 +390,6 @@ app.post('/submit-order2', async(req, res) => {
 //   }
 // });
 
-
 // //this belongs to the test
 // app.post('/submit-order3', async (req, res) => {
 //     const selectedDivision = req.body.division || "none";
@@ -394,7 +398,7 @@ app.post('/submit-order2', async(req, res) => {
 //     // if user selects all, the data will call all info
 //     if (selectedDivision == "*" && selectedDivision == "none") {
 //       [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
-//     } 
+//     }
 //     // call info only for the selected division
 //     else {
 //       [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName WHERE a.DivisionName = ?;',
@@ -404,8 +408,8 @@ app.post('/submit-order2', async(req, res) => {
 //     res.render('test', { orders, selectedDivision});
 // });
 
-// Start the server and make it listen on the port 
+// Start the server and make it listen on the port
 // specified above
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
-}); 
+  console.log(`Server is running at http://localhost:${PORT}`);
+});

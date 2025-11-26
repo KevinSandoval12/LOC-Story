@@ -32,7 +32,7 @@
   border-radius: 14px;
   padding: 16px;
   margin-top: 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 h2 {
@@ -131,7 +131,7 @@ main.layout {
   font-size: 1.2rem;
 }
 
-a {
+.btn {
   text-decoration: none;
   border: #005320 2px solid;
   padding: 0.5rem;
@@ -142,6 +142,7 @@ a {
 }
 
 /* Admin Form Edit Button */
+
 #editBtn {
   display: flex;
   justify-self: center;
@@ -153,6 +154,38 @@ a {
 
   background-color: #2c882b;
   box-shadow: #04240088 0.5px 1px 5px 1px;
+}
+
+/* Under Review Aside Bar */
+#under-review-aside {
+  background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border: 1px solid #d4e5d8;
+  max-width: 1500px;
+  margin: 30px auto;
+}
+
+.underReviewLink {
+  text-decoration: none;
+  color: #2c882b;
+}
+
+#underReviewList {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+
+  list-style-type: none;
+}
+
+#underReviewList li {
+  flex: 1 1 250px;
+  max-width: 300px;
+  text-align: center;
 }
 
 /* Right Side: Control Panel */
@@ -244,8 +277,6 @@ a {
 #view-summary-link:hover {
   background-color: #2c882bc5;
 }
-
-
 
 /* Changes saved */
 .success-message {
