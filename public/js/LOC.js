@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Select the correct academic program
     setTimeout(() => {
-      programSelect.Value = programData.AcademicPrograms;
+      programSelect.value = programData.AcademicPrograms;
 
       // Prefill the Division info
       document.getElementById("dean").value = programData.Dean || "";
