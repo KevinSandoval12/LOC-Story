@@ -7,7 +7,6 @@ console.log(orders);
 console.log(orders[0]);
 console.log(orders[0].Dean);
 
-
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
   const divisionSelect = document.getElementById("division");
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // If user clicked a program from the Under Review page, prefill everything
   if (programData) {
-
     console.log("PROGRAM DATA LOADED:", programData);
 
     // Show full form
@@ -40,40 +38,46 @@ document.addEventListener("DOMContentLoaded", () => {
       programSelect.value = programData.AcademicPrograms;
 
       // Prefill the Division info
-      document.getElementById("dean").value = programData.Dean || "";
-      document.getElementById("PEN").value = programData.Pen || "";
-      document.getElementById("Rep").value = programData.Rep || "";
-      document.getElementById("Chair").value = programData.Chair || "";
+      document.getElementById("dean").value = programData.dean || "";
+      document.getElementById("PEN").value = programData.pen || "";
+      document.getElementById("Rep").value = programData.rep || "";
+      document.getElementById("Chair").value = programData.chair || "";
 
       prefillAcademicData(programData.AcademicPrograms);
 
       // 5. Prefill Academic Program info
-      document.getElementById("payee").value = programData.Payees || "";
-      document.getElementById("notes").value = programData.Notes || "";
-      document.getElementById("paid").value = programData.Paid ? "Yes" : "No";
-      document.getElementById("report").value = programData.Report ? "Yes" : "No";
-      document.getElementById("underReview").checked = programData.UnderReview ? true : false;
-  }, 50);
-}
+      document.getElementById("payee").value = programData.payees || "";
+      document.getElementById("notes").value = programData.notes || "";
+      document.getElementById("paid").value = programData.paid ? "Yes" : "No";
+      document.getElementById("report").value = programData.report
+        ? "Yes"
+        : "No";
+      document.getElementById("underReview").checked = programData.UnderReview
+        ? true
+        : false;
+      document.getElementById("ProgramID").value = programData.ProgramID;
+    }, 50);
+  }
 
   // Hide buttons and fields by default
   if (!programData) {
     saveButton.style.display = "none";
     cancelButton.style.display = "none";
     divisionNames.style.display = "none";
-  }  
+  }
   // When dropdown changes
   divisionSelect.addEventListener("change", () => {
     const selected = divisionSelect.value;
 
-    const FineArt = [
-      { value: "Music", text: "Music" },
-    ];
+    const FineArt = [{ value: "Music", text: "Music" }];
 
     const Technology = [
       { value: "Aviation", text: "Aviation" },
-      { value: "CAD Design and Engineering Tech.", text: "CAD Design and Engineering Tech." },
-      { value: "Natural Resources", text: "Natural Resources" }
+      {
+        value: "CAD Design and Engineering Tech.",
+        text: "CAD Design and Engineering Tech.",
+      },
+      { value: "Natural Resources", text: "Natural Resources" },
     ];
 
     const Humanities = [
@@ -84,36 +88,39 @@ document.addEventListener("DOMContentLoaded", () => {
       { value: "Anthropology", text: "Anthropology" },
       { value: "History", text: "History" },
       { value: "Political Science", text: "Political Science" },
-      { value: "Psychology", text: "Psychology" }
+      { value: "Psychology", text: "Psychology" },
     ];
 
-    const English = [
-      { value: "English", text: "English" },
-    ];
+    const English = [{ value: "English", text: "English" }];
 
     const Science = [
       { value: "Anatomy & Physiology", text: "Anatomy & Physiology" },
-      { value: "Biology/Environmental Science", text: "Biology/Environmental Science" },
-      { value: "Geology/Oceanography", text: "Geology/Oceanography" }
+      {
+        value: "Biology/Environmental Science",
+        text: "Biology/Environmental Science",
+      },
+      { value: "Geology/Oceanography", text: "Geology/Oceanography" },
     ];
 
     const HealthScience = [
       { value: "Practical Nursing", text: "Practical Nursing" },
-      { value: "Physical Therapist Assistant", text: "Physical Therapist Assistant" }
+      {
+        value: "Physical Therapist Assistant",
+        text: "Physical Therapist Assistant",
+      },
     ];
 
     const Trades = [
       { value: "Automotive Technology", text: "Automotive Technology" },
-      { value: "Manufacturing", text: "Manufacturing" }
+      { value: "Manufacturing", text: "Manufacturing" },
     ];
-
 
     function setProgramsOptions(options) {
       const program = document.getElementById("program");
       // Remove all current options
-      program.innerHTML = '';
+      program.innerHTML = "";
       // Add new options
-      options.forEach(opt => {
+      options.forEach((opt) => {
         const option = document.createElement("option");
         option.value = opt.value;
         option.textContent = opt.text;
@@ -122,14 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (selected !== "none") {
-      
       divisionNames.style.display = "grid";
       saveButton.style.display = "block";
       cancelButton.style.display = "block";
       prefillDivsionData(selected);
-      
+
       // setProgramsOptions(alternatePrograms)
-      
+
       switch (selected) {
         case "FineArt":
           setProgramsOptions(FineArt);
@@ -162,8 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
       //prefills programs when the pages load
       const program = programSelect.value;
       prefillAcademicData(program);
-
-
     } else {
       // Hide if 'none'
       divisionNames.style.display = "none";
@@ -179,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   clearErrors();
-  
 
   // Cancel button behavior
   cancelButton.addEventListener("click", () => {
@@ -280,10 +283,8 @@ function prefillDivsionData(division) {
       document.getElementById("Rep").value = order.Rep || "";
       document.getElementById("Chair").value = order.Chair || "";
       document.getElementById("underReview").checked = order.UnderReview == 1;
-      
     }
   }
-
 }
 
 function prefillAcademicData(program) {
@@ -298,16 +299,15 @@ function prefillAcademicData(program) {
       document.getElementById("payee").value = order.Payees || "";
       document.getElementById("notes").value = order.Notes || "";
 
-
-      document.getElementById("paid").value = checkYesOrNo(order.Paid) || "none";
-      document.getElementById("report").value = checkYesOrNo(order.Report) || "none";
+      document.getElementById("paid").value =
+        checkYesOrNo(order.Paid) || "none";
+      document.getElementById("report").value =
+        checkYesOrNo(order.Report) || "none";
 
       document.getElementById("underReview").checked = order.UnderReview == 1;
-      
-      break;
-      
-    }
 
+      break;
+    }
   }
   function checkYesOrNo(Binary) {
     // if Binary == 1 (true):
@@ -318,7 +318,6 @@ function prefillAcademicData(program) {
     if (Binary == 0) {
       return "No";
     }
-      
   }
 }
 

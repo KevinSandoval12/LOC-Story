@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Green River Document Modifier</title>
+    <title>Green River LOC</title>
     <link rel="icon" href="/img/GRC_Logo_White.png" />
 
     <!-- style sheet -->
@@ -34,7 +34,7 @@
     <header>
       <div>
         <img src="/img/GRC_Logo_White.png" alt="Green River Logo" />
-        <h1>Admin</h1>
+        <h1>Green River LOC</h1>
       </div>
     </header>
     <main>
@@ -68,6 +68,60 @@
         <% } %>
       </aside>
 
+      <!-- Recent Changes Aside -->
+<!-- Recent Changes Aside -->
+<aside id="recent-changes">
+  <h2>Recent Changes</h2>
+
+  <% if (!groupedRecent || groupedRecent.length === 0) { %>
+    <p class="empty">No recent changes.</p>
+  <% } else { %>
+<div id="recent-change-grid">
+
+  <% groupedRecent.forEach(group => { %>
+    <div class="change-group">
+
+      <h3><%= group.division %>, <%= group.program %></h3>
+
+      <ol>
+        <% group.items.forEach(item => { 
+            let displayOld = item.oldVal;
+            let displayNew = item.newVal;
+
+            if (item.field === "Paid" || item.field === "Report") {
+                displayOld = (item.oldVal == 1) ? "Yes" : "No";
+                displayNew = (item.newVal == 1) ? "Yes" : "No";
+            }
+        %>
+
+          <li>
+            <strong><%= item.field %> changed to</strong>
+            “<%= displayNew %>”
+            <span class="old-val"><strong>From:</strong> “<%= displayOld %>” %>
+              <div class="change-date">
+                Date: 
+                <%= new Date(item.changedAt).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric"
+                }) %>
+              </div>
+            </span>
+          </li>
+
+        <% }); %>
+      </ol>
+
+    </div>
+  <% }); %>
+</div>
+
+  <% } %>
+
+  <a id="recent-change-button" href="/recent-changes" class="view-all">View Change History</a>
+</aside>
+
+
       <div class="admin-card">
         <h2 class="admin-title">
           LOC Summary <%= new Date().getFullYear() %>-<%= new
@@ -99,7 +153,7 @@
                 <td><%= contacts.Rep %></td>
                 <td><%= contacts.Chair %></td>
                 <td><%= contacts.AcademicPrograms %></td>
-                <td><%= contacts.Payees %></td>
+                <td><%= contacts.payees %></td>
                 <td><%= contacts.Paid == 1 ? "Yes" : "No" %></td>
                 <td><%= contacts.Report == 1 ? "Yes" : "No" %></td>
                 <td>

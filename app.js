@@ -201,24 +201,113 @@ app.get("/which-db", async (req, res) => {
 // res: allows us to send back a response to the client
 app.get("/", async (req, res) => {
   try {
+    // LOC Summary Query
     const [orders] = await pool.query(
       "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;"
     );
 
+    // Under Review Query
     const [programs] = await pool.query(
       "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
     );
 
     const success = req.query.success === "true";
 
-    // Send the orders data back to the browser as JSON
-    //res.render('home', { orders });
+    const [recentRows] = await pool.query(
+      `
+      WITH per_division AS (
+        SELECT
+          ProgramID,
+          DivisionName,
+          ProgramName,
+          FieldName,
+          OldValue,
+          NewValue,
+          ChangedAt,
+          ROW_NUMBER() OVER (PARTITION BY DivisionName ORDER BY ChangedAt DESC) AS rn
+        FROM RecentChanges
+      ),
+      top5_per_div AS (
+        SELECT * FROM per_division WHERE rn <= 5
+      ),
+      division_latest AS (
+        SELECT DivisionName, MAX(ChangedAt) AS latest
+        FROM top5_per_div
+        GROUP BY DivisionName
+        ORDER BY latest DESC
+        LIMIT 3
+      )
+      SELECT t.ProgramID, t.DivisionName, t.ProgramName, t.FieldName, t.OldValue, t.NewValue, t.ChangedAt
+      FROM top5_per_div t
+      JOIN division_latest d ON t.DivisionName = d.DivisionName
+      ORDER BY d.latest DESC, t.DivisionName, t.ChangedAt DESC
+      `
+    );
+
+    // group and track latest time for each group
+    const groupsMap = new Map();
+    recentRows.forEach((r) => {
+      const key = `${r.DivisionName}__${r.ProgramName}`;
+      if (!groupsMap.has(key)) {
+        groupsMap.set(key, {
+          division: r.DivisionName,
+          program: r.ProgramName,
+          items: [],
+          latest: r.ChangedAt,
+        });
+      }
+      const g = groupsMap.get(key);
+      g.items.push({
+        field: r.FieldName,
+        oldVal: r.OldValue,
+        newVal: r.NewValue,
+        changedAt: r.ChangedAt,
+      });
+      if (new Date(r.ChangedAt) > new Date(g.latest)) g.latest = r.ChangedAt;
+    });
+
+    // convert to sorted array (most recent groups first)
+    const groupedRecent = Array.from(groupsMap.values()).sort(
+      (a, b) => new Date(b.latest) - new Date(a.latest)
+    );
+
     res.render("admin", {
       orders,
       selectedDivision: "none",
       success,
       programs,
+      groupedRecent,
     });
+
+    // // group by Division + Program
+    // const groupedRecent = {};
+    // recentRows.forEach((r) => {
+    //   // use consistent grouping key
+    //   const key = `${r.DivisionName}__${r.ProgramName}`;
+    //   if (!groupedRecent[key]) {
+    //     groupedRecent[key] = {
+    //       division: r.DivisionName,
+    //       program: r.ProgramName,
+    //       items: [],
+    //     };
+    //   }
+    //   groupedRecent[key].items.push({
+    //     field: r.FieldName,
+    //     oldVal: r.OldValue,
+    //     newVal: r.NewValue,
+    //     changedAt: r.ChangedAt,
+    //   });
+    // });
+
+    // // Send the orders data back to the browser as JSON
+    // //res.render('home', { orders });
+    // res.render("admin", {
+    //   orders,
+    //   selectedDivision: "none",
+    //   success,
+    //   programs,
+    //   groupedRecent,
+    // });
   } catch (err) {
     console.error("Database error:", err);
     res.status(500).send("Database error: " + err.message);
@@ -303,6 +392,103 @@ app.post("/submit-order", async (req, res) => {
   const underReviewValue = order.underReview ? 1 : 0;
 
   try {
+    // Recent Change JS
+    const [oldRows] = await pool.query(
+          `SELECT a.ProgramID, a.Payees, a.Paid, a.Report, a.Notes,
+          d.Dean, d.PEN, d.Rep, d.Chair
+          FROM AcademicPrograms a
+          JOIN Division d ON a.DivisionName = d.DivisionName
+          WHERE a.DivisionName = ? AND a.AcademicPrograms = ?`,
+      [order.division, order.program]
+    );
+
+    const oldData = oldRows[0]; // the current row in DB
+
+    const [oldDivisionRows] = await pool.query(
+    `SELECT Dean, PEN, Rep, Chair
+    FROM Division
+    WHERE DivisionName = ?`,
+    [order.division]
+  );
+    const oldDivisionData = oldDivisionRows[0];
+
+
+
+
+    // A helper list of fields we want to track
+    // const fieldsToCompare = ["Dean", "Pen", "Rep", "Chair", "Payees", "Paid", "Report", "Notes"];
+
+    // for (const field of fieldsToCompare) {
+    //   const oldValue = oldData[field]; 
+    //   let newValue;
+
+    //   if (field === "Paid") {
+    //     newValue = order.paid === "Yes" ? 1 : 0;
+    //   } else if (field === "Report") {
+    //     newValue = order.report === "Yes" ? 1 : 0;
+    //   } else {
+    //     newValue = order[field.toLowerCase()];
+    //   }
+
+    //   if (oldValue != newValue) {
+    //     await pool.query(
+    //       `INSERT INTO RecentChanges 
+    //        (ProgramID, DivisionName, ProgramName, FieldName, OldValue, NewValue, ChangedAt)
+    //        VALUES (?, ?, ?, ?, ?, ?, NOW())`,
+    //       [
+    //         oldData.ProgramID,
+    //         order.division,
+    //         order.program,
+    //         field,
+    //         oldValue,
+    //         newValue,
+    //       ]
+    //     );
+    //   }
+    // }
+
+    // ------------------------------------
+
+  const fieldsToCompare = ["Dean", "PEN", "Rep", "Chair", "Payees", "Paid", "Report", "Notes"];
+
+for (const field of fieldsToCompare) {
+  let oldValue, newValue;
+
+  if (["Dean", "PEN", "Rep", "Chair"].includes(field)) {
+    oldValue = oldDivisionData[field];        // Division fields
+    newValue = order[field.toLowerCase()];
+  } else if (field === "Paid") {
+    oldValue = oldData.Paid;
+    newValue = order.paid === "Yes" ? 1 : 0;
+  } else if (field === "Report") {
+    oldValue = oldData.Report;
+    newValue = order.report === "Yes" ? 1 : 0;
+  } else {
+    oldValue = oldData[field];
+    newValue = order[field.toLowerCase()];
+  }
+
+  if (oldValue != newValue) {
+    await pool.query(
+      `INSERT INTO RecentChanges 
+       (ProgramID, DivisionName, ProgramName, FieldName, OldValue, NewValue, ChangedAt)
+       VALUES (?, ?, ?, ?, ?, ?, NOW())`,
+      [
+        oldData.ProgramID,
+        order.division,
+        order.program,
+        field,
+        oldValue,
+        newValue,
+      ]
+    );
+  }
+}
+
+
+    // --------------------------
+
+    // Placeholder Query
     await pool.query(
       `UPDATE AcademicPrograms
          SET
@@ -314,7 +500,7 @@ app.post("/submit-order", async (req, res) => {
          WHERE DivisionName = ?
          AND AcademicPrograms = ?`,
       [
-        order.payee,
+        order.payees,
         order.paid == "Yes" ? 1 : 0,
         order.report == "Yes" ? 1 : 0,
         order.notes,
@@ -324,24 +510,16 @@ app.post("/submit-order", async (req, res) => {
       ]
     );
 
-    // Add order to array
-    // orders[order.division] = {
-    //   Dean: order.dean,
-    //   PEN: order.PEN,
-    //   Rep: order.Rep,
-    //   Chair: order.Chair,
-    //   AcademicProgram: order.program,
-    //   Payees: order.payee, // add this if you have a payee field in your form
-    //   Paid: order.paid,
-    //   Report: order.report,
-    //   Notes: order.notes,
-    //   UnderReview: order.underReview ? true : false
+    // Update the Division table with the new values
+    await pool.query(
+      `UPDATE Division
+        SET Dean = ?, PEN = ?, Rep = ?, Chair = ?
+        WHERE DivisionName = ?`,
+      [order.dean, order.pen, order.rep, order.chair, order.division]
+    );
 
-    // };
-    // console.log(orders);
 
-    // Send user to confirmation page
-    //res.render('confirmation', { order });
+
 
     // Direct user back to summary page(pass success indicator as URL parameter)
     res.redirect("/?success=true");
@@ -368,11 +546,11 @@ app.post("/submit-order2", async (req, res) => {
         "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
       );
 
-      return res.render("admin", { 
-        orders, 
-        selectedDivision, 
-        success: false, 
-        programs 
+      return res.render("admin", {
+        orders,
+        selectedDivision,
+        success: false,
+        programs,
       });
     }
 
@@ -390,19 +568,24 @@ app.post("/submit-order2", async (req, res) => {
       [selectedDivision]
     );
 
-    res.render("admin", { 
-      orders, 
-      selectedDivision, 
-      success: false, 
-      programs 
+    res.render("admin", {
+      orders,
+      selectedDivision,
+      success: false,
+      programs,
     });
-
   } catch (err) {
     console.error("Database error:", err);
     res.status(500).send("Database error: " + err.message);
   }
 });
 
+app.get("/recent-changes", async (req, res) => {
+  const [changes] = await pool.query(
+    "SELECT * FROM RecentChanges ORDER BY ChangedAt DESC LIMIT 100"
+  );
+  res.render("recentChanges", { changes });
+});
 
 // app.get('/test', async (req, res) => {
 //   try {
