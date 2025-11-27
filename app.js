@@ -240,21 +240,21 @@ app.get("/form", async (req, res) => {
   }
 });
 
-// Route to under review page
-app.get("/under-review", async (req, res) => {
-  try {
-    //DB query
-    const [programs] = await pool.query(
-      "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
-    );
-    // Send programs to EJS
+// // Route to under review page
+// app.get("/under-review", async (req, res) => {
+//   try {
+//     //DB query
+//     const [programs] = await pool.query(
+//       "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
+//     );
+//     // Send programs to EJS
 
-    res.render("underReview", { programs }); // temp placeholder
-  } catch (err) {
-    console.error("Error loading Under Review page:", err);
-    res.status(500).send("Error loading Under Review page.");
-  }
-});
+//     res.render("underReview", { programs }); // temp placeholder
+//   } catch (err) {
+//     console.error("Error loading Under Review page:", err);
+//     res.status(500).send("Error loading Under Review page.");
+//   }
+// });
 
 // Prefilled form from Under Review list
 app.get("/form-from-under-review", async (req, res) => {
@@ -351,32 +351,58 @@ app.post("/submit-order", async (req, res) => {
   }
 });
 
-// Define an "submit-order2" route (admin.ejs)
+// Define a "submit-order2" route (admin.ejs)
 app.post("/submit-order2", async (req, res) => {
   const selectedDivision = req.body.division || "none";
   let [orders] = [];
 
-  // if user selects all, the data will call all info
   try {
-    if (selectedDivision == "*") {
+    // if user selects all, the data will call all info
+    if (selectedDivision === "*") {
       [orders] = await pool.query(
         "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;"
       );
-    }
-    // call info only for the selected division
-    else {
-      [orders] = await pool.query(
-        "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName WHERE a.DivisionName = ?;",
-        [selectedDivision]
+
+      // Get ALL programs under review for ALL divisions
+      const [programs] = await pool.query(
+        "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
       );
+
+      return res.render("admin", { 
+        orders, 
+        selectedDivision, 
+        success: false, 
+        programs 
+      });
     }
 
-    res.render("admin", { orders, selectedDivision, success: false });
+    // call info only for the selected division
+    [orders] = await pool.query(
+      "SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName WHERE a.DivisionName = ?;",
+      [selectedDivision]
+    );
+
+    // Now get ONLY the under-review programs for that specific division
+    const [programs] = await pool.query(
+      `SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview
+       FROM AcademicPrograms
+       WHERE UnderReview = 1 AND DivisionName = ?`,
+      [selectedDivision]
+    );
+
+    res.render("admin", { 
+      orders, 
+      selectedDivision, 
+      success: false, 
+      programs 
+    });
+
   } catch (err) {
     console.error("Database error:", err);
     res.status(500).send("Database error: " + err.message);
   }
 });
+
 
 // app.get('/test', async (req, res) => {
 //   try {
