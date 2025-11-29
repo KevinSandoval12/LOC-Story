@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Green River Document Modifier</title>
+    <title>Green River LOC</title>
     <link rel="icon" href="/img/GRC_Logo_White.png" />
 
     <!-- style sheet -->
@@ -34,10 +34,94 @@
     <header>
       <div>
         <img src="/img/GRC_Logo_White.png" alt="Green River Logo" />
-        <h1>Admin</h1>
+        <h1>Green River LOC</h1>
       </div>
     </header>
     <main>
+      <% if (success) { %>
+      <div class="success-banner">
+        <i class="fa-solid fa-circle-check"></i>
+        Program updated successfully!
+      </div>
+      <% } %>
+      <!-- Under Review Aside Section Goes Here -->
+      <aside id="under-review-aside">
+        <h2 class="">Under Review</h2>
+
+        <% if (programs.length === 0) { %>
+        <p class="empty">No programs are currently under review.</p>
+        <% } else { %>
+        <ul id="underReviewList">
+          <% programs.forEach(p => { %>
+          <li>
+            <a
+              class="underReviewLink"
+              href="/form-from-under-review?programID=<%= p.ProgramID %>"
+            >
+              <strong><%= p.AcademicPrograms %></strong>
+              <br />
+              <span class="division"><%= p.DivisionName %></span>
+            </a>
+          </li>
+          <% }) %>
+        </ul>
+        <% } %>
+      </aside>
+
+      <!-- Recent Changes Aside -->
+<!-- Recent Changes Aside -->
+<aside id="recent-changes">
+  <h2>Recent Changes</h2>
+
+  <% if (!groupedRecent || groupedRecent.length === 0) { %>
+    <p class="empty">No recent changes.</p>
+  <% } else { %>
+<div id="recent-change-grid">
+
+  <% groupedRecent.forEach(group => { %>
+    <div class="change-group">
+
+      <h3><%= group.division %>, <%= group.program %></h3>
+
+      <ol>
+        <% group.items.forEach(item => { 
+            let displayOld = item.oldVal;
+            let displayNew = item.newVal;
+
+            if (item.field === "Paid" || item.field === "Report") {
+                displayOld = (item.oldVal == 1) ? "Yes" : "No";
+                displayNew = (item.newVal == 1) ? "Yes" : "No";
+            }
+        %>
+
+          <li>
+            <strong><%= item.field %> changed to</strong>
+            “<%= displayNew %>”
+            <span class="old-val"><strong>From:</strong> “<%= displayOld %>” %>
+              <div class="change-date">
+                Date: 
+                <%= new Date(item.changedAt).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric"
+                }) %>
+              </div>
+            </span>
+          </li>
+
+        <% }); %>
+      </ol>
+
+    </div>
+  <% }); %>
+</div>
+
+  <% } %>
+
+  <a id="recent-change-button" href="/recent-changes" class="view-all">View Change History</a>
+</aside>
+
+
       <div class="admin-card">
         <h2 class="admin-title">
           LOC Summary <%= new Date().getFullYear() %>-<%= new
@@ -56,6 +140,7 @@
                 <th>Payee(s)</th>
                 <th>Paid</th>
                 <th>Report</th>
+                <th>Under Review</th>
                 <th>Notes</th>
               </tr>
             </thead>
@@ -68,9 +153,15 @@
                 <td><%= contacts.Rep %></td>
                 <td><%= contacts.Chair %></td>
                 <td><%= contacts.AcademicPrograms %></td>
-                <td><%= contacts.Payees %></td>
+                <td><%= contacts.payees %></td>
                 <td><%= contacts.Paid == 1 ? "Yes" : "No" %></td>
                 <td><%= contacts.Report == 1 ? "Yes" : "No" %></td>
+                <td>
+                  <% if (contacts.UnderReview == 1 || contacts.UnderReview ===
+                  true) { %>
+                  <span class="under-review-badge">Under Review</span>
+                  <% } %>
+                </td>
                 <td><%= contacts.Notes %></td>
               </tr>
               <% }); %>
@@ -79,13 +170,19 @@
         </div>
       </div>
       <div class="row-buttons">
-        <a href="/" id="back-to-form-link">
-          <i class="fa-solid fa-arrow-left"></i> Return to Division Form
+        <a class="btn" href="/form" id="back-to-form-link">
+          <i class="fa-solid fa-arrow-left"></i> Edit Division Form
         </a>
 
         <button onclick="toggleFormDisplay()" class="btn" id="editBtn">
           Edit Data Table
         </button>
+
+        <% if (selectedDivision && selectedDivision !== "none") { %>
+        <a href="/" class="btn" id="resetSummaryBtn">
+          <i class="fa-solid fa-rotate-left"></i> Return to Full Summary
+        </a>
+        <% } %>
       </div>
       <!-- Division Selector -->
       <section id="admin">
@@ -94,7 +191,11 @@
             <section id="controls">
               <div class="selectors">
                 <label for="division">Division:</label>
-                <select id="division" name="division" onchange="this.form.submit()">
+                <select
+                  id="division"
+                  name="division"
+                  onchange="this.form.submit()"
+                >
                   <option value="none">Select a Division</option>
                   <option value="FineArt">Fine Arts</option>
                   <option value="Humanities">Humanities</option>
@@ -106,7 +207,6 @@
                   <option value="Trades">Trades</option>
                   <option value="*">All</option>
                 </select>
-
               </div>
             </section>
           </div>
@@ -116,6 +216,28 @@
 
     <script defer>
       let table = new DataTable("#order-table");
+    </script>
+
+    <script>
+      // If the URL contains ?success=true, remove it without reloading the page
+      if (window.location.search.includes("success=true")) {
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
+      }
+    </script>
+
+    <script>
+      // Auto-hide the success banner after 3 seconds
+      const banner = document.querySelector(".success-banner");
+      if (banner) {
+        setTimeout(() => {
+          banner.style.opacity = "0";
+          banner.style.transition = "opacity 0.5s ease";
+        }, 3000);
+      }
     </script>
   </body>
 </html>

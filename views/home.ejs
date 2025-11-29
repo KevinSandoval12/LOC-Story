@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Green River Document Modifier</title>
+    <title>Green River LOC</title>
     <link rel="icon" href="/img/GRC_Logo_White.png">
     <!-- style sheet -->
     <link rel="stylesheet" href="/styles/styles.css" />
@@ -14,9 +14,15 @@
       window.orders = <%- JSON.stringify(orders) %>;
     </script>
 
+    <!-- Dont touch this either, it works, This grabs prefill data from the db and loads the form from under review -->
+    <script>
+      window.programData = <%- JSON.stringify(programData || null) %>;
+    </script>
+
+
     <!-- Javascript link -->
     <script src="/js/LOC.js" defer></script>
-    <!-- <script src="/js/Story.js" defer></script> -->
+    <!-- <script src="/js/Story.js" defer></scrip> -->
   </head>
   <body>
     <header>
@@ -61,25 +67,29 @@
                     <!-- Javascript -->
                   </select>
                 </div>
+
+                <!-- hidden ProgramID input -->
+                <input type="hidden" id="ProgramID" name="ProgramID"/>
+
                 <!-- Pen -->
                 <div class="pen">
                   <span id="err-PEN" class="error"> PEN Contact cannot be empty!</span>
-                  <label for="PEN">PEN Contact:<input type="text" id="PEN" name="PEN" /></label>
+                  <label for="PEN">PEN Contact:<input type="text" id="PEN" name="pen" /></label>
                 </div>
                 <!-- LOC Rep -->
                 <div class="rep">
                   <span id="err-Rep" class="error"> LOC Rep cannot be empty!</span>
-                  <label for="Rep">LOC Rep:<input type="text" id="Rep" name="Rep" /></label>
+                  <label for="Rep">LOC Rep:<input type="text" id="Rep" name="rep" /></label>
                 </div>
                 <!-- Chair -->
                 <div class="chair">
                   <span id="err-Chair" class="error"> Chair cannot be empty!</span>
-                  <label for="Chair">Chair:<input type="text" id="Chair" name="Chair" /></label>
+                  <label for="Chair">Chair:<input type="text" id="Chair" name="chair" /></label>
                 </div>
                 <!-- Payee(s) -->
                 <div class="payee">
                   <span id="err-Payee" class="error"> Payee(s) cannot be empty!</span>
-                  <label for="payee">Payee(s):<input type="text" id="payee" name="payee" /></label>
+                  <label for="payee">Payee(s):<input type="text" id="payee" name="payees" /></label>
                 </div>
                 <!-- Has Been Paid (Yes/No) -->
                 <div class="paid">
@@ -101,6 +111,11 @@
                     <option value="No">No</option>
                   </select>
                 </div>
+                <!-- Under Review -->
+                <div class="under-review">
+                  <label for="underReview">Under Review:</label>
+                    <input type="checkbox" id="underReview" name="underReview" />
+                </div>
                 <!-- Notes -->
                 <div class="notes">
                   <span id="err-Notes" class="error"> Notes cannot be empty!</span>
@@ -117,7 +132,7 @@
 
           <!-- View Summary Link -->
            <div class="view-summary">
-            <a href="/admin" id="view-summary-link">
+            <a href="/" id="view-summary-link">
               View Summary
             </a>
            </div>
