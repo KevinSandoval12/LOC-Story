@@ -451,39 +451,39 @@ app.post("/submit-order", async (req, res) => {
 
   const fieldsToCompare = ["Dean", "PEN", "Rep", "Chair", "Payees", "Paid", "Report", "Notes"];
 
-for (const field of fieldsToCompare) {
-  let oldValue, newValue;
+  for (const field of fieldsToCompare) {
+    let oldValue, newValue;
 
-  if (["Dean", "PEN", "Rep", "Chair"].includes(field)) {
-    oldValue = oldDivisionData[field];        // Division fields
-    newValue = order[field.toLowerCase()];
-  } else if (field === "Paid") {
-    oldValue = oldData.Paid;
-    newValue = order.paid === "Yes" ? 1 : 0;
-  } else if (field === "Report") {
-    oldValue = oldData.Report;
-    newValue = order.report === "Yes" ? 1 : 0;
-  } else {
-    oldValue = oldData[field];
-    newValue = order[field.toLowerCase()];
-  }
+    if (["Dean", "PEN", "Rep", "Chair"].includes(field)) {
+      oldValue = oldDivisionData[field];        // Division fields
+      newValue = order[field.toLowerCase()];
+    } else if (field === "Paid") {
+      oldValue = oldData.Paid;
+      newValue = order.paid === "Yes" ? 1 : 0;
+    } else if (field === "Report") {
+      oldValue = oldData.Report;
+      newValue = order.report === "Yes" ? 1 : 0;
+    } else {
+      oldValue = oldData[field];
+      newValue = order[field.toLowerCase()];
+    }
 
-  if (oldValue != newValue) {
-    await pool.query(
-      `INSERT INTO RecentChanges 
-       (ProgramID, DivisionName, ProgramName, FieldName, OldValue, NewValue, ChangedAt)
-       VALUES (?, ?, ?, ?, ?, ?, NOW())`,
-      [
-        oldData.ProgramID,
-        order.division,
-        order.program,
-        field,
-        oldValue,
-        newValue,
-      ]
-    );
+    if (oldValue != newValue) {
+      await pool.query(
+        `INSERT INTO RecentChanges 
+        (ProgramID, DivisionName, ProgramName, FieldName, OldValue, NewValue, ChangedAt)
+        VALUES (?, ?, ?, ?, ?, ?, NOW())`,
+        [
+          oldData.ProgramID,
+          order.division,
+          order.program,
+          field,
+          oldValue,
+          newValue,
+        ]
+      );
+    }
   }
-}
 
 
     // --------------------------

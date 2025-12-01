@@ -3,9 +3,9 @@ const programData = window.programData || null;
 
 // This grabs orders data from app.js to LOC.js
 const orders = window.orders;
-console.log(orders);
-console.log(orders[0]);
-console.log(orders[0].Dean);
+// console.log(orders);
+// console.log(orders[0]);
+// console.log(orders[0].Dean);
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get elements
@@ -38,18 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
       programSelect.value = programData.AcademicPrograms;
 
       // Prefill the Division info
-      document.getElementById("dean").value = programData.dean || "";
-      document.getElementById("PEN").value = programData.pen || "";
-      document.getElementById("Rep").value = programData.rep || "";
-      document.getElementById("Chair").value = programData.chair || "";
+      document.getElementById("dean").value = programData.Dean || "";
+      document.getElementById("PEN").value = programData.Pen || "";
+      document.getElementById("Rep").value = programData.Rep || "";
+      document.getElementById("Chair").value = programData.Chair || "";
 
       prefillAcademicData(programData.AcademicPrograms);
 
       // 5. Prefill Academic Program info
-      document.getElementById("payee").value = programData.payees || "";
-      document.getElementById("notes").value = programData.notes || "";
-      document.getElementById("paid").value = programData.paid ? "Yes" : "No";
-      document.getElementById("report").value = programData.report
+      // setProgramsOptions(FineArt);
+      document.getElementById("payee").value = programData.Payees || "";
+      document.getElementById("notes").value = programData.Notes || "";
+      document.getElementById("paid").value = programData.Paid ? "Yes" : "No";
+      document.getElementById("report").value = programData.Report
         ? "Yes"
         : "No";
       document.getElementById("underReview").checked = programData.UnderReview
