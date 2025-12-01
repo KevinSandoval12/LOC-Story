@@ -551,6 +551,7 @@ app.post("/submit-order2", async (req, res) => {
         selectedDivision,
         success: false,
         programs,
+        groupedRecent: []
       });
     }
 
@@ -573,6 +574,7 @@ app.post("/submit-order2", async (req, res) => {
       selectedDivision,
       success: false,
       programs,
+      groupedRecent: []
     });
   } catch (err) {
     console.error("Database error:", err);
