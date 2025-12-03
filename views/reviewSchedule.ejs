@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review Schedule</title>
+
+  <!-- New dedicated stylesheet for this page -->
+  <link rel="stylesheet" href="/styles/formStyles.css" />
+
+  <!-- Using formStyles.css as well -->
+  <link rel="stylesheet" href="/styles/reviewSchedule.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <img src="/img/GRC_Logo_White.png" alt="Green River Logo" />
+      <h1>Review Schedule</h1>
+    </div>
+  </header>
+
+  <main id="review-layout">
+
+    <!-- LEFT SIDEBAR: Year Selector -->
+    <aside id="year-sidebar">
+      <h2>Select Year</h2>
+
+      <ul>
+        <% availableYears.forEach(yr => { %>
+          <li>
+            <a 
+              href="/review-schedule-view?year=<%= yr %>"
+              class="<%= yr === selectedYear ? 'active-year' : '' %>"
+            >
+              <%= yr %>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </aside>
+
+    <!-- RIGHT COLUMN: Programs List -->
+    <section id="program-list">
+      <% if (!selectedYear) { %>
+
+        <p>Please select a year from the left.</p>
+
+      <% } else if (programs.length === 0) { %>
+
+        <h2>No programs scheduled for <%= selectedYear %>.</h2>
+
+      <% } else { %>
+
+        <h2>Programs Under Review for <%= selectedYear %></h2>
+
+        <ul>
+          <% programs.forEach(p => { %>
+            <li>
+              <strong><%= p.AcademicPrograms %></strong>
+              — <%= p.DivisionName %>
+            </li>
+          <% }) %>
+        </ul>
+
+      <% } %>
+    </section>
+
+  </main>
+</body>
+</html>
+
+

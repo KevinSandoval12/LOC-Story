@@ -1,0 +1,77 @@
+/* Main layout: sidebar + content */
+#review-layout {
+  display: flex;
+  padding: 40px;
+  gap: 40px;
+  background-color: #f4f8f2;
+  min-height: 80vh;
+}
+
+/* Sidebar container */
+#year-sidebar {
+  width: 220px;
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar heading */
+#year-sidebar h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #146414;
+}
+
+/* Year list */
+#year-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#year-sidebar li {
+  margin-bottom: 12px;
+}
+
+/* Year links */
+#year-sidebar a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+}
+
+#year-sidebar a:hover {
+  color: #0e7b0e;
+}
+
+/* Highlight selected year */
+#year-sidebar a.active-year {
+  font-weight: bold;
+  color: #0e7b0e;
+}
+
+/* Program list container */
+#program-list {
+  flex-grow: 1;
+}
+
+/* Programs heading */
+#program-list h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #146414;
+}
+
+/* Program items */
+#program-list ul {
+  list-style: disc;
+  padding-left: 40px;
+}
+
+#program-list li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}

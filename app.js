@@ -589,6 +589,96 @@ app.get("/recent-changes", async (req, res) => {
   res.render("recentChanges", { changes });
 });
 
+// Route: Get programs by review year (JSON only for now)
+app.get("/review-schedule", async (req, res) => {
+  const year = req.query.year || null;
+
+  try {
+    // Get distinct years available in the schedule (for later use in the UI)
+    const [yearsRows] = await pool.query("SELECT DISTINCT ReviewYear FROM ReviewSchedule ORDER BY ReviewYear;");
+
+    // Shape the years into an array ["2028-29, "2029-30"]
+    const years = yearsRows.map(r => r.ReviewYear);
+
+    let programs = [];
+
+    if (year) {
+      // If a specific year is requested, get programs scheduled for that year
+      const [rows] = await pool.query(
+        `
+        SELECT
+          rs.ReviewYear,
+          ap.ProgramID,
+          ap.AcademicPrograms,
+          ap.DivisionName
+        FROM ReviewSchedule rs
+        JOIN AcademicPrograms ap ON rs.ProgramID = ap.ProgramID
+        WHERE rs.ReviewYear = ?
+        ORDER BY ap.DivisionName, ap.AcademicPrograms;
+        `,
+        [year]
+      );
+
+      programs = rows;
+    }
+    res.json({
+      selectedYear: year,
+      availableYears: years,
+      programs,
+    });
+  } catch (err) {
+    console.error("Error in /review-schedule:", err);
+    res.status(500).send("Database error" + err.message);
+  }
+});
+
+// Route: Render the Review Schedule page (EJS)
+app.get("/review-schedule-view", async (req, res) => {
+  const year = req.query.year || null;
+
+  try {
+    // 1. Get all available years
+    const [yearsRows] = await pool.query(
+      "SELECT DISTINCT ReviewYear FROM ReviewSchedule ORDER BY ReviewYear;"
+    );
+    const availableYears = yearsRows.map(r => r.ReviewYear);
+
+    // 2. If a year is selected, get programs
+    let programs = [];
+
+    if (year) {
+      const [rows] = await pool.query(
+        `
+        SELECT 
+          rs.ReviewYear,
+          ap.ProgramID,
+          ap.AcademicPrograms,
+          ap.DivisionName
+        FROM ReviewSchedule rs
+        JOIN AcademicPrograms ap ON rs.ProgramID = ap.ProgramID
+        WHERE rs.ReviewYear = ?
+        ORDER BY ap.DivisionName, ap.AcademicPrograms;
+        `,
+        [year]
+      );
+
+      programs = rows;
+    }
+
+    // 3. Render the EJS page (we will create this next step)
+    res.render("reviewSchedule", {
+      availableYears,
+      selectedYear: year,
+      programs
+    });
+
+  } catch (err) {
+    console.error("Error in /review-schedule-view:", err);
+    res.status(500).send("Database error: " + err.message);
+  }
+});
+
+
 // app.get('/test', async (req, res) => {
 //   try {
 //     const [orders] = await pool.query('SELECT * FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;');
