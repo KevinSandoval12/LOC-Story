@@ -271,7 +271,7 @@ app.get("/", async (req, res) => {
       (a, b) => new Date(b.latest) - new Date(a.latest)
     );
 
-    res.render("admin", {
+    res.render("summary", {
       orders,
       selectedDivision: "none",
       success,
@@ -322,7 +322,7 @@ app.get("/form", async (req, res) => {
     );
     const selectedDivision = req.query.division || "none";
 
-    res.render("home", { orders, programData: null });
+    res.render("form", { orders, programData: null });
   } catch (err) {
     console.error("Database error:", err);
     res.status(500).send("Database error: " + err.message);
@@ -373,7 +373,7 @@ app.get("/form-from-under-review", async (req, res) => {
        JOIN Division d ON a.DivisionName = d.DivisionName`
     );
 
-    res.render("home", {
+    res.render("form", {
       orders, //js pulls from programData
       programData,
     });
@@ -529,7 +529,7 @@ app.post("/submit-order", async (req, res) => {
   }
 });
 
-// Define a "submit-order2" route (admin.ejs)
+// Define a "submit-order2" route (summary.ejs)
 app.post("/submit-order2", async (req, res) => {
   const selectedDivision = req.body.division || "none";
   let [orders] = [];
@@ -546,7 +546,7 @@ app.post("/submit-order2", async (req, res) => {
         "SELECT ProgramID, DivisionName, AcademicPrograms, UnderReview FROM AcademicPrograms WHERE UnderReview = 1"
       );
 
-      return res.render("admin", {
+      return res.render("summary", {
         orders,
         selectedDivision,
         success: false,
@@ -569,7 +569,7 @@ app.post("/submit-order2", async (req, res) => {
       [selectedDivision]
     );
 
-    res.render("admin", {
+    res.render("summary", {
       orders,
       selectedDivision,
       success: false,
