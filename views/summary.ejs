@@ -68,7 +68,6 @@
         <% } %>
       </aside>
 
-      <!-- Recent Changes Aside -->
 <!-- Recent Changes Aside -->
 <aside id="recent-changes">
   <h2>Recent Changes</h2>
@@ -121,6 +120,10 @@
   <a id="recent-change-button" href="/recent-changes" class="view-all">View Change History</a>
 </aside>
 
+      <a class="btn" href="/form" id="back-to-form-link">
+          <i class="fa-solid fa-arrow-left"></i> Edit Division Form
+      </a>
+
 
       <div class="admin-card">
         <h2 class="admin-title">
@@ -167,51 +170,51 @@
               <% }); %>
             </tbody>
           </table>
+
+          <!-- Division Selector -->
+          <section id="admin">
+            <form id="adminForm" action="submit-order2" method="post">
+              <div id="formContainer">
+                <section id="controls">
+                  <div class="selectors">
+                    <label for="division">Division:</label>
+                    <select
+                      id="division"
+                      name="division"
+                      onchange="this.form.submit()"
+                    >
+                      <option value="none">Select a Division</option>
+                      <option value="FineArt">Fine Arts</option>
+                      <option value="Humanities">Humanities</option>
+                      <option value="SocialScience">Social Science</option>
+                      <option value="English">English</option>
+                      <option value="Science">Science</option>
+                      <option value="Technology">Technology</option>
+                      <option value="HealthScience">Health Science</option>
+                      <option value="Trades">Trades</option>
+                      <option value="*">All</option>
+                    </select>
+                  </div>
+                </section>
+              </div>
+            </form>
+          </section>
+          <!-- Filter Table Button -->
+          <div class="row-buttons">
+          <button onclick="toggleFormDisplay()" class="btn" id="editBtn">
+            Edit Data Table
+          </button>
+
+          <% if (selectedDivision && selectedDivision !== "none") { %>
+          <a href="/" class="btn" id="resetSummaryBtn">
+            <i class="fa-solid fa-rotate-left"></i> Return to Full Summary
+          </a>
+          <% } %>
+          </div>
         </div>
       </div>
-      <div class="row-buttons">
-        <a class="btn" href="/form" id="back-to-form-link">
-          <i class="fa-solid fa-arrow-left"></i> Edit Division Form
-        </a>
 
-        <button onclick="toggleFormDisplay()" class="btn" id="editBtn">
-          Edit Data Table
-        </button>
-
-        <% if (selectedDivision && selectedDivision !== "none") { %>
-        <a href="/" class="btn" id="resetSummaryBtn">
-          <i class="fa-solid fa-rotate-left"></i> Return to Full Summary
-        </a>
-        <% } %>
-      </div>
-      <!-- Division Selector -->
-      <section id="admin">
-        <form id="adminForm" action="submit-order2" method="post">
-          <div id="formContainer">
-            <section id="controls">
-              <div class="selectors">
-                <label for="division">Division:</label>
-                <select
-                  id="division"
-                  name="division"
-                  onchange="this.form.submit()"
-                >
-                  <option value="none">Select a Division</option>
-                  <option value="FineArt">Fine Arts</option>
-                  <option value="Humanities">Humanities</option>
-                  <option value="SocialScience">Social Science</option>
-                  <option value="English">English</option>
-                  <option value="Science">Science</option>
-                  <option value="Technology">Technology</option>
-                  <option value="HealthScience">Health Science</option>
-                  <option value="Trades">Trades</option>
-                  <option value="*">All</option>
-                </select>
-              </div>
-            </section>
-          </div>
-        </form>
-      </section>
+      
     </main>
 
     <script defer>
