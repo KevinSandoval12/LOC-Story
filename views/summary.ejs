@@ -44,81 +44,98 @@
         Program updated successfully!
       </div>
       <% } %>
-      <!-- Under Review Aside Section Goes Here -->
-      <aside id="under-review-aside">
-        <h2 class="">Under Review</h2>
 
-        <% if (programs.length === 0) { %>
-        <p class="empty">No programs are currently under review.</p>
-        <% } else { %>
-        <ul id="underReviewList">
-          <% programs.forEach(p => { %>
-          <li>
-            <a
-              class="underReviewLink"
-              href="/form-from-under-review?programID=<%= p.ProgramID %>"
-            >
-              <strong><%= p.AcademicPrograms %></strong>
-              <br />
-              <span class="division"><%= p.DivisionName %></span>
-            </a>
-          </li>
-          <% }) %>
-        </ul>
-        <% } %>
-      </aside>
-
-<!-- Recent Changes Aside -->
-<aside id="recent-changes">
-  <h2>Recent Changes</h2>
-
-  <% if (!groupedRecent || groupedRecent.length === 0) { %>
-    <p class="empty">No recent changes.</p>
-  <% } else { %>
-<div id="recent-change-grid">
-
-  <% groupedRecent.forEach(group => { %>
-    <div class="change-group">
-
-      <h3><%= group.division %>, <%= group.program %></h3>
-
-      <ol>
-        <% group.items.forEach(item => { 
-            let displayOld = item.oldVal;
-            let displayNew = item.newVal;
-
-            if (item.field === "Paid" || item.field === "Report") {
-                displayOld = (item.oldVal == 1) ? "Yes" : "No";
-                displayNew = (item.newVal == 1) ? "Yes" : "No";
-            }
-        %>
-
-          <li>
-            <strong><%= item.field %> changed to</strong>
-            “<%= displayNew %>”
-            <span class="old-val"><strong>From:</strong> “<%= displayOld %>” %>
-              <div class="change-date">
-                Date: 
-                <%= new Date(item.changedAt).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric"
-                }) %>
+      <!-- Aside Row -->
+      <section id="aside-row">
+        <!-- Under Review Aside Section Goes Here -->
+        <aside id="under-review-aside">
+          
+          
+          <div class="aside-collapse-container">
+            <input type="checkbox" id="aside-1">
+              <label for="aside-1">
+                <h2 class="aside-title">Under Review</h2>
+                <!-- <img src="/img/dropdown-arrow.webp" alt="dropdown arrow"> -->
+              </label>
+                <div class="collapse-text">
+                  <% if (programs.length === 0) { %>
+                  <p class="empty">No programs are currently under review.</p>
+                  <% } else { %>
+                  <ul id="underReviewList">
+                    <% programs.forEach(p => { %>
+                    <li>
+                      <a
+                        class="underReviewLink"
+                        href="/form-from-under-review?programID=<%= p.ProgramID %>"
+                      >
+                        <strong><%= p.AcademicPrograms %></strong>
+                        <br />
+                        <span class="division"><%= p.DivisionName %></span>
+                      </a>
+                    </li>
+                    <% }) %>
+                  </ul>
+                  <% } %>
+                </div>
               </div>
-            </span>
-          </li>
-
-        <% }); %>
-      </ol>
-
-    </div>
-  <% }); %>
-</div>
-
-  <% } %>
-
-  <a id="recent-change-button" href="/recent-changes" class="view-all">View Change History</a>
-</aside>
+        </aside>
+  
+  <!-- Recent Changes Aside -->
+  <aside id="recent-changes">
+    <div class="aside-collapse-container">
+      <input type="checkbox" id="aside-2">
+        <label for="aside-2"><h2 class="aside-title">Recent Changes</h2></label>
+          <div class="collapse-text">
+            <% if (!groupedRecent || groupedRecent.length === 0) { %>
+              <p class="empty">No recent changes.</p>
+            <% } else { %>
+          <div id="recent-change-grid">
+          
+            <% groupedRecent.forEach(group => { %>
+              <div class="change-group">
+          
+                <h3><%= group.division %>, <%= group.program %></h3>
+          
+                <ol>
+                  <% group.items.forEach(item => { 
+                      let displayOld = item.oldVal;
+                      let displayNew = item.newVal;
+          
+                      if (item.field === "Paid" || item.field === "Report") {
+                          displayOld = (item.oldVal == 1) ? "Yes" : "No";
+                          displayNew = (item.newVal == 1) ? "Yes" : "No";
+                      }
+                  %>
+          
+                    <li>
+                      <strong><%= item.field %> changed to</strong>
+                      “<%= displayNew %>”
+                      <span class="old-val"><strong>From:</strong> “<%= displayOld %>” %>
+                        <div class="change-date">
+                          Date: 
+                          <%= new Date(item.changedAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric"
+                          }) %>
+                        </div>
+                      </span>
+                    </li>
+          
+                  <% }); %>
+                </ol>
+          
+              </div>
+            <% }); %>
+          </div>
+          
+            <% } %>
+          
+            <a id="recent-change-button" href="/recent-changes" class="view-all">View Change History</a>
+          </div>
+        </div>
+      </aside>
+      </section>
 
       <a class="btn" href="/form" id="back-to-form-link">
           <i class="fa-solid fa-arrow-left"></i> Edit Division Form
