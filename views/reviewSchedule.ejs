@@ -99,10 +99,8 @@
                   <%= programs.some(p => p.AcademicPrograms === order.AcademicPrograms) ? "Yes" : "No" %>
                 </td>
                 <td>
-                  <a href="/form-from-under-review?programID=<%= 
-                    (programs.find(p => p.AcademicPrograms === order.AcademicPrograms) || {}).ProgramID %>">
-                    Edit/View
-                  </a>
+                  <a href="/form-from-under-review?programID=<%= order.ProgramID%>"> edit</a>
+                  
                 </td>
               </tr>
             <% }) %>

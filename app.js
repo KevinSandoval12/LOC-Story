@@ -631,7 +631,7 @@ app.get("/review-schedule", async (req, res) => {
     res.status(500).send("Database error" + err.message);
   }
 });
-
+// http://localhost:3007/review-schedule-view
 // Route: Render the Review Schedule page (EJS)
 app.get("/review-schedule-view", async (req, res) => {
   const year = req.query.year || null;
@@ -641,7 +641,7 @@ app.get("/review-schedule-view", async (req, res) => {
     const [yearsRows] = await pool.query(
       "SELECT DISTINCT ReviewYear FROM ReviewSchedule ORDER BY ReviewYear;"
     );
-    const [orders] = await pool.query("SELECT d.DivisionName, AcademicPrograms FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;");
+    const [orders] = await pool.query("SELECT d.DivisionName, AcademicPrograms, a.ProgramID FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;");
     
     const availableYears = yearsRows.map(r => r.ReviewYear);
 
@@ -674,6 +674,13 @@ app.get("/review-schedule-view", async (req, res) => {
       programs,
       orders
     });
+    // TEST
+    // res.json({
+    //   availableYears,
+    //   selectedYear: year,
+    //   programs,
+    //   orders
+    // });
 
   } catch (err) {
     console.error("Error in /review-schedule-view:", err);
