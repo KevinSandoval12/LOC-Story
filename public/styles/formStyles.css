@@ -173,6 +173,8 @@ main.layout {
 #under-review-aside {
   margin: 0;
   margin-top: 1rem;
+    min-width: 50%;
+
 }
 
 #reviewScheduleBtn {
@@ -183,6 +185,8 @@ main.layout {
 #recent-changes {
   margin: 0;
   margin-top: 1rem;
+    min-width: 50%;
+
 }
 
 .aside-collapse-container input[type="checkbox"] {
@@ -264,7 +268,6 @@ aside {
   border-radius: 18px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   border: 1px solid #d4e5d8;
-  min-width: 50%;
   max-width: 700px;
   margin: 30px 0;
 }
