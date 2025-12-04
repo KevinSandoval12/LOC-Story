@@ -157,6 +157,70 @@ main.layout {
   box-shadow: #04240088 0.5px 1px 5px 1px;
 }
 
+
+/* Aside Row and Collapsing */
+#aside-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.aside-collapse-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* clickable bar */
+.aside-collapse-container label {
+  display: block;           /* keeps h2 centered */
+  position: relative;       /* for positioning the arrow relative to label */
+  text-align: center;       /* centers h2 text */
+  cursor: pointer;
+  padding-right: 40px;      /* space for the arrow */
+}
+
+/* arrow */
+.aside-collapse-container label:after {
+  content: "";
+  position: absolute;
+  top: 50%;                 
+  right: 10px;              
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-image: url(/img/dropdown-arrow.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+
+/* collapsible content */
+.collapse-text {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* expand when checkbox is checked */
+.aside-collapse-container input[type="checkbox"]:checked ~ .collapse-text {
+  max-height: 2000px;
+}
+
+/* rotate arrow when opened */
+.aside-collapse-container input[type="checkbox"]:checked + label:after {
+  transform: rotate(180deg);
+}
+
+.aside-title {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+
+
 /* Under Review Aside Bar */
 aside {
   background: #ffffff;
@@ -164,7 +228,7 @@ aside {
   border-radius: 18px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   border: 1px solid #d4e5d8;
-  max-width: 1500px;
+  max-width: 800px;
   margin: 30px auto;
 }
 
@@ -211,10 +275,6 @@ aside {
   color: #006225;
 }
 
-.old-val {
-  color: #1c6919;
-}
-
 #recent-change-button {
   display: flex;
   justify-self: center;
@@ -239,6 +299,8 @@ aside {
   margin-top: 2px;
   color: #888;
 }
+
+
 
 
 
