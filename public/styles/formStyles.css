@@ -191,16 +191,32 @@ main.layout {
 
 
 /* clickable bar */
-.aside-collapse-container label {
-  display: block;           /* keeps h2 centered */
-  position: relative;       /* for positioning the arrow relative to label */
-  text-align: center;       /* centers h2 text */
+/* .aside-collapse-container label {
+  display: block;           
+  position: relative;       
+  text-align: center;       
   cursor: pointer;
-  padding-right: 40px;      /* space for the arrow */
+  padding-right: 40px;     
+} */
+
+/* new */
+.aside-collapse-container label {
+  display: flex;
+ justify-content: center; 
+  text-align: center;
+  align-items: center;             /* vertically centers */
+  cursor: pointer;
+  padding-right: 10px;             /* optional spacing */
+}
+
+.aside-arrow {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
 }
 
 /* arrow */
-.aside-collapse-container label:after {
+/* .aside-collapse-container label:after {
   content: "";
   position: absolute;
   top: 50%;                 
@@ -208,11 +224,10 @@ main.layout {
   transform: translateY(-50%);
   width: 30px;
   height: 30px;
-  background-image: url(/img/dropdown-arrow.webp);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 0.3s ease;
-}
+} */
 
 
 /* collapsible content */
@@ -228,8 +243,8 @@ main.layout {
 }
 
 /* rotate arrow when opened */
-.aside-collapse-container > input[type="checkbox"]:checked + label:after {
-  transform: translateY(-50%) rotate(180deg);
+.aside-collapse-container > input[type="checkbox"]:checked + label .aside-arrow {
+  transform: translateY(20%) rotate(180deg);
 }
 
 .aside-title {
