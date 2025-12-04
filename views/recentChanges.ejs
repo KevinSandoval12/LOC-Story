@@ -20,46 +20,56 @@
     <script src="/js/admin.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
-
+    
     <!-- <script src="/js/Story.js" defer></script> -->
     <link
-      rel="stylesheet"
-      href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css"
+    rel="stylesheet"
+    href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css"
     />
   </head>
   <body>
     <header>
       <div>
         <img src="/img/GRC_Logo_White.png" alt="Green River Logo" />
-        <h1>Recent Change History</h1>
+        <h1>Green River LOC</h1>
       </div>
     </header>
-    <main></main>
-
-    <script defer>
+    <main>
+      
+      <h2>Recent Changes Work History</h2>
+      <a href="/" class="btn">Back to Summary</a>
+    
+      <% if (!recentChanges || recentChanges.length === 0) { %>
+        <p>No recent changes found.</p>
+      <% } else { %>
+        <table id="order-table" class="display">
+          <thead>
+            <tr>
+              <th>Division</th>
+              <th>Program</th>
+              <th>Field</th>
+              <th>Old Value</th>
+              <th>New Value</th>
+              <th>Changed At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% recentChanges.forEach(change => { %>
+              <tr>
+                <td><%= change.DivisionName %></td>
+                <td><%= change.ProgramName %></td>
+                <td><%= change.FieldName %></td>
+                <td><%= change.OldValue %></td>
+                <td><%= change.NewValue %></td>
+                <td><%= new Date(change.ChangedAt).toLocaleString() %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } %>
+    </main>
+      <script defer>
       let table = new DataTable("#order-table");
     </script>
-
-    <script>
-      // If the URL contains ?success=true, remove it without reloading the page
-      if (window.location.search.includes("success=true")) {
-        window.history.replaceState(
-          {},
-          document.title,
-          window.location.pathname
-        );
-      }
-    </script>
-
-    <script>
-      // Auto-hide the success banner after 3 seconds
-      const banner = document.querySelector(".success-banner");
-      if (banner) {
-        setTimeout(() => {
-          banner.style.opacity = "0";
-          banner.style.transition = "opacity 0.5s ease";
-        }, 3000);
-      }
-    </script>
-  </body>
+</body>
 </html>

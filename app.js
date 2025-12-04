@@ -235,7 +235,7 @@ app.get("/", async (req, res) => {
         FROM top5_per_div
         GROUP BY DivisionName
         ORDER BY latest DESC
-        LIMIT 3
+        LIMIT 2
       )
       SELECT t.ProgramID, t.DivisionName, t.ProgramName, t.FieldName, t.OldValue, t.NewValue, t.ChangedAt
       FROM top5_per_div t
@@ -582,12 +582,21 @@ app.post("/submit-order2", async (req, res) => {
   }
 });
 
+// ---------- RECENT CHANGES PAGE ----------
+// Fetch latest 100 recent changes and render recentChanges.ejs
 app.get("/recent-changes", async (req, res) => {
-  const [changes] = await pool.query(
-    "SELECT * FROM RecentChanges ORDER BY ChangedAt DESC LIMIT 100"
-  );
-  res.render("recentChanges", { changes });
+  try {
+    const [recentChanges] = await pool.query(
+      "SELECT * FROM RecentChanges ORDER BY ChangedAt DESC LIMIT 100"
+    );
+
+    res.render("recentChanges", { recentChanges });
+  } catch (err) {
+    console.error("Database error on /recent-changes:", err);
+    res.status(500).send("Database error: " + err.message);
+  }
 });
+
 
 // Route: Get programs by review year (JSON only for now)
 app.get("/review-schedule", async (req, res) => {
