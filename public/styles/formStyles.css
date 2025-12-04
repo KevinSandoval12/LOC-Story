@@ -162,6 +162,19 @@ main.layout {
 #aside-row {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+#under-review-aside {
+  margin: 0;
+  margin-top: 1rem;
+}
+
+#recent-changes {
+  margin: 0;
+  margin-top: 1rem;
 }
 
 .aside-collapse-container input[type="checkbox"] {
@@ -204,13 +217,13 @@ main.layout {
 }
 
 /* expand when checkbox is checked */
-.aside-collapse-container input[type="checkbox"]:checked ~ .collapse-text {
+.aside-collapse-container > input[type="checkbox"]:checked ~ .collapse-text {
   max-height: 2000px;
 }
 
 /* rotate arrow when opened */
-.aside-collapse-container input[type="checkbox"]:checked + label:after {
-  transform: rotate(180deg);
+.aside-collapse-container > input[type="checkbox"]:checked + label:after {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .aside-title {
@@ -229,7 +242,7 @@ aside {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   border: 1px solid #d4e5d8;
   max-width: 800px;
-  margin: 30px auto;
+  margin: 30px 0;
 }
 
 .underReviewLink {

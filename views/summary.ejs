@@ -49,43 +49,43 @@
       <section id="aside-row">
         <!-- Under Review Aside Section Goes Here -->
         <aside id="under-review-aside">
-          
-          
           <div class="aside-collapse-container">
-            <input type="checkbox" id="aside-1">
-              <label for="aside-1">
-                <h2 class="aside-title">Under Review</h2>
-                <!-- <img src="/img/dropdown-arrow.webp" alt="dropdown arrow"> -->
-              </label>
-                <div class="collapse-text">
-                  <% if (programs.length === 0) { %>
-                  <p class="empty">No programs are currently under review.</p>
-                  <% } else { %>
-                  <ul id="underReviewList">
-                    <% programs.forEach(p => { %>
-                    <li>
-                      <a
-                        class="underReviewLink"
-                        href="/form-from-under-review?programID=<%= p.ProgramID %>"
-                      >
-                        <strong><%= p.AcademicPrograms %></strong>
-                        <br />
-                        <span class="division"><%= p.DivisionName %></span>
-                      </a>
-                    </li>
-                    <% }) %>
-                  </ul>
-                  <% } %>
-                </div>
-              </div>
-        </aside>
+            <input type="checkbox" id="aside-1" name="aside-1">
+            <label for="aside-1">
+              <h2 class="aside-title">Under Review</h2>
+            </label>
+
+            <div class="collapse-text">
+              <% if (programs.length === 0) { %>
+                <p class="empty">No programs are currently under review.</p>
+              <% } else { %>
+                <ul id="underReviewList">
+                  <% programs.forEach(p => { %>
+                  <li>
+                    <a
+                      class="underReviewLink"
+                      href="/form-from-under-review?programID=<%= p.ProgramID %>"
+                    >
+                      <strong><%= p.AcademicPrograms %></strong><br />
+                      <span class="division"><%= p.DivisionName %></span>
+                    </a>
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
+          </div>
+        </div>
+      </aside>
   
   <!-- Recent Changes Aside -->
-  <aside id="recent-changes">
-    <div class="aside-collapse-container">
-      <input type="checkbox" id="aside-2">
-        <label for="aside-2"><h2 class="aside-title">Recent Changes</h2></label>
-          <div class="collapse-text">
+    <aside id="recent-changes">
+      <div class="aside-collapse-container">
+        <input type="checkbox" id="aside-2" name="aside-2">
+        <label for="aside-2">
+          <h2 class="aside-title">Recent Changes</h2>
+        </label>
+
+      <div class="collapse-text">
             <% if (!groupedRecent || groupedRecent.length === 0) { %>
               <p class="empty">No recent changes.</p>
             <% } else { %>
