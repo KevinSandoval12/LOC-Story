@@ -162,6 +162,7 @@ main.layout {
 #aside-row {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
   max-width: 1500px;
   margin: 0 auto;
