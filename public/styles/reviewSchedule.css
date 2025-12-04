@@ -75,3 +75,20 @@
   margin-bottom: 12px;
   font-size: 1.1rem;
 }
+
+/* Program click link */
+.program-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 1rem;
+}
+
+.program-link:hover strong,
+.program-link:hover .program-division {
+    color: #0a8f2b; /* Green River green hover */
+}
+
+/* Back to summary button */
+.review-back-wrapper {
+  padding: 20px 40px;
+}

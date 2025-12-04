@@ -56,8 +56,13 @@
         <ul>
           <% programs.forEach(p => { %>
             <li>
-              <strong><%= p.AcademicPrograms %></strong>
-              — <%= p.DivisionName %>
+              <a 
+                href="/form-from-under-review?programID=<%= p.ProgramID %>"
+                class="program-link"
+              >
+                <strong><%= p.AcademicPrograms %></strong>
+                <span class="program-division"> — <%= p.DivisionName %></span>
+              </a>
             </li>
           <% }) %>
         </ul>
@@ -66,7 +71,15 @@
     </section>
 
   </main>
+
+  <div class="review-back-wrapper">
+    <a href="/" class="btn">
+      <i class="fa-solid fa-arrow-left"></i> Back to Summary
+    </a>
+  </div>
+  
 </body>
 </html>
+
 
 
