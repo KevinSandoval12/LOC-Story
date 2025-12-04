@@ -624,7 +624,7 @@ app.get("/review-schedule", async (req, res) => {
     res.json({
       selectedYear: year,
       availableYears: years,
-      programs,
+      programs
     });
   } catch (err) {
     console.error("Error in /review-schedule:", err);
@@ -641,6 +641,8 @@ app.get("/review-schedule-view", async (req, res) => {
     const [yearsRows] = await pool.query(
       "SELECT DISTINCT ReviewYear FROM ReviewSchedule ORDER BY ReviewYear;"
     );
+    const [orders] = await pool.query("SELECT d.DivisionName, AcademicPrograms FROM AcademicPrograms a JOIN Division d ON a.DivisionName = d.DivisionName;");
+    
     const availableYears = yearsRows.map(r => r.ReviewYear);
 
     // 2. If a year is selected, get programs
@@ -669,7 +671,8 @@ app.get("/review-schedule-view", async (req, res) => {
     res.render("reviewSchedule", {
       availableYears,
       selectedYear: year,
-      programs
+      programs,
+      orders
     });
 
   } catch (err) {

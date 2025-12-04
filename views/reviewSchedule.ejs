@@ -10,6 +10,19 @@
 
   <!-- Using formStyles.css as well -->
   <link rel="stylesheet" href="/styles/reviewSchedule.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css"
+  />
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
 </head>
 <body>
   <header>
@@ -53,7 +66,7 @@
 
         <h2>Programs Under Review for <%= selectedYear %></h2>
 
-        <ul>
+        <!-- <ul>
           <% programs.forEach(p => { %>
             <li>
               <a 
@@ -65,12 +78,48 @@
               </a>
             </li>
           <% }) %>
-        </ul>
+        </ul> -->
+        <table id="order-table">
+          <thead>
+            <tr>
+              <th>Divisions</th>
+              <th>Programs</th>
+              <th>UnderReview</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% orders.forEach(order => { %>
+              <tr>
+                <td><strong><%= order.DivisionName %></strong></td>
+                <td><%= order.AcademicPrograms %></td>
+                <td>
+                  <!-- checks if at least one element in the array matches a condition -->
+                  <%= programs.some(p => p.AcademicPrograms === order.AcademicPrograms) ? "Yes" : "No" %>
+                </td>
+                <td>
+                  <a href="/form-from-under-review?programID=<%= 
+                    (programs.find(p => p.AcademicPrograms === order.AcademicPrograms) || {}).ProgramID %>">
+                    Edit/View
+                  </a>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
 
       <% } %>
     </section>
 
   </main>
+
+  <script>
+    $(document).ready(function() {
+      $('#order-table').DataTable();
+    });
+  </script>
+
 
   <div class="review-back-wrapper">
     <a href="/" class="btn">
