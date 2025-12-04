@@ -59,8 +59,8 @@
                 <td><%= change.DivisionName %></td>
                 <td><%= change.ProgramName %></td>
                 <td><%= change.FieldName %></td>
-                <td><%= change.OldValue %></td>
-                <td><%= change.NewValue %></td>
+                <td><%= change.OldValue == 1 ? "Yes" : change.OldValue == 0 ? "No" : change.OldValue %> </td>
+                <td><%= change.NewValue == 1 ? "Yes" : change.NewValue == 0 ? "No" : change.NewValue %></td>
                 <td><%= new Date(change.ChangedAt).toLocaleString() %></td>
               </tr>
             <% }); %>
